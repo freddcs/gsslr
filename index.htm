@@ -1,0 +1,523 @@
+<html>
+    <head>
+
+        <meta charset="utf-8">
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+        <script src="js/model/GssNode.js"></script>
+        <script src="js/model/Gss.js"></script>
+        <script src="js/model/GraphEdge.js"></script>
+        <script src="js/model/Graph.js"></script>
+        <script src="js/model/ReduceRule.js"></script>
+        <script src="js/model/Automaton.js"></script>
+        <script src="js/model/AutomatonAction.js"></script>
+        <script src="js/Algorithm.js"></script>
+        <script src="js/examples.js"></script>
+        <script src="js/main.js"></script>
+
+        <script src="js/lib/underscore.js"></script>
+        <script src="js/lib/tools.js"></script>
+        <script src="js/lib/grammar.js"></script>
+        <script src="js/lib/lr1item.js"></script>
+        <script src="js/lib/lrclosuretable.js"></script>
+        <script src="js/lib/lrtable.js"></script>
+        <script src="js/lib/lrtableview.js"></script>
+
+        <style>
+
+            .link {
+                fill: none;
+                stroke: #000;
+                stroke-width: 1px;
+            }
+
+            .nodes circle {
+                stroke: #000;
+                stroke-width: 1px;
+                fill: white;
+                r: 10;
+            }
+
+            .gssNodes circle {
+                stroke: #000;
+                stroke-width: 1px;
+                fill: white;
+                r: 20;
+            }
+
+            .acceptedGssNodes circle {
+
+                stroke: #F00;
+                stroke-width: 1px;
+                fill: white;
+                r: 20;
+            }
+
+            .gssNodes rect {
+                stroke: #000;
+                stroke-width: 1px;
+                fill: white;
+                width: 40px;
+                height: 40px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="graph">
+            <div id="graphs" style="width:10%;float:left;">
+                <div><select id="exampleGraphs" onchange="selectExample()" onclick="selectExample()" value="0"></select></div>
+                <textarea id="graphText" style="width:100%;height:200px;" onchange="updateGraph()" onblur="updateGraph()"></textarea>
+                <div><select id="exampleGrammars" onchange="selectExampleGrammar()" onclick="selectExampleGrammar()" value="0"></select></div>
+                <textarea id="grammarText" style="width:100%;height:100px;" onchange="updateGrammar()" onblur="updateGrammar()"></textarea>
+                <div><button onclick="performQuery()">Query</button></div>
+                <div id="lrTableView"></div>
+                <div id="answers"></div>
+            </div>
+            <div id="graphBase" style="width:45%;float:left;"></div>
+            <div id="tracesBase" style="width:45%;float:left;"></div>
+            <div style="clear:both"></div>
+        </div>
+
+        <div id="gssBase"></div>
+
+        <script>
+
+            var lrTable = null;
+
+            function performQuery() {
+
+                var algorithm = query(lrTable);
+
+                document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
+
+                var gssTraces = '';
+                console.log(algorithm.gss);
+                var levels = Object.keys(algorithm.gss.levels).length;
+
+                function printTrace(currentNode, gss) {
+
+                    var traces = [];
+                    for (var k = 0; k < currentNode.previousNodes.length; k++) {
+
+                        var previousNodeIndex = currentNode.previousNodes[k];
+                        var previousNode = gss.find(previousNodeIndex);
+                        traces.push(printTrace(previousNode, gss));
+                    }
+
+                    var accepted = "";
+
+                    if (currentNode.accepted) {
+
+                        accepted = " style='color:#FFCC00;font-weigh:bold;'";
+                    }
+
+                    var square = " style='border:1px solid #000;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
+                    var circle = " style='border:1px solid #000;border-radius:50px;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
+
+                    var nodeString = " &larr; <span" + square + ">" + currentNode.edge + "</span> &larr; <span" + accepted + "><span" + circle + ">" + currentNode.node + ", " + currentNode.state + "</span></span>";
+
+                    if (traces.length > 0) {
+
+                        for (var i = 0; i < traces.length; i++) {
+
+                            traces[i] += nodeString;
+                        }
+                    }
+                    else {
+
+                        traces = [nodeString];
+                    }
+
+                    return traces;
+                }
+
+                for (var i = 0; i < levels; i++) {
+
+                    gssTraces += "<div><strong>Level " + i + ":</strong></div>";
+
+                    var level = algorithm.gss.levels[i];
+
+                    for (var j = 0; j < level.length; j++) {
+
+                        var currentNode = level[j];
+
+                        var traces = printTrace(currentNode, algorithm.gss);
+
+                        gssTraces += "<div style='margin-top:10px;'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
+                    }
+                }
+
+                document.getElementById("tracesBase").innerHTML = gssTraces;
+
+                updateGss(algorithm.gss);
+            }
+
+            function selectExample() {
+
+                var exampleGraphs = document.getElementById("exampleGraphs");
+                var exampleGraph = graphs[parseInt(exampleGraphs.value)];
+
+                var graphText = document.getElementById("graphText");
+
+                graphText.value = '';
+
+                for (var i = 0; i < exampleGraph.length; i++) {
+
+                    var edge = exampleGraph[i];
+                    graphText.value +=  edge[0] + " " + edge[1] + " " + edge[2] + "\n";
+                }
+
+                updateGraph();
+            }
+
+            function selectExampleGrammar() {
+
+                var exampleGrammars = document.getElementById("exampleGrammars");
+                var exampleGrammar = grammars[parseInt(exampleGrammars.value)];
+
+                var grammarText = document.getElementById("grammarText");
+
+                grammarText.value = '';
+
+                for (var i = 0; i < exampleGrammar.length; i++) {
+
+                    var rule = exampleGrammar[i];
+                    grammarText.value +=  rule[0] + " -> " + rule[1] + "\n";
+                }
+
+                updateGrammar();
+            }
+
+            function updateGraph() {
+
+                document.getElementById("graphBase").innerHTML = '<svg id="graphD3" width="500" height="500"></svg>';
+
+                //create somewhere to put the force directed graph
+                var svg = d3.select("#graphD3"),
+                    width = +svg.attr("width"),
+                    height = +svg.attr("height");
+
+                svg.innerHTML = '';
+
+                var graphString = document.getElementById("graphText").value;
+                var graphData = graphString.split("\n");
+
+                var nodes_data =  [];
+                var links_data = [];
+
+                for (var i = 0; i < graphData.length; i++) {
+
+                    var edgeString = graphData[i];
+
+                    if (edgeString.trim() !== '') {
+                        var edgeData = edgeString.split(" ");
+
+                        nodes_data.push({"name": edgeData[0]});
+                        nodes_data.push({"name": edgeData[2]});
+
+                        links_data.push({"source": edgeData[0], "target": edgeData[2], "label": edgeData[1]});
+                    }
+                }
+
+                nodes_data = nodes_data.filter(function(item, pos) {
+
+                    var firstPos = nodes_data.map(function(el) {
+                        return el.name;
+                    }).indexOf(item.name);
+
+                    return firstPos === pos;
+                });
+
+                var simulation = d3.forceSimulation().nodes(nodes_data);
+
+                simulation.force("charge_force", d3.forceManyBody())
+                    .force("center_force", d3.forceCenter(width / 2, height / 2));
+
+                svg.append("defs").selectAll("marker")
+                    .data(["seta"])
+                    .enter().append("marker")
+                    .attr("id", function(d) { return d; })
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 23)
+                    .attr("refY", -5)
+                    .attr("markerWidth", 6)
+                    .attr("markerHeight", 6)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-5L10,0L0,5");
+
+                var link = svg.append("g").selectAll("path")
+                    .data(links_data)
+                    .enter().append("path")
+                    .attr("class", "link")
+                    .attr("distance", "10")
+                    .attr("marker-end", "url(#seta)");
+
+                var node = svg.append("g")
+                    .attr("class", "nodes")
+                    .selectAll("circle")
+                    .data(nodes_data)
+                    .enter()
+                    .append("circle")
+                    .call(d3.drag()
+                        .on("start", dragstarted)
+                        .on("drag", dragged)
+                        .on("end", dragended));
+
+                var nodeLabel = svg.append("g").selectAll("text")
+                    .data(nodes_data)
+                    .enter().append("text")
+                    .attr("x", "-4px")
+                    .attr("y", "5px")
+                    .text(function(d) { return d.name; });
+
+                var edgeLabel = svg.append("g").selectAll("text")
+                    .data(links_data)
+                    .enter().append("text")
+                    .attr("x", "-4px")
+                    .attr("y", "5px")
+                    .text(function(d) { return d.label; });
+
+                function tickActions() {
+
+                    link.attr("d", function(d) {
+                        var dx = d.target.x - d.source.x,
+                            dy = d.target.y - d.source.y,
+                            dr = Math.sqrt(dx * dx + dy * dy);
+                        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+                    });
+
+                    //update circle positions each tick of the simulation
+                    node
+                        .attr("cx", function(d) { return d.x; })
+                        .attr("cy", function(d) { return d.y; });
+
+                    //update link positions
+                    //simply tells one end of the line to follow one node around
+                    //and the other end of the line to follow the other node around
+                    link
+                        .attr("x1", function(d) { return d.source.x; })
+                        .attr("y1", function(d) { return d.source.y; })
+                        .attr("x2", function(d) { return d.target.x; })
+                        .attr("y2", function(d) { return d.target.y; });
+
+                    nodeLabel.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+                    edgeLabel.attr("transform", function(d) {
+
+                        var dx = (d.target.x - d.source.x) / 2;
+                        var dy = (d.target.y - d.source.y) / 2;
+
+                        return "translate(" + (d.source.x + dx) + "," + (d.source.y + dy) + ")";
+                    });
+                }
+
+                simulation.on("tick", tickActions );
+
+                function dragstarted(d) {
+
+                    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                }
+
+                function dragged(d) {
+
+                    d.fx = d3.event.x;
+                    d.fy = d3.event.y;
+                }
+
+                function dragended(d) {
+
+                    if (!d3.event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                }
+
+                //Create the link force
+                //We need the id accessor to use named sources and targets
+                var link_force =  d3.forceLink(links_data).id(function(d) { return d.name; }).distance(60);
+
+                simulation.force("links",link_force);
+            }
+
+            function updateGrammar() {
+
+                var grammarString = document.getElementById("grammarText").value;
+                var grammar = new Grammar(grammarString);
+                lrTable = new LRTable(new LRClosureTable(grammar));
+
+                document.getElementById('lrTableView').innerHTML = formatLRTable(lrTable);
+            }
+
+            function updateGss(gss) {
+
+                var levels = Object.keys(gss.levels).length;
+
+                document.getElementById("gssBase").innerHTML = "<svg id='gssD3' width='" + (levels * 170 - 100) + "' height='500'></svg>";
+
+                //create somewhere to put the force directed graph
+                var svg = d3.select("#gssD3"),
+                    width = +svg.attr("width"),
+                    height = +svg.attr("height");
+
+                svg.innerHTML = '';
+
+                var gssKeys = Object.keys(gss.gss);
+
+                var levels_data = [];
+                var nodes_data = [];
+                var accepted_nodes_data = [];
+                var edges_data = [];
+                var links_data = [];
+
+                var level = null;
+                var y = 50;
+                for (var i = 0; i < gssKeys.length; i++) {
+
+                    var gssNode = gss.gss[gssKeys[i]];
+
+                    if (level !== gssNode.level) {
+
+                        level = gssNode.level;
+                        y = 50;
+
+                        levels_data.push({"name": "U" + level, label: "U" + level, type: "node", "x": 25 + gssNode.level * 170, "y": 10});
+                    }
+
+                    var currentNode = {"name": gssNode.index, label: gssNode.node + ", I" + gssNode.state, type: "node", "x": 25 + gssNode.level * 170, "y": y};
+
+                    if (gssNode.accepted) {
+
+                        accepted_nodes_data.push(currentNode);
+                    }
+                    else {
+
+                        nodes_data.push(currentNode);
+                    }
+
+                    var edge = {"name": gssNode.index + "l", label: gssNode.edge, type: "edge", "x": 25 + gssNode.level * 170 - 50, "y": y};
+                    edges_data.push(edge);
+
+                    links_data.push({"source": currentNode, "target": edge});
+
+                    for (j = 0; j < gssNode.previousNodes.length; j++) {
+
+                        var previousData = nodes_data.filter(function(item, pos) {
+
+                            return item.name === gssNode.previousNodes[j];
+                        })[0];
+
+                        links_data.push({"source": edge, "target": previousData});
+                    }
+
+                    y += 50;
+                }
+
+                svg.append("defs").selectAll("marker")
+                    .data(["setaReta"])
+                    .enter().append("marker")
+                    .attr("id", function(d) { return d; })
+                    .attr("viewBox", "0 -5 10 10")
+                    .attr("refX", 40)
+                    .attr("refY", 0)
+                    .attr("markerWidth", 6)
+                    .attr("markerHeight", 6)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", "M0,-5L10,0L0,5");
+
+                var link = svg.append("g").selectAll("line")
+                    .data(links_data)
+                    .enter().append("line")
+                    .attr("class", "link")
+                    .attr('x1', function(d) { return d.source.x; })
+                    .attr('y1', function(d) { return d.source.x; })
+                    .attr('x2', function(d) { return d.target.x; })
+                    .attr('y2', function(d) { return d.target.x; })
+                    .attr("marker-end", "url(#setaReta)");
+
+                var levelLabel = svg.append("g").selectAll("text")
+                    .data(levels_data)
+                    .enter().append("text")
+                    .attr("x", "-8px")
+                    .attr("y", "5px")
+                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                    .text(function(d) { return d.label; });
+
+                var node = svg.append("g")
+                    .attr("class", "gssNodes")
+                    .selectAll("circle")
+                    .data(nodes_data)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) { return d.x; }).attr("cy", function(d) { return d.y; });
+
+                var acceptedNode = svg.append("g")
+                    .attr("class", "acceptedGssNodes")
+                    .selectAll("circle")
+                    .data(accepted_nodes_data)
+                    .enter()
+                    .append("circle")
+                    .attr("cx", function(d) { return d.x; }).attr("cy", function(d) { return d.y; });
+
+                var edgeNode = svg.append("g")
+                    .attr("class", "gssNodes")
+                    .selectAll("rect")
+                    .data(edges_data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d) { return d.x - 20; })
+                    .attr("y", function(d) { return d.y - 20; });
+
+                var nodeLabel = svg.append("g").selectAll("text")
+                    .data(nodes_data.concat(accepted_nodes_data))
+                    .enter().append("text")
+                    .attr("x", "-15px")
+                    .attr("y", "5px")
+                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                    .text(function(d) { return d.label; });
+
+                var edgeLabel = svg.append("g").selectAll("text")
+                    .data(edges_data)
+                    .enter().append("text")
+                    .attr("x", "-4px")
+                    .attr("y", "5px")
+                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+                    .text(function(d) { return d.label; });
+
+                //update link positions
+                //simply tells one end of the line to follow one node around
+                //and the other end of the line to follow the other node around
+                link
+                    .attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+            }
+
+            var exampleGraphs = document.getElementById("exampleGraphs");
+
+            exampleGraphs.innerHTML = "";
+
+            for (var i = 0; i < graphs.length; i++) {
+
+                exampleGraphs.innerHTML += "<option value='" + i + "'>Example " + i + "</option>";
+            }
+
+            var exampleGrammars = document.getElementById("exampleGrammars");
+
+            exampleGrammars.innerHTML = "";
+
+            for (i = 0; i < grammars.length; i++) {
+
+                exampleGrammars.innerHTML += "<option value='" + i + "'>Example " + i + "</option>";
+            }
+
+            selectExample();
+            selectExampleGrammar();
+        </script>
+    </body>
+</html>
