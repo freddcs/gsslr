@@ -1,4 +1,4 @@
-function query(lrTable) {
+function query(lrTable, steps) {
 
     lrTable.longestRhs = 0;
     lrTable.grammar.rules.forEach(function(r) { if (r.development.length > lrTable.longestRhs) lrTable.longestRhs = r.development.length; });
@@ -33,7 +33,7 @@ function query(lrTable) {
     console.log(lrTable);
 
     var algorithm = new Algorithm(graph, lrTable);
-    algorithm.answers = algorithm.query(startNodes);
+    algorithm.answers = algorithm.query(startNodes, steps);
 
     return algorithm;
 }
