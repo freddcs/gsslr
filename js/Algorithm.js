@@ -10,6 +10,8 @@ var Algorithm = function(graph, lrTable) {
     this.query = function(nodes, steps) {
 
         this.stepping = steps;
+        this.completed = false;
+        this.infiniteLoop = false;
 
         this.gss = new Gss(nodes);
         this.evalLevel();
@@ -22,9 +24,17 @@ var Algorithm = function(graph, lrTable) {
         return this.answers;
     };
 
-    this.continue = function() {
+    this.continue = function(numberOfSteps) {
 
-        this.evalLevel();
+        for (var i = 0; i < numberOfSteps; i++) {
+
+            this.evalLevel();
+
+            if (this.completed === true) {
+
+                break;
+            }
+        }
 
         var answers = this.answers;
         this.answers = answers.filter(function(item, pos) {
@@ -87,6 +97,11 @@ var Algorithm = function(graph, lrTable) {
     };
 
     this.evalLevel = function() {
+
+        if (this.completed === true) {
+
+            return;
+        }
 
         var shouldContinue = false;
 
@@ -159,9 +174,18 @@ var Algorithm = function(graph, lrTable) {
             this.loopCounter = 0;
         }
 
-        if (this.loopCounter >= this.lrTable.longestRhs) {
+        var currentLevelLength = this.gss.level(this.level).length;
+
+        if (this.gss.highestLevelLength < currentLevelLength) {
+
+            this.gss.highestLevelLength = currentLevelLength;
+        }
+
+        if (1 === 2 && this.loopCounter >= this.lrTable.longestRhs) {
 
             console.log("** LOOP INFINITO ENCONTRADO! **");
+            this.infiniteLoop = true;
+            this.completed = true;
         }
         else {
 
@@ -190,14 +214,17 @@ var Algorithm = function(graph, lrTable) {
                 }
             }
 
-            this.level ++;
-            if (shouldContinue === true && this.stepping === false) {
+            this.level++;
+            if (shouldContinue === true) {
 
-                this.evalLevel();
+                if (this.stepping === false) {
+
+                    this.evalLevel();
+                }
             }
             else {
 
-                console.log ('** PARANDO! **');
+                this.completed = true;
             }
         }
     };

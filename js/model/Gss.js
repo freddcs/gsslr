@@ -3,6 +3,7 @@ var Gss = function (nodes) {
     this.levels = {};
     this.levelsHash = {};
     this.levelHashCodes = {};
+    this.highestLevelLength = 0;
 
     this.newNode = function(level, state, edge, node, predecessors) {
 

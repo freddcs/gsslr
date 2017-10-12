@@ -45,6 +45,12 @@
                 r: 10;
             }
 
+            .edges rect {
+                stroke: #000;
+                stroke-width: 1px;
+                fill: rgb(230, 230, 255);
+            }
+
             .gssNodes circle {
                 stroke: #000;
                 stroke-width: 1px;
@@ -68,7 +74,7 @@
                 height: 40px;
             }
 
-            #graphs, #grammars, #process {
+            .janela {
                 width: 90%;
                 border: 1px solid #AAA;
                 border-radius: 3px;
@@ -81,13 +87,29 @@
                 margin-bottom:10px;
             }
 
-            .barra, .cabecalho {
+            .cabecalho {
                 background:#888888;
                 padding:10px;
             }
 
+            .barra {
+                position:absolute;
+                bottom:0;
+                left:0;
+                width:100%;
+                background:#888888;
+                padding:10px 0;
+            }
+
             .corpo {
                 padding:10px;
+            }
+
+            .barra input {
+                height: 40px;
+                text-align: center;
+                width: 50px;
+                font-size: 18pt;
             }
 
             .barra button {
@@ -95,12 +117,14 @@
                 min-width:100px;
             }
 
-            .barra .push-right {
+            .push-right {
                 float:right;
+                margin-right:10px;
             }
 
-            .barra .push-left {
+            .push-left {
                 float:left;
+                margin-left:10px;
             }
 
             .cabecalho {
@@ -110,10 +134,20 @@
 
             #lrTableView {
                 position: absolute;
-                left: 0;
+                right: 0;
                 top: 13px;
                 background:#FFF;
                 z-index:999;
+            }
+
+            #tracesBase .even {
+                background:#FFF;
+                padding:5px;
+            }
+
+            #tracesBase .odd {
+                background:#EEE;
+                padding:5px;
             }
         </style>
     </head>
@@ -121,20 +155,20 @@
     <body>
         <h1>GSSLR</h1>
 
-        <div id="graphs">
+        <div id="graphs" class="janela">
             <div class="cabecalho">Select the graph</div>
             <div class="corpo">
                 <div style="width:20%;float:left;">
                     <select id="exampleGraphs" onchange="selectExample()" onclick="selectExample()" value="0"></select>
                     <textarea id="graphText" style="width:100%;height:200px;" onchange="updateGraph()" onblur="updateGraph()"></textarea>
                 </div>
-                <div id="graphBase" style="border:1px solid #000;background:#FFF;width:75%;margin-left:5px;float:left;"></div>
+                <div id="graphBase" style="border:1px solid #000;background:#FFF;width:75%;margin-left:5px;float:left;overflow:hidden;height:100%;"></div>
                 <div style="clear:both"></div>
             </div>
             <div class="barra"><button class="push-right" onclick="showPage(2);">Next ></button><div style="clear:both;"></div></div>
         </div>
 
-        <div id="grammars">
+        <div id="grammars" class="janela">
             <div class="cabecalho">Select the LR Grammar</div>
             <div class="corpo">
                 <div><select id="exampleGrammars" onchange="selectExampleGrammar()" onclick="selectExampleGrammar()" value="0"></select></div>
@@ -144,577 +178,39 @@
             <div class="barra"><button class="push-left" onclick="showPage(1);">< Previous</button><button class="push-right" onclick="showPage(3);">Query ></button><div style="clear:both;"></div></div>
         </div>
 
-        <div id="process">
-            <div class="cabecalho">Select the LR Grammar</div>
-            <div class="corpo">
-                <button>
+        <div id="process" class="janela">
+            <div class="cabecalho">
+                Querying ...
+
+                <button class="push-right">
                     <i class="fa fa-table" aria-hidden="true" onclick="toggleTableView()"></i>
                     <div id="lrTableView" style="display:none;"></div>
                 </button>
-                <div id="answers"></div>
+            </div>
+            <div class="corpo">
 
-                <div style="float:left;width:50%;height:300px;overflow:auto;">
+                <div style="float:left;width:70%;height:100%;overflow:auto;">
                     <div id="gssBase"></div>
                 </div>
 
-                <div style="float:left;width:45%;margin-left:10px;height:300px;overflow:auto;">
-                    <div id="tracesBase" style="width:45%;float:left;"></div>
+                <div style="float:left;width:28%;margin-left:10px;height:100%;overflow:auto;">
+                    <div id="tracesBase"></div>
                 </div>
 
                 <div style="clear:both"></div>
 
             </div>
-            <div class="barra"><button class="push-right" onclick="continueQuery();">Continue</button><div style="clear:both;"></div></div>
+            <div class="barra">
+                <button class="push-left" onclick="showPage(2);">< Previous</button>
+                <div id="answers" class="push-left"></div>
+
+                <button id="bContinue" class="push-right" onclick="continueQuery();">Continue</button>
+                <input id="numberOfSteps" value="1" class="push-right">
+
+                <div style="clear:both;"></div>
+            </div>
         </div>
 
-        <script>
-
-            var lrTable = null;
-            var algorithm = null;
-
-            function performQuery(steps) {
-
-                algorithm = query(lrTable, steps);
-
-                document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
-
-                var gssTraces = '';
-                console.log(algorithm.gss);
-                var levels = Object.keys(algorithm.gss.levels).length;
-
-                function printTrace(currentNode, gss) {
-
-                    var traces = [];
-                    for (var k = 0; k < currentNode.previousNodes.length; k++) {
-
-                        var previousNodeIndex = currentNode.previousNodes[k];
-                        var previousNode = gss.find(previousNodeIndex);
-                        traces.push(printTrace(previousNode, gss));
-                    }
-
-                    var accepted = "";
-
-                    if (currentNode.accepted) {
-
-                        accepted = " style='color:#FFCC00;font-weigh:bold;'";
-                    }
-
-                    var square = " style='border:1px solid #000;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
-                    var circle = " style='border:1px solid #000;border-radius:50px;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
-
-                    var nodeString = " &larr; <span" + square + ">" + currentNode.edge + "</span> &larr; <span" + accepted + "><span" + circle + ">" + currentNode.node + ", " + currentNode.state + "</span></span>";
-
-                    if (traces.length > 0) {
-
-                        for (var i = 0; i < traces.length; i++) {
-
-                            traces[i] += nodeString;
-                        }
-                    }
-                    else {
-
-                        traces = [nodeString];
-                    }
-
-                    return traces;
-                }
-
-                for (var i = 0; i < levels - 1; i++) {
-
-                    gssTraces += "<div><strong>Level " + i + ":</strong></div>";
-
-                    var level = algorithm.gss.levels[i];
-
-                    for (var j = 0; j < level.length; j++) {
-
-                        var currentNode = level[j];
-
-                        var traces = printTrace(currentNode, algorithm.gss);
-
-                        gssTraces += "<div style='margin-top:10px;'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
-                    }
-                }
-
-                document.getElementById("tracesBase").innerHTML = gssTraces;
-
-                updateGss(algorithm.gss);
-            }
-
-            function continueQuery() {
-
-                algorithm.continue();
-
-                document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
-
-                var gssTraces = '';
-                console.log(algorithm.gss);
-                var levels = Object.keys(algorithm.gss.levels).length;
-
-                function printTrace(currentNode, gss) {
-
-                    var traces = [];
-                    for (var k = 0; k < currentNode.previousNodes.length; k++) {
-
-                        var previousNodeIndex = currentNode.previousNodes[k];
-                        var previousNode = gss.find(previousNodeIndex);
-                        traces.push(printTrace(previousNode, gss));
-                    }
-
-                    var accepted = "";
-
-                    if (currentNode.accepted) {
-
-                        accepted = " style='color:#FFCC00;font-weigh:bold;'";
-                    }
-
-                    var square = " style='border:1px solid #000;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
-                    var circle = " style='border:1px solid #000;border-radius:50px;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
-
-                    var nodeString = " &larr; <span" + square + ">" + currentNode.edge + "</span> &larr; <span" + accepted + "><span" + circle + ">" + currentNode.node + ", " + currentNode.state + "</span></span>";
-
-                    if (traces.length > 0) {
-
-                        for (var i = 0; i < traces.length; i++) {
-
-                            traces[i] += nodeString;
-                        }
-                    }
-                    else {
-
-                        traces = [nodeString];
-                    }
-
-                    return traces;
-                }
-
-                for (var i = 0; i < levels - 1; i++) {
-
-                    gssTraces += "<div><strong>Level " + i + ":</strong></div>";
-
-                    var level = algorithm.gss.levels[i];
-
-                    for (var j = 0; j < level.length; j++) {
-
-                        var currentNode = level[j];
-
-                        var traces = printTrace(currentNode, algorithm.gss);
-
-                        gssTraces += "<div style='margin-top:10px;'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
-                    }
-                }
-
-                document.getElementById("tracesBase").innerHTML = gssTraces;
-
-                updateGss(algorithm.gss);
-            }
-
-            function selectExample() {
-
-                var exampleGraphs = document.getElementById("exampleGraphs");
-                var exampleGraph = graphs[parseInt(exampleGraphs.value)];
-
-                var graphText = document.getElementById("graphText");
-
-                graphText.value = '';
-
-                for (var i = 0; i < exampleGraph.length; i++) {
-
-                    var edge = exampleGraph[i];
-                    graphText.value +=  edge[0] + " " + edge[1] + " " + edge[2] + "\n";
-                }
-
-                updateGraph();
-            }
-
-            function selectExampleGrammar() {
-
-                var exampleGrammars = document.getElementById("exampleGrammars");
-                var exampleGrammar = grammars[parseInt(exampleGrammars.value)];
-
-                var grammarText = document.getElementById("grammarText");
-
-                grammarText.value = '';
-
-                for (var i = 0; i < exampleGrammar.length; i++) {
-
-                    var rule = exampleGrammar[i];
-                    grammarText.value +=  rule[0] + " -> " + rule[1] + "\n";
-                }
-
-                updateGrammar();
-            }
-
-            function updateGraph() {
-
-                document.getElementById("graphBase").innerHTML = '<svg id="graphD3" width="500" height="300"></svg>';
-
-                //create somewhere to put the force directed graph
-                var svg = d3.select("#graphD3"),
-                    width = +svg.attr("width"),
-                    height = +svg.attr("height");
-
-                svg.innerHTML = '';
-
-                var graphString = document.getElementById("graphText").value;
-                var graphData = graphString.split("\n");
-
-                var nodes_data =  [];
-                var links_data = [];
-
-                for (var i = 0; i < graphData.length; i++) {
-
-                    var edgeString = graphData[i];
-
-                    if (edgeString.trim() !== '') {
-                        var edgeData = edgeString.split(" ");
-
-                        nodes_data.push({"name": edgeData[0]});
-                        nodes_data.push({"name": edgeData[2]});
-
-                        links_data.push({"source": edgeData[0], "target": edgeData[2], "label": edgeData[1]});
-                    }
-                }
-
-                nodes_data = nodes_data.filter(function(item, pos) {
-
-                    var firstPos = nodes_data.map(function(el) {
-                        return el.name;
-                    }).indexOf(item.name);
-
-                    return firstPos === pos;
-                });
-
-                var simulation = d3.forceSimulation().nodes(nodes_data);
-
-                simulation.force("charge_force", d3.forceManyBody())
-                    .force("center_force", d3.forceCenter(width / 2, height / 2));
-
-                svg.append("defs").selectAll("marker")
-                    .data(["seta"])
-                    .enter().append("marker")
-                    .attr("id", function(d) { return d; })
-                    .attr("viewBox", "0 -5 10 10")
-                    .attr("refX", 23)
-                    .attr("refY", -5)
-                    .attr("markerWidth", 6)
-                    .attr("markerHeight", 6)
-                    .attr("orient", "auto")
-                    .append("path")
-                    .attr("d", "M0,-5L10,0L0,5");
-
-                var link = svg.append("g").selectAll("path")
-                    .data(links_data)
-                    .enter().append("path")
-                    .attr("class", "link")
-                    .attr("distance", "10")
-                    .attr("marker-end", "url(#seta)");
-
-                var node = svg.append("g")
-                    .attr("class", "nodes")
-                    .selectAll("circle")
-                    .data(nodes_data)
-                    .enter()
-                    .append("circle")
-                    .call(d3.drag()
-                        .on("start", dragstarted)
-                        .on("drag", dragged)
-                        .on("end", dragended));
-
-                var nodeLabel = svg.append("g").selectAll("text")
-                    .data(nodes_data)
-                    .enter().append("text")
-                    .attr("x", "-4px")
-                    .attr("y", "5px")
-                    .text(function(d) { return d.name; });
-
-                var edgeLabel = svg.append("g").selectAll("text")
-                    .data(links_data)
-                    .enter().append("text")
-                    .attr("x", "-4px")
-                    .attr("y", "5px")
-                    .text(function(d) { return d.label; });
-
-                function tickActions() {
-
-                    link.attr("d", function(d) {
-                        var dx = d.target.x - d.source.x,
-                            dy = d.target.y - d.source.y,
-                            dr = Math.sqrt(dx * dx + dy * dy);
-                        return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-                    });
-
-                    //update circle positions each tick of the simulation
-                    node
-                        .attr("cx", function(d) { return d.x; })
-                        .attr("cy", function(d) { return d.y; });
-
-                    //update link positions
-                    //simply tells one end of the line to follow one node around
-                    //and the other end of the line to follow the other node around
-                    link
-                        .attr("x1", function(d) { return d.source.x; })
-                        .attr("y1", function(d) { return d.source.y; })
-                        .attr("x2", function(d) { return d.target.x; })
-                        .attr("y2", function(d) { return d.target.y; });
-
-                    nodeLabel.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-                    edgeLabel.attr("transform", function(d) {
-
-                        var dx = (d.target.x - d.source.x) / 2;
-                        var dy = (d.target.y - d.source.y) / 2;
-
-                        return "translate(" + (d.source.x + dx) + "," + (d.source.y + dy) + ")";
-                    });
-                }
-
-                simulation.on("tick", tickActions );
-
-                function dragstarted(d) {
-
-                    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-                    d.fx = d.x;
-                    d.fy = d.y;
-                }
-
-                function dragged(d) {
-
-                    d.fx = d3.event.x;
-                    d.fy = d3.event.y;
-                }
-
-                function dragended(d) {
-
-                    if (!d3.event.active) simulation.alphaTarget(0);
-                    d.fx = null;
-                    d.fy = null;
-                }
-
-                //Create the link force
-                //We need the id accessor to use named sources and targets
-                var link_force =  d3.forceLink(links_data).id(function(d) { return d.name; }).distance(60);
-
-                simulation.force("links",link_force);
-            }
-
-            function updateGrammar() {
-
-                var grammarString = document.getElementById("grammarText").value;
-                var grammar = new Grammar(grammarString);
-                lrTable = new LRTable(new LRClosureTable(grammar));
-
-                document.getElementById('lrTableView').innerHTML = formatLRTable(lrTable);
-            }
-
-            function updateGss(gss) {
-
-                var levels = Object.keys(gss.levels).length;
-
-                document.getElementById("gssBase").innerHTML = "<svg id='gssD3' width='" + (levels * 170 - 100) + "' height='500'></svg>";
-
-                //create somewhere to put the force directed graph
-                var svg = d3.select("#gssD3"),
-                    width = +svg.attr("width"),
-                    height = +svg.attr("height");
-
-                svg.innerHTML = '';
-
-                var gssKeys = Object.keys(gss.gss);
-
-                var levels_data = [];
-                var nodes_data = [];
-                var accepted_nodes_data = [];
-                var edges_data = [];
-                var links_data = [];
-
-                var level = null;
-                var y = 50;
-                for (var i = 0; i < gssKeys.length; i++) {
-
-                    var gssNode = gss.gss[gssKeys[i]];
-
-                    if (level !== gssNode.level) {
-
-                        level = gssNode.level;
-                        y = 50;
-
-                        levels_data.push({"name": "U" + level, label: "U" + level, type: "node", "x": 25 + gssNode.level * 170, "y": 10});
-                    }
-
-                    var currentNode = {"name": gssNode.index, label: gssNode.node + ", I" + gssNode.state, type: "node", "x": 25 + gssNode.level * 170, "y": y};
-
-                    if (gssNode.accepted) {
-
-                        accepted_nodes_data.push(currentNode);
-                    }
-                    else {
-
-                        nodes_data.push(currentNode);
-                    }
-
-                    var edge = {"name": gssNode.index + "l", label: gssNode.edge, type: "edge", "x": 25 + gssNode.level * 170 - 50, "y": y};
-                    edges_data.push(edge);
-
-                    links_data.push({"source": currentNode, "target": edge});
-
-                    for (j = 0; j < gssNode.previousNodes.length; j++) {
-
-                        var previousData = nodes_data.filter(function(item, pos) {
-
-                            return item.name === gssNode.previousNodes[j];
-                        })[0];
-
-                        links_data.push({"source": edge, "target": previousData});
-                    }
-
-                    y += 50;
-                }
-
-                svg.append("defs").selectAll("marker")
-                    .data(["setaReta"])
-                    .enter().append("marker")
-                    .attr("id", function(d) { return d; })
-                    .attr("viewBox", "0 -5 10 10")
-                    .attr("refX", 40)
-                    .attr("refY", 0)
-                    .attr("markerWidth", 6)
-                    .attr("markerHeight", 6)
-                    .attr("orient", "auto")
-                    .append("path")
-                    .attr("d", "M0,-5L10,0L0,5");
-
-                var link = svg.append("g").selectAll("line")
-                    .data(links_data)
-                    .enter().append("line")
-                    .attr("class", "link")
-                    .attr('x1', function(d) { return d.source.x; })
-                    .attr('y1', function(d) { return d.source.x; })
-                    .attr('x2', function(d) { return d.target.x; })
-                    .attr('y2', function(d) { return d.target.x; })
-                    .attr("marker-end", "url(#setaReta)");
-
-                var levelLabel = svg.append("g").selectAll("text")
-                    .data(levels_data)
-                    .enter().append("text")
-                    .attr("x", "-8px")
-                    .attr("y", "5px")
-                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-                    .text(function(d) { return d.label; });
-
-                var node = svg.append("g")
-                    .attr("class", "gssNodes")
-                    .selectAll("circle")
-                    .data(nodes_data)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function(d) { return d.x; }).attr("cy", function(d) { return d.y; });
-
-                var acceptedNode = svg.append("g")
-                    .attr("class", "acceptedGssNodes")
-                    .selectAll("circle")
-                    .data(accepted_nodes_data)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function(d) { return d.x; }).attr("cy", function(d) { return d.y; });
-
-                var edgeNode = svg.append("g")
-                    .attr("class", "gssNodes")
-                    .selectAll("rect")
-                    .data(edges_data)
-                    .enter()
-                    .append("rect")
-                    .attr("x", function(d) { return d.x - 20; })
-                    .attr("y", function(d) { return d.y - 20; });
-
-                var nodeLabel = svg.append("g").selectAll("text")
-                    .data(nodes_data.concat(accepted_nodes_data))
-                    .enter().append("text")
-                    .attr("x", "-15px")
-                    .attr("y", "5px")
-                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-                    .text(function(d) { return d.label; });
-
-                var edgeLabel = svg.append("g").selectAll("text")
-                    .data(edges_data)
-                    .enter().append("text")
-                    .attr("x", "-4px")
-                    .attr("y", "5px")
-                    .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-                    .text(function(d) { return d.label; });
-
-                //update link positions
-                //simply tells one end of the line to follow one node around
-                //and the other end of the line to follow the other node around
-                link
-                    .attr("x1", function(d) { return d.source.x; })
-                    .attr("y1", function(d) { return d.source.y; })
-                    .attr("x2", function(d) { return d.target.x; })
-                    .attr("y2", function(d) { return d.target.y; });
-            }
-
-            var exampleGraphs = document.getElementById("exampleGraphs");
-
-            exampleGraphs.innerHTML = "";
-
-            for (var i = 0; i < graphs.length; i++) {
-
-                exampleGraphs.innerHTML += "<option value='" + i + "'>Example " + i + "</option>";
-            }
-
-            var exampleGrammars = document.getElementById("exampleGrammars");
-
-            exampleGrammars.innerHTML = "";
-
-            for (i = 0; i < grammars.length; i++) {
-
-                exampleGrammars.innerHTML += "<option value='" + i + "'>Example " + i + "</option>";
-            }
-
-            function showPage(page) {
-
-                var graphs = document.getElementById('graphs');
-                var grammars = document.getElementById('grammars');
-                var process = document.getElementById('process');
-
-                graphs.style.display = 'none';
-                grammars.style.display = 'none';
-                process.style.display = 'none';
-
-                switch (page) {
-
-                    case 1:
-                        graphs.style.display = 'block';
-                        break;
-
-                    case 2:
-                        grammars.style.display = 'block';
-                        break;
-
-                    case 3:
-                        performQuery(true);
-                        process.style.display = 'block';
-                        break;
-                }
-            }
-
-            function toggleTableView() {
-
-                var tableView = document.getElementById('lrTableView');
-
-                if (tableView.style.display === 'none') {
-
-                    tableView.style.display = 'block';
-                }
-                else {
-
-                    tableView.style.display = 'none';
-                }
-
-            }
-
-            showPage(1);
-
-            selectExample();
-            selectExampleGrammar();
-        </script>
+        <script>initialize();</script>
     </body>
 </html>
