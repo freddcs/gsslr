@@ -14,21 +14,25 @@ var Algorithm = function(graph, lrTable) {
         this.infiniteLoop = false;
 
         this.gss = new Gss(nodes);
-        this.evalLevel();
+        var actions = this.evalLevel();
+
         var answers = this.answers;
         this.answers = answers.filter(function(item, pos) {
 
             return answers.indexOf(item) === pos;
         });
 
-        return this.answers;
+
+        return actions;
     };
 
     this.continue = function(numberOfSteps) {
 
+        var actions = [];
+
         for (var i = 0; i < numberOfSteps; i++) {
 
-            this.evalLevel();
+            actions = this.evalLevel();
 
             if (this.completed === true) {
 
@@ -42,7 +46,7 @@ var Algorithm = function(graph, lrTable) {
             return answers.indexOf(item) === pos;
         });
 
-        return this.answers;
+        return actions;
     };
 
     this.processReduction = function(action, gssNode) {
@@ -98,6 +102,8 @@ var Algorithm = function(graph, lrTable) {
 
     this.evalLevel = function() {
 
+        var actions = {reductions: [], accepts: [], shifts: []};
+
         if (this.completed === true) {
 
             return;
@@ -107,6 +113,7 @@ var Algorithm = function(graph, lrTable) {
 
         var gssNodes = this.gss.level(this.level);
 
+        // Search for reductions
         for (var i = 0; i < gssNodes.length; i++) {
 
             var gssNode = gssNodes[i];
@@ -122,6 +129,7 @@ var Algorithm = function(graph, lrTable) {
 
                     if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
 
+                        actions.reductions.push({gssNode: gssNode, graphEdge: graphEdge, action: action[0]});
                         this.processReduction(action[0], gssNode);
                     }
                 }
@@ -133,6 +141,7 @@ var Algorithm = function(graph, lrTable) {
                 action = action['$'];
                 if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
 
+                    actions.reductions.push({gssNode: gssNode, graphEdge: {node: gssNode.node, label: '$', destination: ''}, action: action[0]});
                     this.processReduction(action[0], gssNode);
                 }
             }
@@ -142,6 +151,7 @@ var Algorithm = function(graph, lrTable) {
 
         gssNodes = this.gss.level(this.level);
 
+        // Search for accepts
         for (i = 0; i < gssNodes.length; i++) {
 
             gssNode = gssNodes[i];
@@ -153,6 +163,7 @@ var Algorithm = function(graph, lrTable) {
 
                 if (acceptAction !== undefined && acceptAction[0].actionType === 'r' && acceptAction[0].actionValue === 0) {
 
+                    actions.accepts.push({gssNode: gssNode});
                     this.addAnswers(gssNode, null);
                     gssNode.accepted = true;
                 }
@@ -191,6 +202,7 @@ var Algorithm = function(graph, lrTable) {
 
             gssNodes = this.gss.level(this.level);
 
+            // Search for shifts
             for (i = 0; i < gssNodes.length; i++) {
 
                 gssNode = gssNodes[i];
@@ -207,6 +219,7 @@ var Algorithm = function(graph, lrTable) {
 
                         if (action !== undefined && action[0].actionType === 's') {
 
+                            actions.shifts.push({gssNode: gssNode, graphEdge: graphEdge});
                             this.gss.newNode(gssNode.level + 1, action[0].actionValue, graphEdge.label, graphEdge.destination, [gssNode.index]);
                             shouldContinue = true;
                         }
@@ -227,5 +240,7 @@ var Algorithm = function(graph, lrTable) {
                 this.completed = true;
             }
         }
+
+        return actions;
     };
 };

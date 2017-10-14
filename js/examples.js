@@ -52,6 +52,7 @@ var graphs = [
 
 var grammars = [
     [
+        ["S'", 'S'],
         ["S", '( P )'],
         ["P", "''"],
         ["P", "( P )"]

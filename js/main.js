@@ -32,7 +32,8 @@ function query(lrTable, steps) {
     });
 
     var algorithm = new Algorithm(graph, lrTable);
-    algorithm.answers = algorithm.query(startNodes, steps);
+
+    registerActions(algorithm.query(startNodes, steps), algorithm.level - 1);
 
     return algorithm;
 }
@@ -41,47 +42,12 @@ function performQuery(steps) {
 
     algorithm = query(lrTable, steps);
 
+    highlightVertices(algorithm);
+
     document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
 
     var gssTraces = '';
     var levels = Object.keys(algorithm.gss.levels).length;
-
-    function printTrace(currentNode, gss) {
-
-        var traces = [];
-        for (var k = 0; k < currentNode.previousNodes.length; k++) {
-
-            var previousNodeIndex = currentNode.previousNodes[k];
-            var previousNode = gss.find(previousNodeIndex);
-            traces.push(printTrace(previousNode, gss));
-        }
-
-        var accepted = "";
-
-        if (currentNode.accepted) {
-
-            accepted = " style='color:#FFCC00;font-weigh:bold;'";
-        }
-
-        var square = " style='border:1px solid #000;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
-        var circle = " style='border:1px solid #000;border-radius:50px;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
-
-        var nodeString = " &larr; <span" + square + ">" + currentNode.edge + "</span> &larr; <span" + accepted + "><span" + circle + ">" + currentNode.node + ", " + currentNode.state + "</span></span>";
-
-        if (traces.length > 0) {
-
-            for (var i = 0; i < traces.length; i++) {
-
-                traces[i] += nodeString;
-            }
-        }
-        else {
-
-            traces = [nodeString];
-        }
-
-        return traces;
-    }
 
     for (var i = 0; i < levels - 1; i++) {
 
@@ -95,7 +61,7 @@ function performQuery(steps) {
 
             var currentNode = level[j];
 
-            var traces = printTrace(currentNode, algorithm.gss);
+            var traces = printTraces(currentNode, algorithm.gss);
             gssTraces += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
         }
     }
@@ -113,7 +79,8 @@ function continueQuery() {
         numberOfSteps = 1;
     }
 
-    algorithm.continue(numberOfSteps);
+    registerActions(algorithm.continue(numberOfSteps), algorithm.level - 1);
+    highlightVertices(algorithm);
 
     document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
 
@@ -125,7 +92,7 @@ function continueQuery() {
     var gssTraces = '';
     var levels = Object.keys(algorithm.gss.levels).length;
 
-    for (var i = 0; i < levels - 1; i++) {
+    for (var i = 0; i < levels; i++) {
 
         gssTraces += "<div><strong>Level " + i + ":</strong></div>";
 
@@ -137,7 +104,7 @@ function continueQuery() {
 
             var currentNode = level[j];
 
-            var traces = printTrace(currentNode, algorithm.gss);
+            var traces = printTraces(currentNode, algorithm.gss);
 
             gssTraces += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
         }
@@ -161,21 +128,84 @@ function continueQuery() {
     }
 }
 
-function printTrace(currentNode, gss) {
+function highlightVertices(algorithm) {
+
+    if (algorithm.level > 1) {
+
+        algorithm.gss.level(algorithm.level - 2).forEach(function(n) {
+            d3.select("#smallGraphBase_" + n.node).attr('style', '');
+        });
+    }
+
+    algorithm.gss.level(algorithm.level - 1).forEach(function(n) {
+        d3.select("#smallGraphBase_" + n.node).attr('style', 'stroke:#00A;fill:#EEF');
+    });
+}
+
+function registerActions(actions, level) {
+
+    var debugBase = document.getElementById('debugBase');
+
+    debugBase.innerHTML += '<div><strong>Level U' + level + ':</strong></div>';
+
+    var reductions = '';
+    var accepts = '';
+    var shifts = '';
+    var i = 0;
+
+    if (actions.reductions.length > 0) {
+
+        actions.reductions.forEach(function(r) {
+            var rule = algorithm.lrTable.grammar.rules[r.action.actionValue];
+            var rhs = rule.development.join(' ');
+            if (rhs === "''") {
+                rhs = '&lambda;';
+            }
+
+            reductions += '<tr' + (i++ % 2 === 0 ? ' class="even"' : '') + '><td>' + r.gssNode.label + '</td><td>i' + r.gssNode.state + '</td><td>'
+                + r.graphEdge.node + '</td><td>' + r.graphEdge.label + '</td><td>' + r.graphEdge.destination + '</td><td>REDUCE</td><td>'
+                + 'r' + r.action.actionValue + ': ' + rule.nonterminal + ' &rarr; ' + rhs
+                + '</td></tr>';
+        });
+    }
+
+    if (actions.accepts.length > 0) {
+        actions.accepts.forEach(function(a) {
+            accepts += '<tr' + (i++ % 2 === 0 ? ' class="even"' : '') + '><td>' + a.gssNode.label + '</td><td>i' + a.gssNode.state + '</td><td>' + a.gssNode.node + '</td><td>$</td><td>&nbsp;</td><td>ACCEPT</td><td>&nbsp;</td></tr>';
+        });
+    }
+
+    if (actions.shifts.length > 0) {
+        actions.shifts.forEach(function(s) {
+            accepts += '<tr' + (i++ % 2 === 0 ? ' class="even"' : '') + '><td>' + s.gssNode.label + '</td><td>i' + s.gssNode.state + '</td><td>' + s.gssNode.node + '</td><td>' + s.graphEdge.label + '</td><td>' + s.graphEdge.destination + '</td><td>SHIFT</td><td>&nbsp;</td></tr>';
+        });
+    }
+
+    if (reductions !== '' || accepts !== '' || shifts !== '') {
+        debugBase.innerHTML +=
+            '<table class="actionsTable"><thead><tr><th>Node</th><th>State</th><th>Origin</th><th>Edge</th><th>Destination</th><th>Action</th><th>Details</th></tr></thead><tbody>'
+            + reductions + accepts + shifts
+            + '</tbody></table>';
+    }
+
+    debugBase.parentNode.scrollTop = debugBase.parentNode.scrollHeight;
+}
+
+function printTraces(currentNode, gss) {
 
     var traces = [];
     for (var k = 0; k < currentNode.previousNodes.length; k++) {
 
         var previousNodeIndex = currentNode.previousNodes[k];
         var previousNode = gss.find(previousNodeIndex);
-        traces.push(printTrace(previousNode, gss));
+        traces.push(printTraces(previousNode, gss));
     }
 
     var accepted = "";
 
     if (currentNode.accepted) {
 
-        accepted = " style='color:#FFCC00;font-weigh:bold;'";
+        accepted = " style='color:#00CC00;font-weigh:bold;'";
     }
 
     var square = " style='border:1px solid #000;min-width:18px;display:inline-block;text-align:center;padding:3px;'";
@@ -213,7 +243,7 @@ function selectExample() {
         graphText.value +=  edge[0] + " " + edge[1] + " " + edge[2] + "\n";
     }
 
-    updateGraph();
+    updateGraph('graphBase');
 }
 
 function selectExampleGrammar() {
@@ -234,20 +264,22 @@ function selectExampleGrammar() {
     updateGrammar();
 }
 
-function updateGraph() {
+function updateGraph(graphBaseId) {
 
-    var graph_div = document.getElementById("graphBase");
-    graph_div.innerHTML = '<svg id="graphD3" width="' + graph_div.clientWidth + '" height="' + graph_div.clientHeight + '"></svg>';
+    var svgId = graphBaseId + "graphD3";
+
+    var graphBase = document.getElementById(graphBaseId);
+    graphBase.innerHTML = '<svg id="' + svgId+ '" width="' + graphBase.clientWidth + '" height="' + graphBase.clientHeight + '"></svg>';
 
     //create somewhere to put the force directed graph
-    var svg = d3.select("#graphD3")
+    var svg = d3.select("#" + svgId)
         .call(d3.zoom().on("zoom", function () {
             svg.attr("transform", d3.event.transform)
         }));
 
 
-    svg.height = graph_div.clientHeight;
-    svg.width = graph_div.clientWidth;
+    svg.height = graphBase.clientHeight;
+    svg.width = graphBase.clientWidth;
 
     svg.innerHTML = '';
 
@@ -316,6 +348,7 @@ function updateGraph() {
         .data(nodes_data)
         .enter()
         .append("circle")
+        .attr("id", function(d) { return graphBaseId + "_" + d.label; })
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
@@ -360,8 +393,8 @@ function updateGraph() {
             .attr("cx", function(d) { return d.x; })
             .attr("cy", function(d) { return d.y; });*/
 
-        node.attr("cx", function(d) { return d.x = Math.max(10, Math.min(graph_div.clientWidth - 10, d.x)); })
-            .attr("cy", function(d) { return d.y = Math.max(10, Math.min(graph_div.clientHeight - 10, d.y)); });
+        node.attr("cx", function(d) { return d.x = Math.max(10, Math.min(graphBase.clientWidth - 10, d.x)); })
+            .attr("cy", function(d) { return d.y = Math.max(10, Math.min(graphBase.clientHeight - 10, d.y)); });
 
         edge
             .attr("x", function(d) { return d.x - 10; })
@@ -424,8 +457,6 @@ function updateGss(gss) {
 
     var levels = Object.keys(gss.levels).length;
 
-    console.log(gss.highestLevelLength);
-
     document.getElementById("gssBase").innerHTML = "<svg id='gssD3' width='" + (levels * 170 - 100) + "' height='" + (gss.highestLevelLength * 55 + 11) + "'></svg>";
 
     //create somewhere to put the force directed graph
@@ -457,7 +488,7 @@ function updateGss(gss) {
             levels_data.push({"name": "U" + level, label: "U" + level, type: "node", "x": 25 + gssNode.level * 170, "y": 10});
         }
 
-        var currentNode = {"name": gssNode.index, label: gssNode.node + ", I" + gssNode.state, type: "node", "x": 25 + gssNode.level * 170, "y": y};
+        var currentNode = {"name": gssNode.index, label: gssNode.node + ", i" + gssNode.state, type: "node", "x": 25 + gssNode.level * 170, "y": y};
 
         if (gssNode.accepted) {
 
@@ -593,24 +624,28 @@ function showPage(page) {
             bContinue.innerHTML = 'Continue';
             bContinue.disabled = '';
             document.getElementById("numberOfSteps").value = 1;
+            document.getElementById('debugBase').innerHTML = '';
 
-            performQuery(true);
             process.style.display = 'block';
+
+            updateGraph('smallGraphBase');
+            performQuery(true);
+
             break;
     }
 }
 
-function toggleTableView() {
+function toggleView(viewId) {
 
-    var tableView = document.getElementById('lrTableView');
+    var view = document.getElementById(viewId);
 
-    if (tableView.style.display === 'none') {
+    if (view.style.display === 'none') {
 
-        tableView.style.display = 'block';
+        view.style.display = 'block';
     }
     else {
 
-        tableView.style.display = 'none';
+        view.style.display = 'none';
     }
 }
 
