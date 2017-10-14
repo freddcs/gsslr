@@ -485,10 +485,10 @@ function updateGss(gss) {
             level = gssNode.level;
             y = 50;
 
-            levels_data.push({"name": "U" + level, label: "U" + level, type: "node", "x": 25 + gssNode.level * 170, "y": 10});
+            levels_data.push({name: "U" + level, label: "U" + level, type: "node", x: 25 + gssNode.level * 170, y: 10});
         }
 
-        var currentNode = {"name": gssNode.index, label: gssNode.node + ", i" + gssNode.state, type: "node", "x": 25 + gssNode.level * 170, "y": y};
+        var currentNode = {id: gssNode.label, name: gssNode.index, label: gssNode.node + ", i" + gssNode.state, type: "node", x: 25 + gssNode.level * 170, y: y};
 
         if (gssNode.accepted) {
 
@@ -499,10 +499,10 @@ function updateGss(gss) {
             nodes_data.push(currentNode);
         }
 
-        var edge = {"name": gssNode.index + "l", label: gssNode.edge, type: "edge", "x": 25 + gssNode.level * 170 - 50, "y": y};
+        var edge = {name: gssNode.index + "l", label: gssNode.edge, type: "edge", x: 25 + gssNode.level * 170 - 50, y: y};
         edges_data.push(edge);
 
-        links_data.push({"source": currentNode, "target": edge});
+        links_data.push({source: currentNode, target: edge});
 
         for (j = 0; j < gssNode.previousNodes.length; j++) {
 
@@ -511,7 +511,7 @@ function updateGss(gss) {
                 return item.name === gssNode.previousNodes[j];
             })[0];
 
-            links_data.push({"source": edge, "target": previousData});
+            links_data.push({source: edge, target: previousData});
         }
 
         y += 50;
@@ -540,7 +540,7 @@ function updateGss(gss) {
         .attr('y2', function(d) { return d.target.x; })
         .attr("marker-end", "url(#setaReta)");
 
-    var levelLabel = svg.append("g").selectAll("text")
+    svg.append("g").selectAll("text")
         .data(levels_data)
         .enter().append("text")
         .attr("x", "-8px")
@@ -548,7 +548,7 @@ function updateGss(gss) {
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .text(function(d) { return d.label; });
 
-    var node = svg.append("g")
+    svg.append("g")
         .attr("class", "gssNodes")
         .selectAll("circle")
         .data(nodes_data)
@@ -556,7 +556,7 @@ function updateGss(gss) {
         .append("circle")
         .attr("cx", function(d) { return d.x; }).attr("cy", function(d) { return d.y; });
 
-    var acceptedNode = svg.append("g")
+    svg.append("g")
         .attr("class", "acceptedGssNodes")
         .selectAll("circle")
         .data(accepted_nodes_data)
@@ -564,7 +564,7 @@ function updateGss(gss) {
         .append("circle")
         .attr("cx", function(d) { return d.x; }).attr("cy", function(d) { return d.y; });
 
-    var edgeNode = svg.append("g")
+    svg.append("g")
         .attr("class", "gssNodes")
         .selectAll("rect")
         .data(edges_data)
@@ -573,7 +573,7 @@ function updateGss(gss) {
         .attr("x", function(d) { return d.x - 20; })
         .attr("y", function(d) { return d.y - 20; });
 
-    var nodeLabel = svg.append("g").selectAll("text")
+    svg.append("g").selectAll("text")
         .data(nodes_data.concat(accepted_nodes_data))
         .enter().append("text")
         .attr("x", "-15px")
@@ -581,11 +581,15 @@ function updateGss(gss) {
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .text(function(d) { return d.label; });
 
-    var edgeLabel = svg.append("g").selectAll("text")
+    svg.append("g").selectAll("text")
+        .data(nodes_data.concat(accepted_nodes_data))
+        .enter().append("text")
+        .attr("transform", function(d) { return "translate(" + (d.x + 20) + "," + (d.y - 10) + ")"; })
+        .text(function(d) { return d.id; });
+
+    svg.append("g").selectAll("text")
         .data(edges_data)
         .enter().append("text")
-        .attr("x", "-4px")
-        .attr("y", "5px")
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .text(function(d) { return d.label; });
 
