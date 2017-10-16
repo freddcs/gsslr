@@ -1,7 +1,7 @@
 var lrTable = null;
 var algorithm = null;
 
-function query(lrTable, steps) {
+function query(lrTable) {
 
     lrTable.longestRhs = 0;
     lrTable.grammar.rules.forEach(function(r) { if (r.development.length > lrTable.longestRhs) lrTable.longestRhs = r.development.length; });
@@ -10,37 +10,42 @@ function query(lrTable, steps) {
     var graphData = graphString.split("\n");
 
     var graphNodes =  [];
-    var startNodes = [];
+    var startingNodes = [];
 
     for (var i = 0; i < graphData.length; i++) {
-
         var edgeString = graphData[i];
 
         if (edgeString.trim() !== '') {
             var edgeData = edgeString.split(" ");
 
             graphNodes.push([edgeData[0], edgeData[1], edgeData[2]]);
-            startNodes.push(edgeData[0]);
-            startNodes.push(edgeData[2]);
+            startingNodes.push(edgeData[0]);
+            startingNodes.push(edgeData[2]);
         }
     }
 
     var graph = new Graph(graphNodes);
 
-    startNodes = startNodes.filter(function(item, pos) {
-        return startNodes.indexOf(item) === pos;
+    var startingNodesString = document.getElementById('startingNodes').value;
+    
+    if (startingNodesString !== '') {
+        startingNodes = startingNodesString.split(' ');
+    }
+
+    startingNodes = startingNodes.filter(function(item, pos) {
+        return startingNodes.indexOf(item) === pos;
     });
 
     var algorithm = new Algorithm(graph, lrTable);
 
-    registerActions(algorithm.query(startNodes, steps), algorithm.level - 1);
+    registerActions(algorithm.query(startingNodes, true), algorithm.level - 1);
 
     return algorithm;
 }
 
-function performQuery(steps) {
+function performQuery() {
 
-    algorithm = query(lrTable, steps);
+    algorithm = query(lrTable);
 
     highlightVertices(algorithm);
 
@@ -228,12 +233,14 @@ function printTraces(currentNode, gss) {
     return traces;
 }
 
-function selectExample() {
+function selectExampleGraph() {
 
     var exampleGraphs = document.getElementById("exampleGraphs");
-    var exampleGraph = graphs[parseInt(exampleGraphs.value)];
+    var exampleGraph = graphs[parseInt(exampleGraphs.value)].graph;
+    var startingNodes = graphs[parseInt(exampleGraphs.value)].startingNodes;
 
     var graphText = document.getElementById("graphText");
+    var startingNodesText = document.getElementById("startingNodes");
 
     graphText.value = '';
 
@@ -242,6 +249,8 @@ function selectExample() {
         var edge = exampleGraph[i];
         graphText.value +=  edge[0] + " " + edge[1] + " " + edge[2] + "\n";
     }
+
+    startingNodesText.value = startingNodes.join(' ');
 
     updateGraph('graphBase');
 }
@@ -450,7 +459,17 @@ function updateGrammar() {
     var grammar = new Grammar(grammarString);
     lrTable = new LRTable(new LRClosureTable(grammar));
 
-    document.getElementById('lrTableView').innerHTML = formatLRTable(lrTable);
+    var tableHtml = formatLRTable(lrTable);
+    var rules = [];
+
+    var rCounter = 0;
+    lrTable.grammar.rules.forEach(function (r) {
+        rules.push('r<sub>' + (rCounter++) + '</sub>: ' + r.nonterminal + ' &rarr; ' + r.development.join(' ').replace("''", '&lambda;'));
+    });
+
+    document.getElementById('lrTableView').innerHTML
+        = "<div><strong>Grammar:</strong></div><div style='white-space:nowrap;'>" + rules.join('<br/>') + "</div>"
+        + "<div>" + tableHtml + "</div>";
 }
 
 function updateGss(gss) {
@@ -590,7 +609,7 @@ function updateGss(gss) {
     svg.append("g").selectAll("text")
         .data(edges_data)
         .enter().append("text")
-        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+        .attr("transform", function(d) { return "translate(" + (d.x - 5) + "," + (d.y + 5) + ")"; })
         .text(function(d) { return d.label; });
 
     //update link positions
@@ -633,7 +652,7 @@ function showPage(page) {
             process.style.display = 'block';
 
             updateGraph('smallGraphBase');
-            performQuery(true);
+            performQuery();
 
             break;
     }
@@ -686,6 +705,6 @@ function initialize() {
 
     showPage(1);
 
-    selectExample();
+    selectExampleGraph();
     selectExampleGrammar();
 }
