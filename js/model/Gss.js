@@ -1,8 +1,6 @@
 var Gss = function (nodes) {
     this.gss = {};
     this.levels = {};
-    this.levelsHash = {};
-    this.levelHashCodes = {};
     this.highestLevelLength = 0;
 
     this.newNode = function(level, state, edge, node, predecessors) {
@@ -53,28 +51,6 @@ var Gss = function (nodes) {
         }
 
         return [gssNode];
-    };
-
-    this.getLevelWithSameHash = function(hash) {
-        if (this.levelsHash[hash] !== undefined) {
-            return this.levelsHash[hash];
-        }
-    };
-
-    this.getHashForLevel = function(level) {
-        return this.levelHashCodes[level];
-    };
-
-    this.registerLevel = function(hash, level) {
-        var duplicated = false;
-        if (this.levelsHash[hash] !== undefined) {
-            duplicated = true;
-        }
-
-        this.levelsHash[hash] = level;
-        this.levelHashCodes[level] = hash;
-
-        return duplicated;
     };
 
     for (var i = 0; i < nodes.length; i++) {

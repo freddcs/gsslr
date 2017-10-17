@@ -2,12 +2,8 @@ var lrTable = null;
 var algorithm = null;
 
 function query(lrTable) {
-    lrTable.longestRhs = 0;
-    lrTable.grammar.rules.forEach(function(r) { if (r.development.length > lrTable.longestRhs) lrTable.longestRhs = r.development.length; });
-
     var graphString = document.getElementById("graphText").value;
     var graphData = graphString.split("\n");
-
     var graphNodes =  [];
     var startingNodes = [];
 

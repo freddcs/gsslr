@@ -3,7 +3,6 @@ var Algorithm = function(graph, lrTable) {
     this.lrTable = lrTable;
     this.answers = [];
     this.level = 0;
-    this.loopCounter = 0;
     this.stepping = false;
 
     this.query = function(nodes, steps) {
@@ -18,7 +17,6 @@ var Algorithm = function(graph, lrTable) {
         this.answers = answers.filter(function(item, pos) {
             return answers.indexOf(item) === pos;
         });
-
 
         return actions;
     };
@@ -123,8 +121,6 @@ var Algorithm = function(graph, lrTable) {
             }
         }
 
-        var gssLevelString = [];
-
         gssNodes = this.gss.level(this.level);
 
         // Search for accepts
@@ -141,19 +137,6 @@ var Algorithm = function(graph, lrTable) {
                     gssNode.accepted = true;
                 }
             }
-
-            gssLevelString.push(gssNode.state + "" + gssNode.edge + "" + gssNode.node + "" + gssNode.accepted);
-        }
-
-        var gssLevelHash = gssLevelString.join(', ');
-
-        var duplicated = this.gss.registerLevel(gssLevelHash, this.level);
-
-        if (duplicated === true) {
-            this.loopCounter ++;
-        } else {
-
-            this.loopCounter = 0;
         }
 
         var currentLevelLength = this.gss.level(this.level).length;
@@ -162,7 +145,7 @@ var Algorithm = function(graph, lrTable) {
             this.gss.highestLevelLength = currentLevelLength;
         }
 
-        if (1 === 2 && this.loopCounter >= this.lrTable.longestRhs) {
+        if (1 === 2) {
             console.log("** LOOP INFINITO ENCONTRADO! **");
             this.infiniteLoop = true;
             this.completed = true;
