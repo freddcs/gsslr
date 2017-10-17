@@ -61,6 +61,14 @@
     width:100%;
 }
 
+#graphBase .tooltip, #smallGraphBase .tooltip {
+    position:absolute;
+    left:0;
+    top:0;
+    background:#FFF;
+    padding:10px;
+}
+
 .cabecalho {
     background:#888888;
     padding:10px;

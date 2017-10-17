@@ -4,11 +4,48 @@ var Algorithm = function(graph, lrTable) {
     this.answers = [];
     this.level = 0;
     this.stepping = false;
+    this.completed = false;
+    this.gss = null;
+    this.vertexNode = null;
+
+    var verifyAddedNewAction = function(vertexNode, vertex, state, previousVertex, previousState) {
+        var newAction = false;
+
+        vertex = '' + vertex;
+        state = '' + state;
+        previousVertex = '' + previousVertex;
+        previousState = '' + previousState;
+
+        if (vertexNode[vertex] === undefined) {
+            vertexNode[vertex] = {};
+        }
+
+        if (vertexNode[vertex][state] === undefined) {
+            vertexNode[vertex][state] = {};
+        }
+
+        if (vertexNode[vertex][state][previousVertex] === undefined) {
+            vertexNode[vertex][state][previousVertex] = {};
+        }
+
+        if (vertexNode[vertex][state][previousVertex][previousState] !== true) {
+            newAction = true;
+            vertexNode[vertex][state][previousVertex][previousState] = true;
+        }
+
+        return newAction;
+    };
+
+    this.verifyAddedNewAction = verifyAddedNewAction;
 
     this.query = function(nodes, steps) {
         this.stepping = steps;
         this.completed = false;
         this.infiniteLoop = false;
+        var vertexNode = {};
+        this.vertexNode = vertexNode;
+
+        nodes.forEach(function(n) { verifyAddedNewAction(vertexNode, n, 0, 'Init', 'Init'); });
 
         this.gss = new Gss(nodes);
         var actions = this.evalLevel();
@@ -40,7 +77,7 @@ var Algorithm = function(graph, lrTable) {
         return actions;
     };
 
-    this.processReduction = function(action, gssNode) {
+    this.processReduction = function(action, gssNode, newActionFound) {
         var rule = this.lrTable.grammar.rules[action.actionValue];
 
         // Go back |RHS| nodes in the GSS
@@ -60,7 +97,12 @@ var Algorithm = function(graph, lrTable) {
             // parsing table, labeled after the LHS and same with
             // destination as the original GSS node.
             this.gss.newNode(gssNode.level, goto.actionValue, rule.nonterminal, gssNode.node, [reductionRoot.index]);
+
+            var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, gssNode.node, goto.actionValue, reductionRoot.node, reductionRoot.state);
+            if (!newActionFound) { newActionFound = auxNewActionFound; }
         }
+
+        return newActionFound;
     };
 
     this.addAnswers = function(answerGssNode, gssNode) {
@@ -83,6 +125,7 @@ var Algorithm = function(graph, lrTable) {
 
     this.evalLevel = function() {
         var actions = {reductions: [], accepts: [], shifts: []};
+        var newActionFound = false;
 
         if (this.completed === true) {
             return;
@@ -106,7 +149,7 @@ var Algorithm = function(graph, lrTable) {
 
                     if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
                         actions.reductions.push({gssNode: gssNode, graphEdge: graphEdge, action: action[0]});
-                        this.processReduction(action[0], gssNode);
+                        newActionFound = this.processReduction(action[0], gssNode, newActionFound);
                     }
                 }
             }
@@ -116,7 +159,7 @@ var Algorithm = function(graph, lrTable) {
                 action = action['$'];
                 if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
                     actions.reductions.push({gssNode: gssNode, graphEdge: {node: gssNode.node, label: '$', destination: ''}, action: action[0]});
-                    this.processReduction(action[0], gssNode);
+                    newActionFound = this.processReduction(action[0], gssNode);
                 }
             }
         }
@@ -145,36 +188,37 @@ var Algorithm = function(graph, lrTable) {
             this.gss.highestLevelLength = currentLevelLength;
         }
 
-        if (1 === 2) {
+        gssNodes = this.gss.level(this.level);
+
+        // Search for shifts
+        for (i = 0; i < gssNodes.length; i++) {
+            gssNode = gssNodes[i];
+
+            graphEdges = this.graph.findEdgesFromNode(gssNode.node);
+            for (j = 0; j < graphEdges.length; j++) {
+                graphEdge = graphEdges[j];
+
+                action = this.lrTable.states[gssNode.state];
+                if (action !== undefined) {
+                    action = action[graphEdge.label];
+
+                    if (action !== undefined && action[0].actionType === 's') {
+                        actions.shifts.push({gssNode: gssNode, graphEdge: graphEdge});
+                        this.gss.newNode(gssNode.level + 1, action[0].actionValue, graphEdge.label, graphEdge.destination, [gssNode.index]);
+                        shouldContinue = true;
+                        var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, graphEdge.destination, action[0].actionValue, gssNode.node, gssNode.state);
+                        if (!newActionFound) { newActionFound = auxNewActionFound }
+                    }
+                }
+            }
+        }
+
+        if (!newActionFound) {
             console.log("** LOOP INFINITO ENCONTRADO! **");
             this.infiniteLoop = true;
             this.completed = true;
         } else {
-
-            gssNodes = this.gss.level(this.level);
-
-            // Search for shifts
-            for (i = 0; i < gssNodes.length; i++) {
-                gssNode = gssNodes[i];
-
-                graphEdges = this.graph.findEdgesFromNode(gssNode.node);
-                for (j = 0; j < graphEdges.length; j++) {
-                    graphEdge = graphEdges[j];
-
-                    action = this.lrTable.states[gssNode.state];
-                    if (action !== undefined) {
-                        action = action[graphEdge.label];
-
-                        if (action !== undefined && action[0].actionType === 's') {
-                            actions.shifts.push({gssNode: gssNode, graphEdge: graphEdge});
-                            this.gss.newNode(gssNode.level + 1, action[0].actionValue, graphEdge.label, graphEdge.destination, [gssNode.index]);
-                            shouldContinue = true;
-                        }
-                    }
-                }
-            }
-
-            this.level ++;
+            this.level++;
             if (shouldContinue === true) {
                 if (this.stepping === false) {
                     this.evalLevel();

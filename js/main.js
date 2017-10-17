@@ -55,9 +55,7 @@ function performQuery() {
 
         for (var j = 0; j < level.length; j++) {
             var evenOdd = (j % 2) === 0 ? 'even' : 'odd';
-
             var currentNode = level[j];
-
             var traces = printTraces(currentNode, algorithm.gss);
             gssTraces += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
         }
@@ -83,23 +81,17 @@ function continueQuery() {
         document.getElementById("answers").innerHTML += " - <span style='color:red;'>Infinite loop found</span>";
     }
 
-    var gssTraces = '';
-    var levels = Object.keys(algorithm.gss.levels).length;
+    var currentLevel = algorithm.level - 1;
+    document.getElementById("tracesBase").innerHTML += "<div><strong>Level " + currentLevel + ":</strong></div>";
 
-    for (var i = 0; i < levels; i++) {
-        gssTraces += "<div><strong>Level " + i + ":</strong></div>";
+    var level = algorithm.gss.levels[currentLevel];
 
-        var level = algorithm.gss.levels[i];
-
-        for (var j = 0; j < level.length; j++) {
-            var evenOdd = (j % 2) === 0 ? 'even' : 'odd';
-            var currentNode = level[j];
-            var traces = printTraces(currentNode, algorithm.gss);
-            gssTraces += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
-        }
+    for (var j = 0; j < level.length; j++) {
+        var evenOdd = (j % 2) === 0 ? 'even' : 'odd';
+        var currentNode = level[j];
+        var traces = printTraces(currentNode, algorithm.gss);
+        document.getElementById("tracesBase").innerHTML += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
     }
-
-    document.getElementById("tracesBase").innerHTML = gssTraces;
 
     updateGss(algorithm.gss);
 
@@ -321,6 +313,8 @@ function updateGraph(graphBaseId) {
         .enter()
         .append("circle")
         .attr("id", function(d) { return graphBaseId + "_" + d.label; })
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout)
         .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
@@ -351,6 +345,11 @@ function updateGraph(graphBaseId) {
         .attr("y", "5px")
         .text(function(d) { return d.label; });
 
+    // Define the div for the tooltip
+    var div = d3.select("#" + graphBaseId).append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     function tickActions() {
         link.attr("d", function(d) {
             var dx = d.target.x - d.source.x,
@@ -360,12 +359,12 @@ function updateGraph(graphBaseId) {
         });
 
         //update circle positions each tick of the simulation
-        /*node
+        node
             .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });*/
+            .attr("cy", function(d) { return d.y; });
 
-        node.attr("cx", function(d) { return d.x = Math.max(10, Math.min(graphBase.clientWidth - 10, d.x)); })
-            .attr("cy", function(d) { return d.y = Math.max(10, Math.min(graphBase.clientHeight - 10, d.y)); });
+        /*node.attr("cx", function(d) { return d.x = Math.max(10, Math.min(graphBase.clientWidth - 10, d.x)); })
+            .attr("cy", function(d) { return d.y = Math.max(10, Math.min(graphBase.clientHeight - 10, d.y)); });*/
 
         edge
             .attr("x", function(d) { return d.x - 10; })
@@ -388,18 +387,60 @@ function updateGraph(graphBaseId) {
 
     simulation.on("tick", tickActions);
 
+    var dragging = false;
+    function mouseover(d) {
+        setTimeout(
+            function() {
+                if (!dragging && algorithm !== null) {
+                    var visitedStates = [];
+
+                    var vertexNode = algorithm.vertexNode[d.label];
+
+                    var keyNames = Object.keys(vertexNode);
+                    for (var i in keyNames) {
+                        var keyNames2 = Object.keys(vertexNode[keyNames[i]]);
+                        for (var j in keyNames2) {
+                            var keyNames3 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]]);
+                            for (var k in keyNames3) {
+                                var previousNode = keyNames2[j] === 'Init' ? '' :  '&larr; ' + keyNames2[j] + ' i<sub>' + keyNames3[k] + '</sub>';
+                                visitedStates.push(d.label + ': i<sub>' + keyNames[i] + '</sub>' + previousNode);
+                            }
+                        }
+                    }
+
+                    if (visitedStates.length === 0) {
+                        visitedStates.push("None");
+                    }
+
+                    div.transition().duration(200).style("opacity", .9);
+                    div.html(visitedStates.join('<br/>'));
+                }
+            },
+            1000
+        );
+    }
+
+    function mouseout(d) {
+        div.transition()
+            .duration(500)
+            .style("opacity", 0);
+    }
+
     function dragstarted(d) {
+        dragging = true;
         if (!d3.event.active) simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
         d.fy = d.y;
     }
 
     function dragged(d) {
+        dragging = true;
         d.fx = d3.event.x;
         d.fy = d3.event.y;
     }
 
     function dragended(d) {
+        dragging = false;
         if (!d3.event.active) simulation.alphaTarget(0);
         d.fx = null;
         d.fy = null;
@@ -584,6 +625,7 @@ function showPage(page) {
     switch (page) {
         case 1:
             graphs.style.display = 'block';
+            if (algorithm !== null) { algorithm.vertexNode = {}; }
             break;
 
         case 2:
