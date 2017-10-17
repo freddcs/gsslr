@@ -1,0 +1,157 @@
+* {
+    position:relative;
+}
+
+.link {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1px;
+}
+
+.nodes circle {
+    stroke: #000;
+    stroke-width: 1px;
+    fill: white;
+    r: 10;
+}
+
+.edges rect {
+    stroke: #DDD;
+    stroke-width: 1px;
+    fill: #FAFAFA;
+}
+
+.gssNodes circle {
+    stroke: #000;
+    stroke-width: 1px;
+    fill: white;
+    r: 20;
+}
+
+.acceptedGssNodes circle {
+
+    stroke: #0C0;
+    stroke-width: 1px;
+    fill: white;
+    r: 20;
+}
+
+.gssNodes rect {
+    stroke: #000;
+    stroke-width: 1px;
+    fill: white;
+    width: 40px;
+    height: 40px;
+}
+
+.janela {
+    width: 90%;
+    border: 1px solid #AAA;
+    border-radius: 3px;
+    background: #FAFAFA;
+    margin:0 auto 0 auto;
+}
+
+#graphs select {
+    width:100%;
+    margin-bottom:10px;
+}
+
+#graphs input {
+    width:100%;
+}
+
+.cabecalho {
+    background:#888888;
+    padding:10px;
+}
+
+.barra {
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#888888;
+    padding:10px 0;
+}
+
+.corpo {
+    padding:10px;
+}
+
+.barra input {
+    height: 40px;
+    text-align: center;
+    width: 50px;
+    font-size: 18pt;
+}
+
+.barra button {
+    padding:10px;
+    min-width:100px;
+}
+
+.push-right {
+    float:right;
+    margin-right:10px;
+}
+
+.push-left {
+    float:left;
+    margin-left:10px;
+}
+
+.cabecalho {
+    font-weight:bold;
+    color:#FFF;
+}
+
+#lrTableView {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    background:#FFF;
+    z-index:999;
+    text-align:left;
+    padding:10px;
+    box-shadow: 0 0 14px 3px #888888;
+    border:1px solid #555;
+    border-radius:3px;
+}
+
+#lrTableView table {
+    text-align:center;
+    margin:10px 0 10px 0;
+}
+
+#tracesBase .even {
+    background:#FFF;
+    padding:5px;
+}
+
+#tracesBase .odd {
+    background:#EEE;
+    padding:5px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.actionsTable {
+    width:100%;
+}
+
+.actionsTable thead tr th {
+    border-bottom:1px solid #CCC;
+    text-align:center;
+}
+
+.actionsTable tbody tr td {
+    text-align:center;
+}
+
+.actionsTable tbody tr.even {
+    background:#FFF;
+}

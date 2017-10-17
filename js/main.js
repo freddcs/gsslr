@@ -2,7 +2,6 @@ var lrTable = null;
 var algorithm = null;
 
 function query(lrTable) {
-
     lrTable.longestRhs = 0;
     lrTable.grammar.rules.forEach(function(r) { if (r.development.length > lrTable.longestRhs) lrTable.longestRhs = r.development.length; });
 
@@ -44,7 +43,6 @@ function query(lrTable) {
 }
 
 function performQuery() {
-
     algorithm = query(lrTable);
 
     highlightVertices(algorithm);
@@ -55,13 +53,11 @@ function performQuery() {
     var levels = Object.keys(algorithm.gss.levels).length;
 
     for (var i = 0; i < levels - 1; i++) {
-
         gssTraces += "<div><strong>Level " + i + ":</strong></div>";
 
         var level = algorithm.gss.levels[i];
 
         for (var j = 0; j < level.length; j++) {
-
             var evenOdd = (j % 2) === 0 ? 'even' : 'odd';
 
             var currentNode = level[j];
@@ -77,10 +73,8 @@ function performQuery() {
 }
 
 function continueQuery() {
-
     var numberOfSteps = parseInt(document.getElementById("numberOfSteps").value);
     if (numberOfSteps < 1) {
-
         numberOfSteps = 1;
     }
 
@@ -90,7 +84,6 @@ function continueQuery() {
     document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
 
     if (algorithm.infiniteLoop === true) {
-
         document.getElementById("answers").innerHTML += " - <span style='color:red;'>Infinite loop found</span>";
     }
 
@@ -98,19 +91,14 @@ function continueQuery() {
     var levels = Object.keys(algorithm.gss.levels).length;
 
     for (var i = 0; i < levels; i++) {
-
         gssTraces += "<div><strong>Level " + i + ":</strong></div>";
 
         var level = algorithm.gss.levels[i];
 
         for (var j = 0; j < level.length; j++) {
-
             var evenOdd = (j % 2) === 0 ? 'even' : 'odd';
-
             var currentNode = level[j];
-
             var traces = printTraces(currentNode, algorithm.gss);
-
             gssTraces += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
         }
     }
@@ -126,7 +114,6 @@ function continueQuery() {
     tracesBase.parentNode.scrollTop = tracesBase.parentNode.scrollHeight;
 
     if (algorithm.completed === true) {
-
         var bContinue = document.getElementById('bContinue');
         bContinue.innerHTML = 'Completed';
         bContinue.disabled = 'disabled';
@@ -134,9 +121,7 @@ function continueQuery() {
 }
 
 function highlightVertices(algorithm) {
-
     if (algorithm.level > 1) {
-
         algorithm.gss.level(algorithm.level - 2).forEach(function(n) {
             d3.select("#smallGraphBase_" + n.node).attr('style', '');
         });
@@ -148,7 +133,6 @@ function highlightVertices(algorithm) {
 }
 
 function registerActions(actions, level) {
-
     var debugBase = document.getElementById('debugBase');
 
     debugBase.innerHTML += '<div><strong>Level U' + level + ':</strong></div>';
@@ -159,7 +143,6 @@ function registerActions(actions, level) {
     var i = 0;
 
     if (actions.reductions.length > 0) {
-
         actions.reductions.forEach(function(r) {
             var rule = algorithm.lrTable.grammar.rules[r.action.actionValue];
             var rhs = rule.development.join(' ');
@@ -197,10 +180,8 @@ function registerActions(actions, level) {
 }
 
 function printTraces(currentNode, gss) {
-
     var traces = [];
     for (var k = 0; k < currentNode.previousNodes.length; k++) {
-
         var previousNodeIndex = currentNode.previousNodes[k];
         var previousNode = gss.find(previousNodeIndex);
         traces.push(printTraces(previousNode, gss));
@@ -209,7 +190,6 @@ function printTraces(currentNode, gss) {
     var accepted = "";
 
     if (currentNode.accepted) {
-
         accepted = " style='color:#00CC00;font-weigh:bold;'";
     }
 
@@ -219,13 +199,10 @@ function printTraces(currentNode, gss) {
     var nodeString = " &larr; <span" + square + ">" + currentNode.edge + "</span> &larr; <span" + accepted + "><span" + circle + ">" + currentNode.node + ", " + currentNode.state + "</span></span>";
 
     if (traces.length > 0) {
-
         for (var i = 0; i < traces.length; i++) {
-
             traces[i] += nodeString;
         }
-    }
-    else {
+    } else {
 
         traces = [nodeString];
     }
@@ -234,18 +211,15 @@ function printTraces(currentNode, gss) {
 }
 
 function selectExampleGraph() {
-
     var exampleGraphs = document.getElementById("exampleGraphs");
     var exampleGraph = graphs[parseInt(exampleGraphs.value)].graph;
     var startingNodes = graphs[parseInt(exampleGraphs.value)].startingNodes;
-
     var graphText = document.getElementById("graphText");
     var startingNodesText = document.getElementById("startingNodes");
 
     graphText.value = '';
 
     for (var i = 0; i < exampleGraph.length; i++) {
-
         var edge = exampleGraph[i];
         graphText.value +=  edge[0] + " " + edge[1] + " " + edge[2] + "\n";
     }
@@ -256,7 +230,6 @@ function selectExampleGraph() {
 }
 
 function selectExampleGrammar() {
-
     var exampleGrammars = document.getElementById("exampleGrammars");
     var exampleGrammar = grammars[parseInt(exampleGrammars.value)];
 
@@ -265,7 +238,6 @@ function selectExampleGrammar() {
     grammarText.value = '';
 
     for (var i = 0; i < exampleGrammar.length; i++) {
-
         var rule = exampleGrammar[i];
         grammarText.value +=  rule[0] + " -> " + rule[1] + "\n";
     }
@@ -274,9 +246,7 @@ function selectExampleGrammar() {
 }
 
 function updateGraph(graphBaseId) {
-
     var svgId = graphBaseId + "graphD3";
-
     var graphBase = document.getElementById(graphBaseId);
     graphBase.innerHTML = '<svg id="' + svgId+ '" width="' + graphBase.clientWidth + '" height="' + graphBase.clientHeight + '"></svg>';
 
@@ -300,7 +270,6 @@ function updateGraph(graphBaseId) {
     var links_data = [];
 
     for (var i = 0; i < graphData.length; i++) {
-
         var edgeString = graphData[i];
 
         if (edgeString.trim() !== '') {
@@ -317,7 +286,6 @@ function updateGraph(graphBaseId) {
     }
 
     nodes_data = nodes_data.filter(function(item, pos) {
-
         var firstPos = nodes_data.map(function(el) {
             return el.name;
         }).indexOf(item.name);
@@ -326,7 +294,6 @@ function updateGraph(graphBaseId) {
     });
 
     var allNodes = nodes_data.concat(edges_data);
-
     var simulation = d3.forceSimulation().nodes(allNodes);
 
     simulation.force("charge_force", d3.forceManyBody())
@@ -389,7 +356,6 @@ function updateGraph(graphBaseId) {
         .text(function(d) { return d.label; });
 
     function tickActions() {
-
         link.attr("d", function(d) {
             var dx = d.target.x - d.source.x,
                 dy = d.target.y - d.source.y,
@@ -427,20 +393,17 @@ function updateGraph(graphBaseId) {
     simulation.on("tick", tickActions);
 
     function dragstarted(d) {
-
         if (!d3.event.active) simulation.alphaTarget(0.3).restart();
         d.fx = d.x;
         d.fy = d.y;
     }
 
     function dragged(d) {
-
         d.fx = d3.event.x;
         d.fy = d3.event.y;
     }
 
     function dragended(d) {
-
         if (!d3.event.active) simulation.alphaTarget(0);
         d.fx = null;
         d.fy = null;
@@ -454,7 +417,6 @@ function updateGraph(graphBaseId) {
 }
 
 function updateGrammar() {
-
     var grammarString = document.getElementById("grammarText").value;
     var grammar = new Grammar(grammarString);
     lrTable = new LRTable(new LRClosureTable(grammar));
@@ -473,7 +435,6 @@ function updateGrammar() {
 }
 
 function updateGss(gss) {
-
     var levels = Object.keys(gss.levels).length;
 
     document.getElementById("gssBase").innerHTML = "<svg id='gssD3' width='" + (levels * 170 - 100) + "' height='" + (gss.highestLevelLength * 55 + 11) + "'></svg>";
@@ -496,11 +457,9 @@ function updateGss(gss) {
     var level = null;
     var y = 50;
     for (var i = 0; i < gssKeys.length; i++) {
-
         var gssNode = gss.gss[gssKeys[i]];
 
         if (level !== gssNode.level) {
-
             level = gssNode.level;
             y = 50;
 
@@ -510,11 +469,8 @@ function updateGss(gss) {
         var currentNode = {id: gssNode.label, name: gssNode.index, label: gssNode.node + ", i" + gssNode.state, type: "node", x: 25 + gssNode.level * 170, y: y};
 
         if (gssNode.accepted) {
-
             accepted_nodes_data.push(currentNode);
-        }
-        else {
-
+        } else {
             nodes_data.push(currentNode);
         }
 
@@ -524,9 +480,7 @@ function updateGss(gss) {
         links_data.push({source: currentNode, target: edge});
 
         for (j = 0; j < gssNode.previousNodes.length; j++) {
-
             var previousData = nodes_data.filter(function(item, pos) {
-
                 return item.name === gssNode.previousNodes[j];
             })[0];
 
@@ -623,7 +577,6 @@ function updateGss(gss) {
 }
 
 function showPage(page) {
-
     var graphs = document.getElementById('graphs');
     var grammars = document.getElementById('grammars');
     var process = document.getElementById('process');
@@ -633,7 +586,6 @@ function showPage(page) {
     process.style.display = 'none';
 
     switch (page) {
-
         case 1:
             graphs.style.display = 'block';
             break;
@@ -659,27 +611,21 @@ function showPage(page) {
 }
 
 function toggleView(viewId) {
-
     var view = document.getElementById(viewId);
 
     if (view.style.display === 'none') {
-
         view.style.display = 'block';
-    }
-    else {
-
+    } else {
         view.style.display = 'none';
     }
 }
 
 function initialize() {
-
     var exampleGraphs = document.getElementById("exampleGraphs");
 
     exampleGraphs.innerHTML = "";
 
     for (var i = 0; i < graphs.length; i++) {
-
         exampleGraphs.innerHTML += "<option value='" + i + "'>Example " + i + "</option>";
     }
 
@@ -688,7 +634,6 @@ function initialize() {
     exampleGrammars.innerHTML = "";
 
     for (i = 0; i < grammars.length; i++) {
-
         exampleGrammars.innerHTML += "<option value='" + i + "'>Example " + i + "</option>";
     }
 
@@ -699,7 +644,6 @@ function initialize() {
 
     var conteudoJanelas = document.getElementsByClassName('corpo');
     for (i = 0; i < conteudoJanelas.length; i++) {
-
         conteudoJanelas[i].style.height = (conteudoJanelas[i].parentNode.clientHeight - 115) + "px";
     }
 
