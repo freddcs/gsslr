@@ -2,16 +2,16 @@ var lrTable = null;
 var algorithm = null;
 
 function query(lrTable) {
-    var graphString = document.getElementById("graphText").value;
+    var graphString = document.getElementById('graphText').value;
     var graphData = graphString.split("\n");
-    var graphNodes =  [];
+    var graphNodes = [];
     var startingNodes = [];
 
     for (var i = 0; i < graphData.length; i++) {
         var edgeString = graphData[i];
 
         if (edgeString.trim() !== '') {
-            var edgeData = edgeString.split(" ");
+            var edgeData = edgeString.split(' ');
 
             graphNodes.push([edgeData[0], edgeData[1], edgeData[2]]);
             startingNodes.push(edgeData[0]);
@@ -33,15 +33,13 @@ function query(lrTable) {
 
     var algorithm = new Algorithm(graph, lrTable);
 
-    registerActions(algorithm.query(startingNodes, true), algorithm.level - 1);
+    algorithm.prepareQuery(startingNodes, true);
 
     return algorithm;
 }
 
 function performQuery() {
     algorithm = query(lrTable);
-
-    highlightVertices(algorithm);
 
     document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
 
@@ -63,16 +61,18 @@ function performQuery() {
 
     document.getElementById("tracesBase").innerHTML = gssTraces;
 
+    highlightVertices(algorithm);
+
     updateGss(algorithm.gss);
 }
 
-function continueQuery() {
+function continueQuery(stepping) {
     var numberOfSteps = parseInt(document.getElementById("numberOfSteps").value);
     if (numberOfSteps < 1) {
         numberOfSteps = 1;
     }
 
-    registerActions(algorithm.continue(numberOfSteps), algorithm.level - 1);
+    registerActions(algorithm.continue(stepping, numberOfSteps), algorithm.level - 1);
     highlightVertices(algorithm);
 
     document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
@@ -105,17 +105,25 @@ function continueQuery() {
         var bContinue = document.getElementById('bContinue');
         bContinue.innerHTML = 'Completed';
         bContinue.disabled = 'disabled';
+
+        var bResume = document.getElementById('bResume');
+        bResume.innerHTML = 'Completed';
+        bResume.disabled = 'disabled';
     }
 }
 
 function highlightVertices(algorithm) {
-    if (algorithm.level > 1) {
-        algorithm.gss.level(algorithm.level - 2).forEach(function(n) {
-            d3.select("#smallGraphBase_" + n.node).attr('style', '');
-        });
-    }
+    var currentLevel = algorithm.level;
 
-    algorithm.gss.level(algorithm.level - 1).forEach(function(n) {
+    algorithm.gss.level(currentLevel - 1).forEach(function(n) {
+        d3.select("#smallGraphBase_" + n.node).attr('style', '');
+
+        if (algorithm.lrTable.grammar.nonterminals.includes(n.edge)) {
+
+        }
+    });
+
+    algorithm.gss.level(currentLevel).forEach(function(n) {
         d3.select("#smallGraphBase_" + n.node).attr('style', 'stroke:#00A;fill:#EEF');
     });
 }
@@ -253,7 +261,7 @@ function updateGraph(graphBaseId) {
     var graphString = document.getElementById("graphText").value;
     var graphData = graphString.split("\n");
 
-    var nodes_data =  [];
+    var nodes_data = [];
     var edges_data = [];
     var links_data = [];
 
@@ -300,7 +308,9 @@ function updateGraph(graphBaseId) {
         .append("path")
         .attr("d", "M0,-5L10,0L0,5");
 
-    var link = svg.append("g").selectAll("path")
+    var link = svg.append("g")
+        .attr('class', 'links')
+        .selectAll("path")
         .data(links_data)
         .enter().append("path")
         .attr("class", "link")
@@ -636,6 +646,10 @@ function showPage(page) {
             var bContinue = document.getElementById('bContinue');
             bContinue.innerHTML = 'Continue';
             bContinue.disabled = '';
+
+            var bResume = document.getElementById('bResume');
+            bResume.disabled = '';
+
             document.getElementById("numberOfSteps").value = 1;
             document.getElementById('debugBase').innerHTML = '';
 

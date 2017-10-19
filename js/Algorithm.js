@@ -38,8 +38,8 @@ var Algorithm = function(graph, lrTable) {
 
     this.verifyAddedNewAction = verifyAddedNewAction;
 
-    this.query = function(nodes, steps) {
-        this.stepping = steps;
+    this.prepareQuery = function(nodes, stepping) {
+        this.stepping = stepping;
         this.completed = false;
         this.infiniteLoop = false;
         var vertexNode = {};
@@ -48,18 +48,16 @@ var Algorithm = function(graph, lrTable) {
         nodes.forEach(function(n) { verifyAddedNewAction(vertexNode, n, 0, 'Init', 'Init'); });
 
         this.gss = new Gss(nodes);
-        var actions = this.evalLevel();
-
-        var answers = this.answers;
-        this.answers = answers.filter(function(item, pos) {
-            return answers.indexOf(item) === pos;
-        });
-
-        return actions;
     };
 
-    this.continue = function(numberOfSteps) {
+    this.continue = function(stepping, numberOfSteps) {
         var actions = [];
+
+        if (!stepping) {
+            numberOfSteps = 1;
+        }
+
+        this.stepping = stepping;
 
         for (var i = 0; i < numberOfSteps; i++) {
             actions = this.evalLevel();
@@ -68,6 +66,7 @@ var Algorithm = function(graph, lrTable) {
                 break;
             }
         }
+
 
         var answers = this.answers;
         this.answers = answers.filter(function(item, pos) {

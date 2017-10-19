@@ -1,7 +1,7 @@
 var Gss = function (nodes) {
     this.gss = {};
     this.levels = {};
-    this.highestLevelLength = 0;
+    this.highestLevelLength = nodes.length;
 
     this.newNode = function(level, state, edge, node, predecessors) {
         var nodeIndex = level + '-' + state + '-' + edge + "-" + node;
