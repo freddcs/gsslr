@@ -648,6 +648,10 @@ function showPage(page) {
             bContinue.disabled = '';
 
             var bResume = document.getElementById('bResume');
+            bResume.innerHTML = 'Resume';
+            bResume.disabled = '';
+
+            var bResume = document.getElementById('bResume');
             bResume.disabled = '';
 
             document.getElementById("numberOfSteps").value = 1;
@@ -704,3 +708,12 @@ function initialize() {
     selectExampleGraph();
     selectExampleGrammar();
 }
+
+function arraysIdentical(a, b) {
+    var i = a.length;
+    if (i != b.length) return false;
+    while (i--) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+};
