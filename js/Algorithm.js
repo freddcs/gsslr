@@ -91,6 +91,8 @@ var Algorithm = function(graph, lrTable) {
 
         var reductionRoots = this.gss.up(gssNode.index, stepsToReturn);
 
+        var repeatedNodes = [];
+
         for (var i = 0; i < reductionRoots.length; i++) {
             var reductionRoot = reductionRoots[i];
 
@@ -99,13 +101,21 @@ var Algorithm = function(graph, lrTable) {
             // Create a new node with the result of the goto from the
             // parsing table, labeled after the LHS and same with
             // destination as the original GSS node.
-            this.gss.newNode(gssNode.level, goto.actionValue, rule.nonterminal, gssNode.node, [reductionRoot.index]);
+            var repeated = this.gss.newNode(gssNode.level, goto.actionValue, rule.nonterminal, gssNode.node, [reductionRoot.index]);
+
+            if (repeated !== null) {
+                repeatedNodes.push(repeated);
+            }
 
             var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, gssNode.node, goto.actionValue, rule.nonterminal, reductionRoot.node, reductionRoot.state);
             if (!newActionFound) { newActionFound = auxNewActionFound; }
         }
 
-        return newActionFound;
+        repeatedNodes = repeatedNodes.filter(function(item, pos) {
+            return repeatedNodes.indexOf(item) === pos;
+        });
+
+        return {action: newActionFound, repeated: repeatedNodes};
     };
 
     this.addAnswers = function(answerGssNode, gssNode) {
@@ -152,7 +162,12 @@ var Algorithm = function(graph, lrTable) {
 
                     if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
                         actions.reductions.push({gssNode: gssNode, graphEdge: graphEdge, action: action[0]});
-                        newActionFound = this.processReduction(action[0], gssNode, newActionFound);
+                        var reduction = this.processReduction(action[0], gssNode, newActionFound);
+                        newActionFound = reduction.action;
+
+                        if (reduction.repeated.length > 0) {
+                            gssNodes = gssNodes.concat(reduction.repeated);
+                        }
                     }
                 }
             }
@@ -162,7 +177,12 @@ var Algorithm = function(graph, lrTable) {
                 action = action['$'];
                 if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
                     actions.reductions.push({gssNode: gssNode, graphEdge: {node: gssNode.node, label: '$', destination: ''}, action: action[0]});
-                    newActionFound = this.processReduction(action[0], gssNode);
+                    reduction = this.processReduction(action[0], gssNode);
+                    newActionFound = reduction.action;
+
+                    if (reduction.repeated.length > 0) {
+                        gssNodes = gssNodes.concat(reduction.repeated);
+                    }
                 }
             }
         }
