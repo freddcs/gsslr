@@ -5,6 +5,7 @@ var Gss = function (nodes) {
 
     this.newNode = function(level, state, edge, node, predecessors) {
         var nodeIndex = level + '-' + state + '-' + edge + "-" + node;
+        var gssNode = null;
 
         if (this.gss[nodeIndex] === undefined) {
             var gssNodeLabel = "v" + Object.keys(this.gss).length;
@@ -17,12 +18,20 @@ var Gss = function (nodes) {
 
             this.levels[level].push(newNode);
         } else {
-            var gssNode = this.find(nodeIndex);
-            gssNode.previousNodes = gssNode.previousNodes.concat(predecessors);
-            gssNode.previousNodes = gssNode.previousNodes.filter(function(item, pos) {
-                return gssNode.previousNodes.indexOf(item) === pos;
+            gssNode = this.find(nodeIndex);
+            var previousNodes = gssNode.previousNodes.concat(predecessors);
+            previousNodes = previousNodes.filter(function(item, pos) {
+                return previousNodes.indexOf(item) === pos;
             });
+
+            if (arraysIdentical(previousNodes, gssNode.previousNodes)) {
+                gssNode = null;
+            } else {
+                gssNode.previousNodes = previousNodes;
+            }
         }
+
+        return gssNode;
     };
 
     this.level = function(level) {
