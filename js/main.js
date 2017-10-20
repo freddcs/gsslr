@@ -412,8 +412,10 @@ function updateGraph(graphBaseId) {
                         for (var j in keyNames2) {
                             var keyNames3 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]]);
                             for (var k in keyNames3) {
-                                var previousNode = keyNames2[j] === 'Init' ? '' :  '&larr; ' + keyNames2[j] + ' i<sub>' + keyNames3[k] + '</sub>';
-                                visitedStates.push(d.label + ': i<sub>' + keyNames[i] + '</sub>' + previousNode);
+                                var keyNames4 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]][keyNames3[k]]);
+                                for (var l in keyNames4) {
+                                    visitedStates.push((keyNames2[j] === 'Init' ? '' :  keyNames3[k] + ', i<sub>' + keyNames4[l] + '</sub> -<sup>' + keyNames2[j] + '</sup>&rarr; ') + d.label + ', i<sub>' + keyNames[i] + '</sub>');
+                                }
                             }
                         }
                     }
