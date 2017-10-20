@@ -8,7 +8,7 @@ var Algorithm = function(graph, lrTable) {
     this.gss = null;
     this.vertexNode = null;
 
-    var verifyAddedNewAction = function(vertexNode, vertex, state, previousVertex, previousState) {
+    var verifyAddedNewAction = function(vertexNode, vertex, state, label, previousVertex, previousState) {
         var newAction = false;
 
         vertex = '' + vertex;
@@ -24,13 +24,17 @@ var Algorithm = function(graph, lrTable) {
             vertexNode[vertex][state] = {};
         }
 
-        if (vertexNode[vertex][state][previousVertex] === undefined) {
-            vertexNode[vertex][state][previousVertex] = {};
+        if (vertexNode[vertex][state][label] === undefined) {
+            vertexNode[vertex][state][label] = {};
         }
 
-        if (vertexNode[vertex][state][previousVertex][previousState] !== true) {
+        if (vertexNode[vertex][state][label][previousVertex] === undefined) {
+            vertexNode[vertex][state][label][previousVertex] = {};
+        }
+
+        if (vertexNode[vertex][state][label][previousVertex][previousState] !== true) {
             newAction = true;
-            vertexNode[vertex][state][previousVertex][previousState] = true;
+            vertexNode[vertex][state][label][previousVertex][previousState] = true;
         }
 
         return newAction;
@@ -45,7 +49,7 @@ var Algorithm = function(graph, lrTable) {
         var vertexNode = {};
         this.vertexNode = vertexNode;
 
-        nodes.forEach(function(n) { verifyAddedNewAction(vertexNode, n, 0, 'Init', 'Init'); });
+        nodes.forEach(function(n) { verifyAddedNewAction(vertexNode, n, 0, 'Init', 'Init', 'Init'); });
 
         this.gss = new Gss(nodes);
     };
@@ -97,7 +101,7 @@ var Algorithm = function(graph, lrTable) {
             // destination as the original GSS node.
             this.gss.newNode(gssNode.level, goto.actionValue, rule.nonterminal, gssNode.node, [reductionRoot.index]);
 
-            var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, gssNode.node, goto.actionValue, reductionRoot.node, reductionRoot.state);
+            var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, gssNode.node, goto.actionValue, rule.nonterminal, reductionRoot.node, reductionRoot.state);
             if (!newActionFound) { newActionFound = auxNewActionFound; }
         }
 
@@ -205,7 +209,7 @@ var Algorithm = function(graph, lrTable) {
                         actions.shifts.push({gssNode: gssNode, graphEdge: graphEdge});
                         this.gss.newNode(gssNode.level + 1, action[0].actionValue, graphEdge.label, graphEdge.destination, [gssNode.index]);
                         shouldContinue = true;
-                        var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, graphEdge.destination, action[0].actionValue, gssNode.node, gssNode.state);
+                        var auxNewActionFound = this.verifyAddedNewAction(this.vertexNode, graphEdge.destination, action[0].actionValue, graphEdge.label, gssNode.node, gssNode.state);
                         if (!newActionFound) { newActionFound = auxNewActionFound }
                     }
                 }
