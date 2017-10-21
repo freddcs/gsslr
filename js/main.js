@@ -474,12 +474,16 @@ var GraphView = function(graphBaseId) {
 
             var edgeId = source + edge + target;
 
-            var nodes = [{id: edgeId, label: edge,  type: 'non-terminal'}];
+            var findNodeById = graph.nodes.map(function(el) {
+                return el.id;
+            });
+
+            var sourceNode = graph.nodes[findNodeById.indexOf(source)];
+
+            var nodes = [{id: edgeId, label: edge,  type: 'non-terminal', x: sourceNode.x, y: sourceNode.y}];
             var links = [{type: 'answerLink', source: source, target: edgeId, start: true}, {type: 'answerLink', source: edgeId, target: target}];
 
-            var firstPos = graph.nodes.map(function(el) {
-                return el.id;
-            }).indexOf(edgeId);
+            var firstPos = findNodeById.indexOf(edgeId);
 
             if (firstPos === -1) {
 
@@ -493,6 +497,8 @@ var GraphView = function(graphBaseId) {
 
                 update();
             }
+
+            simulation.alphaTarget(0.3).restart()
         };
 
     // Public variables
