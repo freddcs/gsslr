@@ -37,17 +37,31 @@
                 stroke-width: 1px;
             }
 
-            .nodes circle {
+            .links path.answerLink {
+                fill: none;
+                stroke: #D00;
+                stroke-width: 1px;
+            }
+
+            .nodes circle.node {
                 stroke: #000;
                 stroke-width: 1px;
                 fill: white;
                 r: 10;
             }
 
-            .edges rect {
+            .nodes circle.edge {
                 stroke: #DDD;
                 stroke-width: 1px;
                 fill: #FAFAFA;
+                r: 10;
+            }
+
+            .nodes circle.nonTerminal {
+                stroke: #D00;
+                stroke-width: 1px;
+                fill: #FAEEEE;
+                r: 10;
             }
 
             .gssNodes circle {

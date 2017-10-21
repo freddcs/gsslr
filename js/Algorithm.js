@@ -71,7 +71,6 @@ var Algorithm = function(graph, lrTable) {
             }
         }
 
-
         var answers = this.answers;
         this.answers = answers.filter(function(item, pos) {
             return answers.indexOf(item) === pos;
@@ -115,7 +114,7 @@ var Algorithm = function(graph, lrTable) {
             return repeatedNodes.indexOf(item) === pos;
         });
 
-        return {action: newActionFound, repeated: repeatedNodes};
+        return {action: newActionFound, repeated: repeatedNodes, reductionRoots: reductionRoots};
     };
 
     this.addAnswers = function(answerGssNode, gssNode) {
@@ -161,8 +160,12 @@ var Algorithm = function(graph, lrTable) {
                     action = action[graphEdge.label];
 
                     if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
-                        actions.reductions.push({gssNode: gssNode, graphEdge: graphEdge, action: action[0]});
                         var reduction = this.processReduction(action[0], gssNode, newActionFound);
+
+                        reduction.reductionRoots.forEach(function(r) {
+                            actions.reductions.push({gssNode: gssNode, graphEdge: {destination: graphEdge.destination, label: graphEdge.label, node: graphEdge.node, reductionRoot: r.node}, action: action[0]});
+                        });
+
                         newActionFound = reduction.action;
 
                         if (reduction.repeated.length > 0) {
@@ -176,8 +179,12 @@ var Algorithm = function(graph, lrTable) {
             if (action !== undefined) {
                 action = action['$'];
                 if (action !== undefined && action[0].actionType === 'r' && action[0].actionValue !== 0) {
-                    actions.reductions.push({gssNode: gssNode, graphEdge: {node: gssNode.node, label: '$', destination: ''}, action: action[0]});
                     reduction = this.processReduction(action[0], gssNode);
+
+                    reduction.reductionRoots.forEach(function(r) {
+                        actions.reductions.push({gssNode: gssNode, graphEdge: {destination: '', label: '$', node: gssNode.node, reductionRoot: r.node}, action: action[0]});
+                    });
+
                     newActionFound = reduction.action;
 
                     if (reduction.repeated.length > 0) {

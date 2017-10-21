@@ -1,5 +1,6 @@
 var lrTable = null;
 var algorithm = null;
+var graphView = null;
 
 function query(lrTable) {
     var graphString = document.getElementById('graphText').value;
@@ -42,27 +43,9 @@ function performQuery() {
     algorithm = query(lrTable);
 
     document.getElementById("answers").innerHTML = "Answers: " + algorithm.answers.toString();
-
-    var gssTraces = '';
-    var levels = Object.keys(algorithm.gss.levels).length;
-
-    for (var i = 0; i < levels - 1; i++) {
-        gssTraces += "<div><strong>Level " + i + ":</strong></div>";
-
-        var level = algorithm.gss.levels[i];
-
-        for (var j = 0; j < level.length; j++) {
-            var evenOdd = (j % 2) === 0 ? 'even' : 'odd';
-            var currentNode = level[j];
-            var traces = printTraces(currentNode, algorithm.gss);
-            gssTraces += "<div class='" + evenOdd + "'>" + traces.join("</div><div style='margin-top:10px;'>") + "</div>";
-        }
-    }
-
-    document.getElementById("tracesBase").innerHTML = gssTraces;
+    document.getElementById("tracesBase").innerHTML = '';
 
     highlightVertices(algorithm);
-
     updateGss(algorithm.gss);
 }
 
@@ -150,6 +133,8 @@ function registerActions(actions, level) {
                 + r.graphEdge.node + '</td><td>' + r.graphEdge.label + '</td><td>' + r.graphEdge.destination + '</td><td>REDUCE</td><td>'
                 + 'r' + r.action.actionValue + ': ' + rule.nonterminal + ' &rarr; ' + rhs
                 + '</td></tr>';
+
+            graphView.addNonTerminal(r.graphEdge.reductionRoot, rule.nonterminal, r.graphEdge.node);
         });
     }
 
@@ -222,7 +207,7 @@ function selectExampleGraph() {
 
     startingNodesText.value = startingNodes.join(' ');
 
-    updateGraph('graphBase');
+    graphView = new GraphView('graphBase');
 }
 
 function selectExampleGrammar() {
@@ -241,29 +226,17 @@ function selectExampleGrammar() {
     updateGrammar();
 }
 
-function updateGraph(graphBaseId) {
-    var svgId = graphBaseId + "graphD3";
+var GraphView = function(graphBaseId) {
     var graphBase = document.getElementById(graphBaseId);
-    graphBase.innerHTML = '<svg id="' + svgId+ '" width="' + graphBase.clientWidth + '" height="' + graphBase.clientHeight + '"></svg>';
+    graphBase.innerHTML = '';
 
-    //create somewhere to put the force directed graph
-    var svg = d3.select("#" + svgId)
-        .call(d3.zoom().on("zoom", function () {
-            svg.attr("transform", d3.event.transform)
-        }));
+    var graphString = document.getElementById('graphText').value;
+    var graphData = graphString.split('\n');
 
-
-    svg.height = graphBase.clientHeight;
-    svg.width = graphBase.clientWidth;
-
-    svg.innerHTML = '';
-
-    var graphString = document.getElementById("graphText").value;
-    var graphData = graphString.split("\n");
-
-    var nodes_data = [];
-    var edges_data = [];
-    var links_data = [];
+    var graph = {
+        nodes: [],
+        links: []
+    };
 
     for (var i = 0; i < graphData.length; i++) {
         var edgeString = graphData[i];
@@ -272,198 +245,264 @@ function updateGraph(graphBaseId) {
             var edgeData = edgeString.split(" ");
             var edgeName = edgeData.join('');
 
-            nodes_data.push({"name":edgeData[0], "label": edgeData[0]});
-            nodes_data.push({"name":edgeData[2], "label": edgeData[2]});
-            edges_data.push({"name":edgeName, "label": edgeData[1]});
+            graph.nodes.push({id: edgeData[0], label: edgeData[0], type: 'node'});
+            graph.nodes.push({id:edgeData[2], label: edgeData[2], type: 'node'});
+            graph.nodes.push({id:edgeName, label: edgeData[1], type: 'edge'});
 
-            links_data.push({"source": edgeData[0], "target": edgeName, "start": true});
-            links_data.push({"source": edgeName, "target": edgeData[2]});
+            graph.links.push({source: edgeData[0], target: edgeName, start: true});
+            graph.links.push({source: edgeName, target: edgeData[2]});
         }
     }
 
-    nodes_data = nodes_data.filter(function(item, pos) {
-        var firstPos = nodes_data.map(function(el) {
-            return el.name;
-        }).indexOf(item.name);
+    graph.nodes = graph.nodes.filter(function(item, pos) {
+        var firstPos = graph.nodes.map(function(el) {
+            return el.id;
+        }).indexOf(item.id);
 
         return firstPos === pos;
     });
 
-    var allNodes = nodes_data.concat(edges_data);
-    var simulation = d3.forceSimulation().nodes(allNodes);
+    var self = this,
 
-    simulation.force("charge_force", d3.forceManyBody())
-        .force("center_force", d3.forceCenter(svg.width / 2, svg.height / 2));
+        width = graphBase.clientWidth,
+        height = graphBase.clientHeight,
 
-    svg.append("defs").selectAll("marker")
-        .data(["seta"])
-        .enter().append("marker")
-        .attr("id", function(d) { return d; })
-        .attr("viewBox", "0 -5 10 10")
-        .attr("refX", 23)
-        .attr("refY", -5)
-        .attr("markerWidth", 6)
-        .attr("markerHeight", 6)
-        .attr("orient", "auto")
-        .append("path")
-        .attr("d", "M0,-5L10,0L0,5");
+        svg = d3.select(graphBase).append('svg')
+            .attr('width', graphBase.clientWidth)
+            .attr('height', graphBase.clientHeight)
+            .call(d3.zoom().on('zoom', function () {
+                svg.attr('transform', d3.event.transform)
+            })),
 
-    var link = svg.append("g")
-        .attr('class', 'links')
-        .selectAll("path")
-        .data(links_data)
-        .enter().append("path")
-        .attr("class", "link")
-        .attr("marker-end", function(d) { return d.start ? "" : "url(#seta)"; });
+        simulation = d3.forceSimulation()
+            .force('link', d3.forceLink().id(function(d) { return d.id; }).distance(45))
+            .force('charge', d3.forceManyBody())
+            .force('center', d3.forceCenter(width / 2, height / 2)),
 
-    var node = svg.append("g")
-        .attr("class", "nodes")
-        .selectAll("circle")
-        .data(nodes_data)
-        .enter()
-        .append("circle")
-        .attr("id", function(d) { return graphBaseId + "_" + d.label; })
-        .on("mouseover", mouseover)
-        .on("mouseout", mouseout)
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+        linkGroup = svg.append('g')
+            .attr('class', 'links'),
 
-    var edge = svg.append("g")
-        .attr("class", "edges")
-        .selectAll("rect")
-        .data(edges_data)
-        .enter()
-        .append("rect")
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+        nodeGroup = svg.append('g')
+            .attr('class', 'nodes'),
 
-    var nodeLabel = svg.append("g").selectAll("text")
-        .data(nodes_data)
-        .enter().append("text")
-        .attr("x", "-4px")
-        .attr("y", "5px")
-        .text(function(d) { return d.label; });
+        labelsGroup = svg.append('g')
+            .attr('class', 'labels'),
 
-    var edgeLabel = svg.append("g").selectAll("text")
-        .data(edges_data)
-        .enter().append("text")
-        .attr("x", "-4px")
-        .attr("y", "5px")
-        .text(function(d) { return d.label; });
+        // Define the div for the tooltip
+        div = d3.select("#" + graphBaseId).append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0),
 
-    // Define the div for the tooltip
-    var div = d3.select("#" + graphBaseId).append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
+        dragging = false,
 
-    function tickActions() {
-        link.attr("d", function(d) {
-            var dx = d.target.x - d.source.x,
-                dy = d.target.y - d.source.y,
-                dr = Math.sqrt(dx * dx + dy * dy);
-            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-        });
+        marker = svg.append('defs').selectAll('marker')
+            .data(['seta'])
+            .enter().append('marker')
+            .attr('id', function(d) { return d; })
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 23)
+            .attr('refY', -5)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5'),
 
-        //update circle positions each tick of the simulation
-        node
-            .attr("cx", function(d) { return d.x; })
-            .attr("cy", function(d) { return d.y; });
+        answerMarker = svg.select('defs').selectAll('answerMarker')
+            .data(['answerMarker'])
+            .enter().append('marker')
+            .attr('id', function(d) { return d; })
+            .attr('viewBox', '0 -5 10 10')
+            .attr('refX', 23)
+            .attr('refY', -5)
+            .attr('markerWidth', 6)
+            .attr('markerHeight', 6)
+            .attr('style' , 'fill:#D00;')
+            .attr('orient', 'auto')
+            .append('path')
+            .attr('d', 'M0,-5L10,0L0,5'),
 
-        /*node.attr("cx", function(d) { return d.x = Math.max(10, Math.min(graphBase.clientWidth - 10, d.x)); })
-            .attr("cy", function(d) { return d.y = Math.max(10, Math.min(graphBase.clientHeight - 10, d.y)); });*/
+        update = function() {
+            // Redefine and restart simulation
+            simulation.nodes(graph.nodes)
+                .on('tick', ticked);
 
-        edge
-            .attr("x", function(d) { return d.x - 10; })
-            .attr("y", function(d) { return d.y - 10; })
-            .attr("width", function(d) { return 20; })
-            .attr("height", function(d) { return 20; });
+            simulation.force('link')
+                .links(graph.links);
 
-        //update link positions
-        //simply tells one end of the line to follow one node around
-        //and the other end of the line to follow the other node around
-        link
-            .attr("x1", function(d) { return d.source.x; })
-            .attr("y1", function(d) { return d.source.y; })
-            .attr("x2", function(d) { return d.target.x; })
-            .attr("y2", function(d) { return d.target.y; });
+            // Update links
+            link = linkGroup
+                .selectAll('path')
+                .data(graph.links);
 
-        nodeLabel.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-        edgeLabel.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-    }
+            // Enter links
+            linkEnter = link
+                .enter().append('path')
+                .attr('class', function(d) { return d.type === 'answerLink' ? 'answerLink' : 'link'; })
+                .attr('marker-end', function(d) { return d.start ? '' : (d.type === 'answerLink' ? 'url(#answerMarker)' : 'url(#seta)'); });
 
-    simulation.on("tick", tickActions);
+            link = linkEnter
+                .merge(link);
 
-    var dragging = false;
-    function mouseover(d) {
-        setTimeout(
-            function() {
-                if (!dragging && algorithm !== null) {
-                    var visitedStates = [];
+            // Exit any old links
+            link.exit().remove();
 
-                    var vertexNode = algorithm.vertexNode[d.label];
+            // Update the nodes
+            node = nodeGroup.selectAll('circle').data(graph.nodes);
 
-                    var keyNames = Object.keys(vertexNode);
-                    for (var i in keyNames) {
-                        var keyNames2 = Object.keys(vertexNode[keyNames[i]]);
-                        for (var j in keyNames2) {
-                            var keyNames3 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]]);
-                            for (var k in keyNames3) {
-                                var keyNames4 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]][keyNames3[k]]);
-                                for (var l in keyNames4) {
-                                    visitedStates.push((keyNames2[j] === 'Init' ? '' :  keyNames3[k] + ', i<sub>' + keyNames4[l] + '</sub> -<sup>' + keyNames2[j] + '</sup>&rarr; ') + d.label + ', i<sub>' + keyNames[i] + '</sub>');
+            // Enter any new nodes
+            nodeEnter = node.enter().append('circle')
+                .attr("id", function(d) { return graphBaseId + "_" + d.label; })
+                .attr('class', function(n) { return n.type === 'edge' ? 'edge' : (n.type === 'node' ? 'node' : 'nonTerminal'); })
+                .on("mouseover", mouseover)
+                .on("mouseout", mouseout)
+                .call(d3.drag()
+                    .on('start', dragStarted)
+                    .on('drag', dragged)
+                    .on('end', dragEnded));
+
+            node = nodeEnter.merge(node);
+
+            // Update the labels
+            label = labelsGroup.selectAll('text').data(graph.nodes);
+
+            // Enter any new labels
+            labelEnter = label.enter().append('text')
+                .on("mouseover", mouseover)
+                .on("mouseout", mouseout)
+                .call(d3.drag()
+                    .on('start', dragStarted)
+                    .on('drag', dragged)
+                    .on('end', dragEnded));
+
+            labelEnter.text(function(d) { return d.label; });
+
+            label = labelEnter.merge(label);
+
+            label.exit().remove();
+
+            function ticked() {
+
+                link.attr('d', function(d) {
+                    var dx = d.target.x - d.source.x,
+                        dy = d.target.y - d.source.y,
+                        dr = Math.sqrt(dx * dx + dy * dy);
+                    return 'M' + d.source.x + ',' + d.source.y + 'A' + dr + ',' + dr + ' 0 0,1 ' + d.target.x + ',' + d.target.y;
+                });
+
+                //update link positions
+                //simply tells one end of the line to follow one node around
+                //and the other end of the line to follow the other node around
+                link
+                    .attr('x1', function(d) { return d.source.x; })
+                    .attr('y1', function(d) { return d.source.y; })
+                    .attr('x2', function(d) { return d.target.x; })
+                    .attr('y2', function(d) { return d.target.y; });
+
+                node
+                    .attr('cx', function(d) { return d.x; })
+                    .attr('cy', function(d) { return d.y; });
+
+                label
+                    .attr('x', function(d) { return d.x - 3; })
+                    .attr('y', function(d) { return d.y + 4; });
+            }
+        },
+
+        dragStarted = function(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        },
+
+        dragged = function(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        },
+
+        dragEnded = function(d) {
+            if (!d3.event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        },
+
+        mouseover = function(d) {
+            setTimeout(
+                function() {
+                    if (!dragging && algorithm !== null) {
+                        var visitedStates = [];
+
+                        var vertexNode = algorithm.vertexNode[d.label];
+
+                        if (vertexNode === undefined) {
+                            return;
+                        }
+
+                        var keyNames = Object.keys(vertexNode);
+                        for (var i in keyNames) {
+                            var keyNames2 = Object.keys(vertexNode[keyNames[i]]);
+                            for (var j in keyNames2) {
+                                var keyNames3 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]]);
+                                for (var k in keyNames3) {
+                                    var keyNames4 = Object.keys(vertexNode[keyNames[i]][keyNames2[j]][keyNames3[k]]);
+                                    for (var l in keyNames4) {
+                                        visitedStates.push((keyNames2[j] === 'Init' ? '' :  keyNames3[k] + ', i<sub>' + keyNames4[l] + '</sub> -<sup>' + keyNames2[j] + '</sup>&rarr; ') + d.label + ', i<sub>' + keyNames[i] + '</sub>');
+                                    }
                                 }
                             }
                         }
-                    }
 
-                    if (visitedStates.length === 0) {
-                        visitedStates.push("None");
-                    }
+                        if (visitedStates.length === 0) {
+                            visitedStates.push("None");
+                        }
 
-                    div.transition().duration(200).style("opacity", .9);
-                    div.html(visitedStates.join('<br/>'));
+                        div.transition().duration(200).style("opacity", .9);
+                        div.html(visitedStates.join('<br/>'));
+                    }
+                },
+                1000
+            );
+        },
+
+        mouseout = function(d) {
+            div.transition()
+                .duration(500)
+                .style("opacity", 0);
+        },
+
+        addNonTerminal = function(source, edge, target){
+
+            var edgeId = source + edge + target;
+
+            var nodes = [{id: edgeId, label: edge,  type: 'non-terminal'}];
+            var links = [{type: 'answerLink', source: source, target: edgeId, start: true}, {type: 'answerLink', source: edgeId, target: target}];
+
+            var firstPos = graph.nodes.map(function(el) {
+                return el.id;
+            }).indexOf(edgeId);
+
+            if (firstPos === -1) {
+
+                for (var i = 0; i < nodes.length; i++) {
+                    graph.nodes.push(nodes[i]);
                 }
-            },
-            1000
-        );
-    }
 
-    function mouseout(d) {
-        div.transition()
-            .duration(500)
-            .style("opacity", 0);
-    }
+                for (var j = 0; j < links.length; j++) {
+                    graph.links.push(links[j]);
+                }
 
-    function dragstarted(d) {
-        dragging = true;
-        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
-    }
+                update();
+            }
+        };
 
-    function dragged(d) {
-        dragging = true;
-        d.fx = d3.event.x;
-        d.fy = d3.event.y;
-    }
+    // Public variables
+    this.graph = graph;
 
-    function dragended(d) {
-        dragging = false;
-        if (!d3.event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-    }
+    // Public functions
+    this.addNonTerminal = addNonTerminal;
 
-    //Create the link force
-    //We need the id accessor to use named sources and targets
-    var link_force =  d3.forceLink(links_data).id(function(d) { return d.name; }).distance(40);
-
-    simulation.force("links", link_force);
-}
+    update();
+};
 
 function updateGrammar() {
     var grammarString = document.getElementById("grammarText").value;
@@ -653,15 +692,12 @@ function showPage(page) {
             bResume.innerHTML = 'Resume';
             bResume.disabled = '';
 
-            var bResume = document.getElementById('bResume');
-            bResume.disabled = '';
-
             document.getElementById("numberOfSteps").value = 1;
             document.getElementById('debugBase').innerHTML = '';
 
             process.style.display = 'block';
 
-            updateGraph('smallGraphBase');
+            graphView = new GraphView('smallGraphBase');
             performQuery();
 
             break;
@@ -713,9 +749,9 @@ function initialize() {
 
 function arraysIdentical(a, b) {
     var i = a.length;
-    if (i != b.length) return false;
+    if (i !== b.length) return false;
     while (i--) {
         if (a[i] !== b[i]) return false;
     }
     return true;
-};
+}
