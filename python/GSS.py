@@ -74,3 +74,11 @@ class GSSLink:
     
     def __eq__(self, other):
         return (self.hash == other.hash)
+    
+def CreateGSS(DG):
+    gss = GSS()
+    
+    for key, value in DG.nodes.items():
+        gssNode = gss.addNode(0, 0, value, None)
+
+    return gss

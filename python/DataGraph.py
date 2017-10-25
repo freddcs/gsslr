@@ -20,3 +20,11 @@ class GraphEdge:
     def __init__(self, edgeLabel, destination):
         self.edgeLabel = edgeLabel
         self.destination = destination
+        
+def addGraphNode(graph, source, edge, destination):
+    if source not in graph:
+        graph[source] = []
+        
+    graph[source].append(GraphNode(source, edge, destination))
+                             
+    return
