@@ -1,72 +1,7 @@
-class DataGraph:
-    def __init__(self):
-        self.nodes = {}
-        
-    def addNode(self, sourceLabel, edgeLabel, destinationLabel):
-        if (sourceLabel not in self.nodes):
-            self.nodes[sourceLabel] = GraphNode(sourceLabel)
-                
-        if (destinationLabel not in self.nodes):
-            self.nodes[destinationLabel] = GraphNode(destinationLabel)
-                
-        self.nodes[sourceLabel].edges.append(GraphEdge(edgeLabel, self.nodes[destinationLabel]))
-        
-class GraphNode:
-    def __init__(self, vertexLabel):
-        self.vertexLabel = vertexLabel
-        self.edges = [GraphEdge('$', self)]
+import time
 
-class GraphEdge:
-    def __init__(self, edgeLabel, destination):
-        self.edgeLabel = edgeLabel
-        self.destination = destination
-        
-class GSS:
-    def __init__(self):
-        self.levels = []
-        self.numberOfNodes = 0
-        
-    def addNode(self, level, state, vertex, predecessor):
-        if len(self.levels) <= level:
-            self.levels.append([]);
-            
-        gssNode = None
-        for index, node in enumerate(self.levels[level]):
-            if node.state == state and node.vertex.vertexLabel == vertex.vertexLabel:
-                gssNode = node
-                break;
-            
-        if gssNode == None:
-            gssNode = GSSNode(state, vertex, predecessor)
-            gssNode.label = self.numberOfNodes
-            self.levels[level].append(gssNode)
-            self.numberOfNodes += 1
-        else:
-            if predecessor != None and predecessor not in gssNode.predecessors:
-                gssNode.predecessors.append(predecessor)
-        
-        return gssNode
-    
-    def up(self, gssNode, jumps):
-        reductionRoots = []
-        
-        if jumps > 0:
-            gssNodes = []
-            for index, predecessorLink in enumerate(gssNode.predecessors):
-                gssNodes = gssNodes + self.up(predecessorLink.gssNode, jumps - 1)
-                
-            return gssNodes
-        else:
-            return [gssNode]
-        
-    def __repr__(self):
-        gss = 'GSS:\n'
-        for level, nodes in enumerate(self.levels):
-            gss += 'U' + str(level) + ':\n'
-            for index, node in enumerate(nodes):
-                gss += str(node) + '\n'
-            gss += '\n'
-        return gss
+from DataGraph import *
+from GSS import *
     
 class Action:
     def __init__(self, action, state, rule):
@@ -78,35 +13,6 @@ class Rule:
     def __init__(self, lhs, rhsSize):
         self.lhs = lhs
         self.rhsSize = rhsSize
-        
-class GSSNode:
-    def __init__(self, state, vertex, predecessor):
-        self.state = state
-        self.vertex = vertex
-        
-        self.predecessors = []
-        if predecessor != None:
-            self.predecessors.append(predecessor)
-        self.label = 0
-
-    def __repr__(self):
-        previous = ''
-        for index, predecessor in enumerate(self.predecessors):
-            previous += predecessor.edgeLabel + '<- v' + str(predecessor.gssNode.label) + ' '
-            
-        return 'v' + str(self.label) + '(' + self.vertex.vertexLabel + ', I' + str(self.state) + ', [ ' + previous + ']) '
-    
-class GSSLink:
-    def __init__(self, edgeLabel, gssNode):
-        self.edgeLabel = edgeLabel
-        self.gssNode = gssNode
-        
-    def __eq__(self, other):
-        return (isinstance(other, self.__class__)
-            and self.__dict__ == other.__dict__)
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
 
 def addGraphNode(graph, source, edge, destination):
     if source not in graph:
@@ -260,7 +166,6 @@ def CreateParsingTable(grammar):
 
 def CreateGSS(DG):
     gss = GSS()
-    gss.levels.append([])
     
     for key, value in DG.nodes.items():
         gssNode = gss.addNode(0, 0, value, None)
@@ -271,62 +176,55 @@ def GSS_LR(Q, DG, G):
     parsingTable, rules = CreateParsingTable(G)
     gss = CreateGSS(DG)
     level = 0
-    visitedPairs = []
-    reductionEdges = []
-    answers = []
+    visitedPairs = set()
+    reductionEdges = set()
+    answers = set()
     changed = False
     
-    c = 0;
     while (True):
-        
         if level >= len(gss.levels):
             break
         
         gssNodes = gss.levels[level]
         
-        print 'Reductions ...'
-        
         # Process Reductions
-        for index, gssNode in enumerate(gssNodes):
+        for gssNode in gssNodes:
             if 'hasReductions' in parsingTable[gssNode.state]:
-                
-                for index, edge in enumerate(gssNode.vertex.edges):
+                for edge in gssNode.vertex.edges:
                     if edge.edgeLabel in parsingTable[gssNode.state]:
                         action = parsingTable[gssNode.state][edge.edgeLabel]
                         if action.action == 'reduce':
                             rule = rules[action.rule]
                             reductionRoots = gss.up(gssNode, rule.rhsSize)
-                            for i, reductionRoot in enumerate(reductionRoots):
+                            
+                            for reductionRoot in reductionRoots:
                                 destinationState = parsingTable[reductionRoot.state][rule.lhs].state
+                                
                                 predecessor = GSSLink(rule.lhs, reductionRoot)
                                 newGssNode = gss.addNode(level, destinationState, gssNode.vertex, predecessor)
                                 
                                 reductionLabel = reductionRoot.vertex.vertexLabel + rule.lhs + gssNode.vertex.vertexLabel
                                 if reductionLabel not in reductionEdges:
-                                    reductionEdges.append(reductionLabel)
+                                    reductionEdges.add(reductionLabel)
                                     changed = True
         
-        print 'Accepts ...'
-        
         # Process Accepts
-        for index, gssNode in enumerate(gssNodes):
+        for gssNode in gssNodes:
             if 'hasAccepts' in parsingTable[gssNode.state]:
                 if '$' in parsingTable[gssNode.state]:
                     action = parsingTable[gssNode.state]['$']
                     if action.action == 'accept':
                         reductionRoots = gss.up(gssNode, 1)
-                        for i, reductionRoot in enumerate(reductionRoots):
+                        for reductionRoot in reductionRoots:
                             answer = '(' + reductionRoot.vertex.vertexLabel + ', ' + gssNode.vertex.vertexLabel + ')'
                             if answer not in answers:
-                                answers.append(answer)
+                                answers.add(answer)
                                 changed = True
                    
-        print 'Shifts ...'
-                   
         # Process Shifts
-        for index, gssNode in enumerate(gssNodes):
+        for gssNode in gssNodes:
             if 'hasShifts' in parsingTable[gssNode.state]:
-                for index, edge in enumerate(gssNode.vertex.edges):
+                for edge in gssNode.vertex.edges:
                     if edge.edgeLabel in parsingTable[gssNode.state]:
                         action = parsingTable[gssNode.state][edge.edgeLabel]
                         if action.action == 'shift':
@@ -335,19 +233,16 @@ def GSS_LR(Q, DG, G):
                             
                             visitedPair = edge.destination.vertexLabel + str(action.state)
                             if visitedPair not in visitedPairs:
-                                visitedPairs.append(visitedPair)
+                                visitedPairs.add(visitedPair)
                                 changed = True
                 
         if not changed:
             break;
         
-        print str(level) + ": " + str(len(gssNodes))
-        
         changed = False
         level += 1
         
         # Retornar triplas (Node, Nao-Terminal, Node)
-        
         # Manter consistencia entre o grafo de dados com o algoritmo. Tentar representar como Node X Edge X Nodes
     
     return answers
@@ -418,12 +313,16 @@ for label in DG.nodes:
 Q = 'QUERY'
 G = 'GRAMMAR'
 
-import time
-start_time = time.time()
+import cProfile
+
+pr = cProfile.Profile()
+pr.enable()
 
 answers = GSS_LR(Q, DG, G)
 
-print answers
-print 'Answers: ' + str(len(answers))
+pr.disable()
+ 
+pr.print_stats(sort='time')
 
-print("--- %s seconds ---" % (time.time() - start_time))
+# print answers
+print 'Answers: ' + str(len(answers))
