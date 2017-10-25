@@ -2,7 +2,7 @@ import time
 
 from DataGraph import *
 from GSS import *
-    
+
 class Action:
     def __init__(self, action, state, rule):
         self.action = action
@@ -29,34 +29,24 @@ def CreateParsingTable(grammar):
     '''parsingTable.append({})
     parsingTable[0]['('] = Action('shift', 2, None)
     parsingTable[0]['S'] = Action('goto', 1, None)
-    parsingTable[0]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[1]['$'] = Action('accept', None, None)
-    parsingTable[1]['hasAccepts'] = True
     parsingTable.append({})
     parsingTable[2]['('] = Action('shift', 4, None)
     parsingTable[2][')'] = Action('reduce', None, 2)
     parsingTable[2]['P'] = Action('goto', 3, None)
-    parsingTable[2]['hasReductions'] = True
-    parsingTable[2]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[3][')'] = Action('shift', 5, None)
-    parsingTable[3]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[4]['('] = Action('shift', 4, None)
     parsingTable[4][')'] = Action('reduce', None, 2)
     parsingTable[4]['P'] = Action('goto', 6, None)
-    parsingTable[4]['hasReductions'] = True
-    parsingTable[4]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[5]['$'] = Action('reduce', None, 1)
-    parsingTable[5]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[6][')'] = Action('shift', 7, None)
-    parsingTable[6]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[7][')'] = Action('reduce', None, 3)
-    parsingTable[7]['hasReductions'] = True
     
     rules = [Rule('S\'', 1), Rule('S', 3), Rule('P', 0), Rule('P', 3)]'''
     
@@ -65,100 +55,74 @@ def CreateParsingTable(grammar):
     parsingTable[0]['next::subClassOf'] = Action('shift', 2, None)
     parsingTable[0]['next::type'] = Action('shift', 3, None)
     parsingTable[0]['S'] = Action('goto', 1, None)
-    parsingTable[0]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[1]['$'] = Action('accept', None, None)
-    parsingTable[1]['hasAccepts'] = True
     parsingTable.append({})
     parsingTable[2]['next::subClassOf'] = Action('shift', 6, None)
     parsingTable[2]['next-1::subClassOf'] = Action('shift', 5, None)
     parsingTable[2]['next::type'] = Action('shift', 7, None)
     parsingTable[2]['S'] = Action('goto', 4, None)
-    parsingTable[2]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[3]['next::subClassOf'] = Action('shift', 10, None)
     parsingTable[3]['next::type'] = Action('shift', 11, None)
     parsingTable[3]['next-1::type'] = Action('shift', 9, None)
     parsingTable[3]['S'] = Action('goto', 8, None)
-    parsingTable[3]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[4]['next-1::subClassOf'] = Action('shift', 12, None)
-    parsingTable[4]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[5]['$'] = Action('reduce', None, 2)
-    parsingTable[5]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[6]['next::subClassOf'] = Action('shift', 6, None)
     parsingTable[6]['next-1::subClassOf'] = Action('shift', 14, None)
     parsingTable[6]['next::type'] = Action('shift', 7, None)
     parsingTable[6]['S'] = Action('goto', 13, None)
-    parsingTable[6]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[7]['next::subClassOf'] = Action('shift', 10, None)
     parsingTable[7]['next::type'] = Action('shift', 11, None)
     parsingTable[7]['next-1::type'] = Action('shift', 16, None)
     parsingTable[7]['S'] = Action('goto', 15, None)
-    parsingTable[7]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[8]['next-1::type'] = Action('shift', 17, None)
-    parsingTable[8]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[9]['$'] = Action('reduce', None, 4)
-    parsingTable[9]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[10]['next::subClassOf'] = Action('shift', 6, None)
     parsingTable[10]['next-1::subClassOf'] = Action('shift', 19, None)
     parsingTable[10]['next::type'] = Action('shift', 7, None)
     parsingTable[10]['S'] = Action('goto', 18, None)
-    parsingTable[10]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[11]['next::subClassOf'] = Action('shift', 10, None)
     parsingTable[11]['next::type'] = Action('shift', 11, None)
     parsingTable[11]['next-1::type'] = Action('shift', 21, None)
     parsingTable[11]['S'] = Action('goto', 20, None)
-    parsingTable[11]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[12]['$'] = Action('reduce', None, 1)
-    parsingTable[12]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[13]['next-1::subClassOf'] = Action('shift', 22, None)
-    parsingTable[13]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[14]['next-1::subClassOf'] = Action('reduce', None, 2)
-    parsingTable[14]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[15]['next-1::type'] = Action('shift', 23, None)
-    parsingTable[15]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[16]['next-1::subClassOf'] = Action('reduce', None, 4)
-    parsingTable[16]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[17]['$'] = Action('reduce', None, 3)
-    parsingTable[17]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[18]['next-1::subClassOf'] = Action('shift', 24, None)
-    parsingTable[18]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[19]['next-1::type'] = Action('reduce', None, 2)
-    parsingTable[19]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[20]['next-1::type'] = Action('shift', 25, None)
-    parsingTable[20]['hasShifts'] = True
     parsingTable.append({})
     parsingTable[21]['next-1::type'] = Action('reduce', None, 4)
-    parsingTable[21]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[22]['next-1::subClassOf'] = Action('reduce', None, 1)
-    parsingTable[22]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[23]['next-1::subClassOf'] = Action('reduce', None, 3)
-    parsingTable[23]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[24]['next-1::type'] = Action('reduce', None, 1)
-    parsingTable[24]['hasReductions'] = True
     parsingTable.append({})
     parsingTable[25]['next-1::type'] = Action('reduce', None, 3)
-    parsingTable[25]['hasReductions'] = True
     
     rules = [Rule('S\'', 1), Rule('S', 3), Rule('S', 2), Rule('S', 3), Rule('S', 2)]
     
@@ -172,9 +136,9 @@ def CreateGSS(DG):
 
     return gss
 
-def GSS_LR(Q, DG, G):
-    parsingTable, rules = CreateParsingTable(G)
-    gss = CreateGSS(DG)
+def GSS_LR(Q):
+    global parsingTable, rules, gss
+    
     level = 0
     visitedPairs = set()
     reductionEdges = set()
@@ -182,60 +146,65 @@ def GSS_LR(Q, DG, G):
     changed = False
     
     while (True):
+        
         if level >= len(gss.levels):
             break
         
         gssNodes = gss.levels[level]
+        nodeKeys = gssNodes.keys()
         
         # Process Reductions
-        for gssNode in gssNodes:
-            if 'hasReductions' in parsingTable[gssNode.state]:
-                for edge in gssNode.vertex.edges:
-                    if edge.edgeLabel in parsingTable[gssNode.state]:
-                        action = parsingTable[gssNode.state][edge.edgeLabel]
-                        if action.action == 'reduce':
-                            rule = rules[action.rule]
-                            reductionRoots = gss.up(gssNode, rule.rhsSize)
-                            
-                            for reductionRoot in reductionRoots:
-                                destinationState = parsingTable[reductionRoot.state][rule.lhs].state
-                                
-                                predecessor = GSSLink(rule.lhs, reductionRoot)
-                                newGssNode = gss.addNode(level, destinationState, gssNode.vertex, predecessor)
-                                
-                                reductionLabel = reductionRoot.vertex.vertexLabel + rule.lhs + gssNode.vertex.vertexLabel
-                                if reductionLabel not in reductionEdges:
-                                    reductionEdges.add(reductionLabel)
-                                    changed = True
-        
-        # Process Accepts
-        for gssNode in gssNodes:
-            if 'hasAccepts' in parsingTable[gssNode.state]:
-                if '$' in parsingTable[gssNode.state]:
-                    action = parsingTable[gssNode.state]['$']
-                    if action.action == 'accept':
-                        reductionRoots = gss.up(gssNode, 1)
+        for nodeIndex in nodeKeys:
+            gssNode = gssNodes[nodeIndex]
+            for edge in gssNode.vertex.edges:
+                if edge.edgeLabel in parsingTable[gssNode.state]:
+                    action = parsingTable[gssNode.state][edge.edgeLabel]
+                    if action.action == 'reduce':
+                        rule = rules[action.rule]
+                        reductionRoots = gss.up(gssNode, rule.rhsSize)
+                        
                         for reductionRoot in reductionRoots:
-                            answer = '(' + reductionRoot.vertex.vertexLabel + ', ' + gssNode.vertex.vertexLabel + ')'
-                            if answer not in answers:
-                                answers.add(answer)
-                                changed = True
-                   
-        # Process Shifts
-        for gssNode in gssNodes:
-            if 'hasShifts' in parsingTable[gssNode.state]:
-                for edge in gssNode.vertex.edges:
-                    if edge.edgeLabel in parsingTable[gssNode.state]:
-                        action = parsingTable[gssNode.state][edge.edgeLabel]
-                        if action.action == 'shift':
-                            predecessor = GSSLink(edge.edgeLabel, gssNode)
-                            gss.addNode(level + 1, action.state, edge.destination, predecessor)
+                            destinationState = parsingTable[reductionRoot.state][rule.lhs].state
                             
-                            visitedPair = edge.destination.vertexLabel + str(action.state)
-                            if visitedPair not in visitedPairs:
-                                visitedPairs.add(visitedPair)
+                            predecessor = GSSLink(rule.lhs, reductionRoot)
+                            newGssNode = gss.addNode(level, destinationState, gssNode.vertex, predecessor)
+                            newNodeIndex = gssNode.vertex.vertexLabel + str(destinationState)
+                            if newNodeIndex not in nodeKeys:
+                                nodeKeys.append(newNodeIndex)
+                            
+                            reductionLabel = reductionRoot.vertex.vertexLabel + rule.lhs + gssNode.vertex.vertexLabel
+                            if reductionLabel not in reductionEdges:
+                                reductionEdges.add(reductionLabel)
                                 changed = True
-                
+
+        # Process Accepts
+        for nodeIndex in gssNodes:
+            gssNode = gssNodes[nodeIndex]
+            if '$' in parsingTable[gssNode.state]:
+                action = parsingTable[gssNode.state]['$']
+                if action.action == 'accept':
+                    reductionRoots = gss.up(gssNode, 1)
+                    for reductionRoot in reductionRoots:
+                        answer = '(' + reductionRoot.vertex.vertexLabel + ', ' + gssNode.vertex.vertexLabel + ')'
+                        if answer not in answers:
+                            answers.add(answer)
+                            changed = True
+        
+        # Process Shifts
+        for nodeIndex in gssNodes:
+            gssNode = gssNodes[nodeIndex]
+            for edge in gssNode.vertex.edges:
+                if edge.edgeLabel in parsingTable[gssNode.state]:
+                    action = parsingTable[gssNode.state][edge.edgeLabel]
+                    if action.action == 'shift':
+                        predecessor = GSSLink(edge.edgeLabel, gssNode)
+                        gss.addNode(level + 1, action.state, edge.destination, predecessor)
+                        
+                        visitedPair = edge.destination.vertexLabel + str(action.state)
+                        if visitedPair not in visitedPairs:
+                            visitedPairs.add(visitedPair)
+                            changed = True
+
         if not changed:
             break;
         
@@ -313,16 +282,20 @@ for label in DG.nodes:
 Q = 'QUERY'
 G = 'GRAMMAR'
 
+parsingTable, rules = CreateParsingTable(G)
+gss = CreateGSS(DG)
+
 import cProfile
 
 pr = cProfile.Profile()
 pr.enable()
 
-answers = GSS_LR(Q, DG, G)
+answers = GSS_LR(Q)
 
 pr.disable()
  
 pr.print_stats(sort='time')
 
 # print answers
+
 print 'Answers: ' + str(len(answers))

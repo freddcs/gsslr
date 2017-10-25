@@ -7,24 +7,21 @@ class GSS:
         
     def addNode(self, level, state, vertex, predecessor):
         if len(self.levels) <= level:
-            self.levels.append([]);
+            self.levels.append({});
             
         gssNodes = self.levels[level]
         
-        gssNode = None
-        for node in gssNodes:
-            if node.state == state and node.vertex.vertexLabel == vertex.vertexLabel:
-                gssNode = node
-                break;
+        nodeIndex = vertex.vertexLabel + str(state)
+        if nodeIndex in gssNodes:
+            gssNode = gssNodes[nodeIndex]
             
-        if gssNode == None:
+            if level > 0:
+                gssNode.predecessors.add(predecessor)
+        else:
             gssNode = GSSNode(state, vertex, predecessor)
             gssNode.label = self.numberOfNodes
-            gssNodes.append(gssNode)
+            gssNodes[nodeIndex] = gssNode
             self.numberOfNodes += 1
-        else:
-            if level > 0 and predecessor not in gssNode.predecessors:
-                gssNode.predecessors.append(predecessor)
         
         return gssNode
     
@@ -54,9 +51,9 @@ class GSSNode:
         self.state = state
         self.vertex = vertex
         
-        self.predecessors = []
+        self.predecessors = set()
         if state > 0:
-            self.predecessors.append(predecessor)
+            self.predecessors.add(predecessor)
         self.label = 0
 
     def __repr__(self):
@@ -70,10 +67,10 @@ class GSSLink:
     def __init__(self, edgeLabel, gssNode):
         self.edgeLabel = edgeLabel
         self.gssNode = gssNode
-        self.hash = edgeLabel + gssNode.vertex.vertexLabel + str(gssNode.state)
+        self.hash = hash(edgeLabel + gssNode.vertex.vertexLabel + str(gssNode.state))
+    
+    def __hash__(self):
+        return self.hash
     
     def __eq__(self, other):
         return (self.hash == other.hash)
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
