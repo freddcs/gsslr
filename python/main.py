@@ -1,108 +1,26 @@
 import time
+import cProfile
+import sys
 
 from DataGraph import *
 from GSS import *
 from Examples import *
 from LR import *
+from Algorithm import *
 
-def GSS_LR(Q):
-    global parsingTable, rules, gss
-    
-    level = 0
-    visitedPairs = set()
-    reductionEdges = set()
-    answers = set()
-    changed = False
-    
-    while (True):
-        
-        if level >= len(gss.levels):
-            break
-        
-        gssNodes = gss.levels[level]
-        nodeKeys = gssNodes.keys()
-        
-        # Process Reductions
-        for nodeIndex in nodeKeys:
-            gssNode = gssNodes[nodeIndex]
-            for edge in gssNode.vertex.edges:
-                if edge.edgeLabel in parsingTable[gssNode.state]:
-                    action = parsingTable[gssNode.state][edge.edgeLabel]
-                    if action.action == 'reduce':
-                        rule = rules[action.rule]
-                        reductionRoots = gss.up(gssNode, rule.rhsSize)
-                        
-                        for reductionRoot in reductionRoots:
-                            destinationState = parsingTable[reductionRoot.state][rule.lhs].state
-                            
-                            predecessor = GSSLink(rule.lhs, reductionRoot)
-                            newGssNode = gss.addNode(level, destinationState, gssNode.vertex, predecessor)
-                            newNodeIndex = gssNode.vertex.vertexLabel + str(destinationState)
-                            if newNodeIndex not in nodeKeys:
-                                nodeKeys.append(newNodeIndex)
-                            
-                            reductionLabel = reductionRoot.vertex.vertexLabel + rule.lhs + gssNode.vertex.vertexLabel
-                            if reductionLabel not in reductionEdges:
-                                reductionEdges.add(reductionLabel)
-                                changed = True
-
-        # Process Accepts
-        for nodeIndex in gssNodes:
-            gssNode = gssNodes[nodeIndex]
-            if '$' in parsingTable[gssNode.state]:
-                action = parsingTable[gssNode.state]['$']
-                if action.action == 'accept':
-                    reductionRoots = gss.up(gssNode, 1)
-                    for reductionRoot in reductionRoots:
-                        answer = '(' + reductionRoot.vertex.vertexLabel + ', ' + gssNode.vertex.vertexLabel + ')'
-                        if answer not in answers:
-                            answers.add(answer)
-                            changed = True
-        
-        # Process Shifts
-        for nodeIndex in gssNodes:
-            gssNode = gssNodes[nodeIndex]
-            for edge in gssNode.vertex.edges:
-                if edge.edgeLabel in parsingTable[gssNode.state]:
-                    action = parsingTable[gssNode.state][edge.edgeLabel]
-                    if action.action == 'shift':
-                        predecessor = GSSLink(edge.edgeLabel, gssNode)
-                        gss.addNode(level + 1, action.state, edge.destination, predecessor)
-                        
-                        visitedPair = edge.destination.vertexLabel + str(action.state)
-                        if visitedPair not in visitedPairs:
-                            visitedPairs.add(visitedPair)
-                            changed = True
-
-        if not changed:
-            break;
-        
-        changed = False
-        level += 1
-        
-        # Retornar triplas (Node, Nao-Terminal, Node)
-        # Manter consistencia entre o grafo de dados com o algoritmo. Tentar representar como Node X Edge X Nodes
-    
-    return answers
-
-
-
-for label in DG.nodes:
-    vertex = DG.nodes[label]
-    vertex.edges.append(GraphEdge('$', vertex))
-
-Q = 'QUERY'
-G = 'GRAMMAR'
-
+G =  sys.argv[1] if len(sys.argv) >= 2 else 'Q1'
 parsingTable, rules = CreateParsingTable(G)
-gss = CreateGSS(DG)
 
-import cProfile
+DG = DataGraph()
+
+data = sys.argv[2] if len(sys.argv) >= 3 else 'wine'
+
+prepareExampleGraph(DG, 'examples/' + data + '.dat')
 
 pr = cProfile.Profile()
 pr.enable()
 
-answers = GSS_LR(Q)
+answers = GSS_LR(DG, parsingTable, rules)
 
 pr.disable()
  
@@ -110,4 +28,6 @@ pr.print_stats(sort='time')
 
 # print answers
 
+print 'Nodes: ' + str(len(DG.nodes))
+print 'Triples: ' + str(DG.triplesCount / 2)
 print 'Answers: ' + str(len(answers))

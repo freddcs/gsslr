@@ -1,6 +1,7 @@
 class DataGraph:
     def __init__(self):
         self.nodes = {}
+        self.triplesCount = 0
         
     def addNode(self, sourceLabel, edgeLabel, destinationLabel):
         if (sourceLabel not in self.nodes):
@@ -8,9 +9,13 @@ class DataGraph:
                 
         if (destinationLabel not in self.nodes):
             self.nodes[destinationLabel] = GraphNode(destinationLabel)
-                
-        self.nodes[sourceLabel].edges.append(GraphEdge(edgeLabel, self.nodes[destinationLabel]))
-        
+
+        newEdge = GraphEdge(edgeLabel, self.nodes[destinationLabel])
+
+        if newEdge not in self.nodes:
+            self.nodes[sourceLabel].edges.append(newEdge)
+            self.triplesCount += 1
+
 class GraphNode:
     def __init__(self, vertexLabel):
         self.vertexLabel = vertexLabel
