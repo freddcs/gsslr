@@ -1,0 +1,425 @@
+<http://ontology.dumontierlab.com/atom-primitive> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/description> "An ontology of the atoms of chemical elements."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/title> "Atom Ontology (primitive)"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://www.w3.org/2002/07/owl#versionInfo> "1.0"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/creator> "Michel Dumontier"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/creator> "Mykola Konyk"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/date> "2007-04-10"^^<http://www.w3.org/2001/XMLSchema#date>
+<http://ontology.dumontierlab.com/atom-primitive> <http://www.w3.org/2000/01/rdf-schema#seeAlso> <http://www.daml.org/2003/01/periodictable/PeriodicTable.owl>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/format> "application/rdf+xml"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/language> "en"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://purl.org/dc/elements/1.1/publisher> "Dumontier Lab"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/atom-primitive> <http://www.w3.org/2002/07/owl#imports> <http://ontology.dumontierlab.com/annotation>
+<http://ontology.dumontierlab.com/annotation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology>
+<http://ontology.dumontierlab.com/ActiniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ActiniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Actinium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ActiniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/Atom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Atom> <http://www.w3.org/2000/01/rdf-schema#comment> "A particle that retains all the chemical properties of a given element."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Atom> <http://www.w3.org/2000/01/rdf-schema#label> "atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AluminiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AluminiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Aluminium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AluminiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/AmericiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AmericiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Americium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AmericiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/AntimonyAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AntimonyAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Antimony Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AntimonyAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ArgonAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ArgonAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Argon Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ArgonAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ArsenicAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ArsenicAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Arsenic Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ArsenicAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/AstatineAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AstatineAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Astatine Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AstatineAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/AtomProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AtomProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "A property of an atom."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AtomProperty> <http://www.w3.org/2000/01/rdf-schema#label> "atom property"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AtomicNumber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AtomicNumber> <http://www.w3.org/2000/01/rdf-schema#label> "atomic number"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AtomicNumber> <http://www.w3.org/2000/01/rdf-schema#comment> "The number of protons in an atom."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AtomicNumber> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/AtomProperty>
+<http://ontology.dumontierlab.com/BariumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BariumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Barium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BariumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/BerkeliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BerkeliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Berkelium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BerkeliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/BerylliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BerylliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Beryllium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BerylliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/BismuthAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BismuthAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Bismuth Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BismuthAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/BohriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BohriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Bohrium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BohriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/BoronAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BoronAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Boron Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BoronAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/BromineAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BromineAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Bromine Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BromineAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CadmiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CadmiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Cadmium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CadmiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CaesiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CaesiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Caesium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CaesiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CalciumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CalciumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Calcium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CalciumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CaliforniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CaliforniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Californium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CaliforniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CarbonAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CarbonAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Carbon Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CarbonAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CeriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CeriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Cerium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CeriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ChlorineAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ChlorineAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Chlorine Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChlorineAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ChromiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ChromiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Chromium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChromiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CobaltAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CobaltAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Cobalt Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CobaltAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CopperAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CopperAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Copper Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CopperAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/CuriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CuriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Curium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CuriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/DubniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DubniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Dubnium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DubniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/DysprosiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DysprosiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Dysprosium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DysprosiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/EinsteiniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/EinsteiniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Einsteinium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/EinsteiniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ErbiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ErbiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Erbium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ErbiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/EuropiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/EuropiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Europium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/EuropiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/FermiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/FermiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Fermium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/FermiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/FluorineAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/FluorineAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Fluorine Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/FluorineAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/FormalCharge> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/FormalCharge> <http://www.w3.org/2000/01/rdf-schema#label> "formal charge"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/FormalCharge> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference between the number of valence electrons that a neutral atom would have and the number of electrons that belong to it."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/FormalCharge> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/AtomProperty>
+<http://ontology.dumontierlab.com/FranciumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/FranciumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Francium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/FranciumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/GadoliniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GadoliniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Gadolinium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GadoliniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/GalliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GalliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Gallium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GalliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/GermaniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GermaniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Germanium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GermaniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/GoldAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GoldAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Gold Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GoldAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/HafniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HafniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Hafnium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HafniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/HassiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HassiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Hassium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HassiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/HeliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HeliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Helium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HeliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/HolmiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HolmiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Holmium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HolmiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/Hybridization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Hybridization> <http://www.w3.org/2000/01/rdf-schema#comment> "The overlap of atomic orbitals to form hybrid orbitals suitable for the qualitative description of atomic bonding properties."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Hybridization> <http://www.w3.org/2000/01/rdf-schema#label> "hybridization"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Hybridization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/AtomProperty>
+<http://ontology.dumontierlab.com/HydrogenAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HydrogenAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Hydrogen Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HydrogenAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ImplicitValence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ImplicitValence> <http://www.w3.org/2000/01/rdf-schema#label> "implicit valence"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ImplicitValence> <http://www.w3.org/2000/01/rdf-schema#comment> ""^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ImplicitValence> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/AtomProperty>
+<http://ontology.dumontierlab.com/IndiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/IndiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Indium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/IndiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/IodineAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/IodineAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Iodine Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/IodineAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/IridiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/IridiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Iridium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/IridiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/IronAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/IronAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Iron Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/IronAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/KryptonAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/KryptonAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Krypton Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/KryptonAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/LanthanumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LanthanumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Lanthanum Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LanthanumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/LawrenciumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LawrenciumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Lawrencium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LawrenciumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/LeadAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LeadAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Lead Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LeadAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/LithiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LithiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Lithium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LithiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/LutetiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LutetiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Lutetium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LutetiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/MagnesiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MagnesiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Magnesium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MagnesiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ManganeseAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ManganeseAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Manganese Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ManganeseAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/MeitneriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MeitneriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Meitnerium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MeitneriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/MendeleviumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MendeleviumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Mendelevium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MendeleviumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/MercuryAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MercuryAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Mercury Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MercuryAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/MolybdenumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MolybdenumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Molybdenum Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MolybdenumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NeodymiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NeodymiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Neodymium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NeodymiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NeonAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NeonAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Neon Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NeonAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NeptuniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NeptuniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Neptunium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NeptuniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NickelAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NickelAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Nickel Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NickelAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NiobiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NiobiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Niobium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NiobiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NitrogenAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NitrogenAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Nitrogen Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NitrogenAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/NobeliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NobeliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Nobelium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NobeliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/OsmiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/OsmiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Osmium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/OsmiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/OxygenAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/OxygenAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Oxygen Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/OxygenAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PalladiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PalladiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Palladium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PalladiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PhosphorusAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PhosphorusAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Phosphorus Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PhosphorusAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PlatinumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PlatinumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Platinum Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PlatinumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PlutoniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PlutoniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Plutonium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PlutoniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PoloniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PoloniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Polonium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PoloniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PotassiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PotassiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Potassium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PotassiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PraseodymiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PraseodymiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Praseodymium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PraseodymiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/PromethiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PromethiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Promethium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PromethiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ProtactiniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ProtactiniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Protactinium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ProtactiniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RadiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RadiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Radium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RadiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RadonAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RadonAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Radon Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RadonAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RheniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RheniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Rhenium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RheniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RhodiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RhodiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Rhodium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RhodiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RubidiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RubidiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Rubidium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RubidiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RutheniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RutheniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ruthenium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RutheniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/RutherfordiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RutherfordiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Rutherfordium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RutherfordiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SamariumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SamariumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Samarium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SamariumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ScandiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ScandiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Scandium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ScandiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SeaborgiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SeaborgiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Seaborgium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SeaborgiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SeleniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SeleniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Selenium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SeleniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SiliconAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SiliconAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Silicon Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SiliconAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SilverAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SilverAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Silver Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SilverAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SodiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SodiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Sodium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SodiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/StrontiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/StrontiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Strontium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/StrontiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/SulfurAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SulfurAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Sulfur Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SulfurAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TantalumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TantalumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Tantalum Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TantalumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TechnetiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TechnetiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Technetium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TechnetiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TelluriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TelluriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Tellurium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TelluriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TerbiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TerbiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Terbium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TerbiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ThalliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ThalliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Thallium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ThalliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ThoriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ThoriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Thorium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ThoriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ThuliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ThuliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Thulium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ThuliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TinAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TinAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Tin Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TinAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TitaniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TitaniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Titanium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TitaniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/TungstenAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TungstenAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Tungsten Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TungstenAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunbiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunbiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununbium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunbiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunhexiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunhexiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununhexium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunhexiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunniliumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunniliumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununnilium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunniliumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunoctiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunoctiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununoctium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunoctiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunpentiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunpentiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununpentium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunpentiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunquadiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunquadiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununquadium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunquadiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnunseptiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnunseptiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununseptium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnunseptiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnuntriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnuntriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ununtrium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnuntriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UnununiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UnununiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Unununium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UnununiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/UraniumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/UraniumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Uranium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/UraniumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/VanadiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/VanadiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Vanadium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/VanadiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/XenonAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/XenonAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Xenon Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/XenonAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/YtterbiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/YtterbiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Ytterbium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/YtterbiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/YttriumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/YttriumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Yttrium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/YttriumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ZincAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ZincAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Zinc Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ZincAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/ZirconiumAtom> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ZirconiumAtom> <http://www.w3.org/2000/01/rdf-schema#label> "Zirconium Atom"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ZirconiumAtom> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/hasAtomicNumber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty>
+<http://ontology.dumontierlab.com/hasAtomicNumber> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an atom and its atomic number."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasAtomicNumber> <http://www.w3.org/2000/01/rdf-schema#label> "has atomic number"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasAtomicNumber> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.dumontierlab.com/hasAtomicProperty>
+<http://ontology.dumontierlab.com/hasAtomicNumber> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/hasAtomicNumber> <http://www.w3.org/2000/01/rdf-schema#range> <http://ontology.dumontierlab.com/AtomicNumber>
+<http://ontology.dumontierlab.com/hasAtomicProperty> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty>
+<http://ontology.dumontierlab.com/hasAtomicProperty> <http://www.w3.org/2000/01/rdf-schema#label> "has atomic property"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasAtomicProperty> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an atom and a property of the atom."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasAtomicProperty> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/hasAtomicProperty> <http://www.w3.org/2000/01/rdf-schema#range> <http://ontology.dumontierlab.com/AtomProperty>
+<http://ontology.dumontierlab.com/hasFormalCharge> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty>
+<http://ontology.dumontierlab.com/hasFormalCharge> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an atom and its formal charge."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasFormalCharge> <http://www.w3.org/2000/01/rdf-schema#label> "has formal charge"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasFormalCharge> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.dumontierlab.com/hasAtomicProperty>
+<http://ontology.dumontierlab.com/hasFormalCharge> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/hasFormalCharge> <http://www.w3.org/2000/01/rdf-schema#range> <http://ontology.dumontierlab.com/FormalCharge>
+<http://ontology.dumontierlab.com/hasHybridization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty>
+<http://ontology.dumontierlab.com/hasHybridization> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an atom and its hybridization value."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasHybridization> <http://www.w3.org/2000/01/rdf-schema#label> "has hybridization"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasHybridization> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.dumontierlab.com/hasAtomicProperty>
+<http://ontology.dumontierlab.com/hasHybridization> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/hasHybridization> <http://www.w3.org/2000/01/rdf-schema#range> <http://ontology.dumontierlab.com/Hybridization>
+<http://ontology.dumontierlab.com/hasImplicitValence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty>
+<http://ontology.dumontierlab.com/hasImplicitValence> <http://www.w3.org/2000/01/rdf-schema#label> "has atomic number"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasImplicitValence> <http://www.w3.org/2000/01/rdf-schema#comment> "A relation between an atom and its implicit valence."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/hasImplicitValence> <http://www.w3.org/2000/01/rdf-schema#subPropertyOf> <http://ontology.dumontierlab.com/hasAtomicProperty>
+<http://ontology.dumontierlab.com/hasImplicitValence> <http://www.w3.org/2000/01/rdf-schema#domain> <http://ontology.dumontierlab.com/Atom>
+<http://ontology.dumontierlab.com/hasImplicitValence> <http://www.w3.org/2000/01/rdf-schema#range> <http://ontology.dumontierlab.com/ImplicitValence>
+<http://purl.org/dc/elements/1.1/date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/publisher> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/language> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/format> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>

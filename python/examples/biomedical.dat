@@ -1,0 +1,459 @@
+<http://ontology.dumontierlab.com/biomedical-measure-primitive> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology>
+<http://ontology.dumontierlab.com/biomedical-measure-primitive> <http://purl.org/dc/elements/1.1/creator> "Michel Dumontier"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/biomedical-measure-primitive> <http://purl.org/dc/elements/1.1/description> "Qualitative and quantitative measures of biomedical entities and their components."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/biomedical-measure-primitive> <http://purl.org/dc/elements/1.1/title> "biomedical measure ontology (primitive)"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/biomedical-measure-primitive> <http://purl.org/dc/elements/1.1/language> "en"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/biomedical-measure-primitive> <http://purl.org/dc/elements/1.1/publisher> "http://dumontierlab.com"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://purl.org/dc/elements/1.1/publisher> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/title> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/description> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/language> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://purl.org/dc/elements/1.1/creator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#AnnotationProperty>
+<http://ontology.dumontierlab.com/hasValue> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty>
+<http://ontology.dumontierlab.com/24HourBloodPressure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/24HourBloodPressure> <http://www.w3.org/2000/01/rdf-schema#label> "24 hour blood pressure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/24HourBloodPressure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DailyBloodPressure>
+<http://ontology.dumontierlab.com/24HourBloodPressure> <http://www.w3.org/2000/01/rdf-schema#comment> "A study recording the blood pressure at intervals during a 24-hour period."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ASAAConcentration> <http://www.w3.org/2000/01/rdf-schema#label> "ASAA Concentration"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ASAAMeasure>
+<http://ontology.dumontierlab.com/ASAAConcentration> <http://www.w3.org/2000/01/rdf-schema#comment> "The concentration of a family of apolipoproteins associated with HDL in plasma"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentrationDecrease> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ASAAConcentrationDecrease> <http://www.w3.org/2000/01/rdf-schema#label> "ASAA concentration decrease"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentrationDecrease> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ASAAConcentrationDifference>
+<http://ontology.dumontierlab.com/ASAAConcentrationDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ASAAConcentrationDifference> <http://www.w3.org/2000/01/rdf-schema#label> "ASAA concentration difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentrationDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ASAAMeasure>
+<http://ontology.dumontierlab.com/ASAAConcentrationDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference in ASAA concentration."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentrationIncrease> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ASAAConcentrationIncrease> <http://www.w3.org/2000/01/rdf-schema#label> "ASAA concentration increase"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ASAAConcentrationIncrease> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ASAAConcentrationDifference>
+<http://ontology.dumontierlab.com/ASAAMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ASAAMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "acute phase serum amyloid measure"
+<http://ontology.dumontierlab.com/ASAAMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MolecularMeasure>
+<http://ontology.dumontierlab.com/ASAAMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measure of acute phase serum amyloid"
+<http://ontology.dumontierlab.com/AirwayResponsivenessUsingMethacholine> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AirwayResponsivenessUsingMethacholine> <http://www.w3.org/2000/01/rdf-schema#label> "airway responsiveness using methacholine"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AirwayResponsivenessUsingMethacholine> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PulmonaryFunctionMeasure>
+<http://ontology.dumontierlab.com/AirwayResponsivenessUsingMethacholine> <http://www.w3.org/2000/01/rdf-schema#comment> "A test measuring the dlnchial contractility of the airways after administration of Methacholine."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AnxietyMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AnxietyMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "anxiety measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AnxietyMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/CognitiveMeasure>
+<http://ontology.dumontierlab.com/AnxietyMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of anxiety"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AsthmaFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/AsthmaFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "asthma frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/AsthmaFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DiseaseFrequency>
+<http://ontology.dumontierlab.com/AsthmaFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The frequency of asthma during some time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BiologicalMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BiologicalMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "biological measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BiologicalMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurements applied to biological entities and their components."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BiophysicalMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BiophysicalMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "physical measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BiophysicalMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/BiophysicalMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurements of a physical nature on an individual."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BloodPressure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BloodPressure> <http://www.w3.org/2000/01/rdf-schema#label> "blood pressure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BloodPressure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiophysicalMeasure>
+<http://ontology.dumontierlab.com/BloodPressure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurement is divided into systolic (pressure during contraction of the heart) and diastolic (pressure during relaxation phase)."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BloodSerumProteinCount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BloodSerumProteinCount> <http://www.w3.org/2000/01/rdf-schema#label> "blood serum protein count"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BloodSerumProteinCount> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/BloodSerumProteinCount> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurements on proteins in blood serum."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndex> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BodyMassIndex> <http://www.w3.org/2000/01/rdf-schema#label> "body mass index"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndex> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BodyMassIndexMeasure>
+<http://ontology.dumontierlab.com/BodyMassIndex> <http://www.w3.org/2000/01/rdf-schema#comment> "Body weight in kilograms divided by the height in meters squared."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexDecrease> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BodyMassIndexDecrease> <http://www.w3.org/2000/01/rdf-schema#label> "body mass index decrease"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexDecrease> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BodyMassIndexDifference>
+<http://ontology.dumontierlab.com/BodyMassIndexDecrease> <http://www.w3.org/2000/01/rdf-schema#comment> "a measured decrease in body mass index."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BodyMassIndexDifference> <http://www.w3.org/2000/01/rdf-schema#label> "body mass index difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BodyMassIndexMeasure>
+<http://ontology.dumontierlab.com/BodyMassIndexDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "a difference in body mass index."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexIncrease> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BodyMassIndexIncrease> <http://www.w3.org/2000/01/rdf-schema#label> "body mass index increase"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexIncrease> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BodyMassIndexDifference>
+<http://ontology.dumontierlab.com/BodyMassIndexIncrease> <http://www.w3.org/2000/01/rdf-schema#comment> "a measured increase in body mass index."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BodyMassIndexMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "body mass index measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BodyMassIndexMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiophysicalMeasure>
+<http://ontology.dumontierlab.com/BodyMassIndexMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of body mass index."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BoneMineralDensity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/BoneMineralDensity> <http://www.w3.org/2000/01/rdf-schema#label> "bone mineral density"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/BoneMineralDensity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/BoneMineralDensity> <http://www.w3.org/2000/01/rdf-schema#comment> "A nuclear medicine test that estimates the mineralization of bone in a subject."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CellCount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CellCount> <http://www.w3.org/2000/01/rdf-schema#label> "cell count"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CellCount> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/CellCount> <http://www.w3.org/2000/01/rdf-schema#comment> "E.g., CD4 cell counts"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChildDepressionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ChildDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "child depression measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChildDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DepressionMeasure>
+<http://ontology.dumontierlab.com/ChildDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of the severity of depression in children."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChildDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "child depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ChildDepressionMeasure>
+<http://ontology.dumontierlab.com/ChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#comment> "A score that indicates the severity of depression in children."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChildDepressionScoreDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ChildDepressionScoreDifference> <http://www.w3.org/2000/01/rdf-schema#label> "child depression score difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ChildDepressionScoreDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ChildDepressionMeasure>
+<http://ontology.dumontierlab.com/ChildDepressionScoreDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference in scores for child depression."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ClinicalOutcomeMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ClinicalOutcomeMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "clinical outcome measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ClinicalOutcomeMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/ClinicalOutcomeMeasure> <http://www.w3.org/2002/07/owl#versionInfo> "The outcome or outcome assessment of a patient at the end of patient care."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CoagulationProfile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CoagulationProfile> <http://www.w3.org/2000/01/rdf-schema#label> "coagulation profile"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CoagulationProfile> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/CoagulationProfile> <http://www.w3.org/2000/01/rdf-schema#comment> "Measures the speed of blood coagulation at different steps of the coagulation pathway."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CognitiveMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/CognitiveMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "cognitive measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/CognitiveMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/CognitiveMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Assessments of the mental status of a subject."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DailyBloodPressure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DailyBloodPressure> <http://www.w3.org/2000/01/rdf-schema#label> "daily blood pressure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DailyBloodPressure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BloodPressure>
+<http://ontology.dumontierlab.com/DailyBloodPressure> <http://www.w3.org/2000/01/rdf-schema#comment> "The blood pressure, measured daily."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DecreasedGeneExpression> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DecreasedGeneExpression> <http://www.w3.org/2000/01/rdf-schema#label> "decreased gene expression"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DecreasedGeneExpression> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/GeneExpressionDifference>
+<http://ontology.dumontierlab.com/DepressionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "depression measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/CognitiveMeasure>
+<http://ontology.dumontierlab.com/DepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of depression."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DiseaseFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DiseaseFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "disease frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DiseaseFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/DiseaseFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The occurence of disease during some time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#label> "disease susceptibility odds"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#comment> "The odds of developing a disease."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Dose> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Dose> <http://www.w3.org/2000/01/rdf-schema#label> "dose"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Dose> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PharmacokineticMeasure>
+<http://ontology.dumontierlab.com/Dose> <http://www.w3.org/2000/01/rdf-schema#comment> "The amount of a substance to which a person is exposed over some time period."
+<http://ontology.dumontierlab.com/DoseFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DoseFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "dose frequency"
+<http://ontology.dumontierlab.com/DoseFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PharmacokineticMeasure>
+<http://ontology.dumontierlab.com/DoseFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The frequency at which the dose is administered."
+<http://ontology.dumontierlab.com/DrugClearance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DrugClearance> <http://www.w3.org/2000/01/rdf-schema#label> "drug clearance"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DrugClearance> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PharmacokineticMeasure>
+<http://ontology.dumontierlab.com/DrugClearance> <http://www.w3.org/2000/01/rdf-schema#comment> "The rate of elimination of a drug, metabolite, or other substance from the body or organ of interest."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DrugEfficacy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#label> "drug efficacy"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DrugEfficacyMeasure>
+<http://ontology.dumontierlab.com/DrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of the drug to realize a  maximum therapeutic response."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/DrugEfficacyMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/DrugEfficacyMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "drug efficacy measure"
+<http://ontology.dumontierlab.com/DrugEfficacyMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PharmacodynamicMeasure>
+<http://ontology.dumontierlab.com/DrugEfficacyMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of drug efficacy"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ERVisitFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ERVisitFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "ER visit frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ERVisitFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/ERVisitFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The frequency of patient visits to the emergency room  during some time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ElectrocardiogramQTInterval> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ElectrocardiogramQTInterval> <http://www.w3.org/2000/01/rdf-schema#label> "electrocardiogram QT interval"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ElectrocardiogramQTInterval> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiophysicalMeasure>
+<http://ontology.dumontierlab.com/ElectrocardiogramQTInterval> <http://www.w3.org/2000/01/rdf-schema#comment> "An recording of the electrical activity of the heart contraction.Time from electrocardiogram Q wave to the end of the T wave corresponding to electrical systole."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ErythromycinClearanceMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ErythromycinClearanceMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "erythomycin clearance measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ErythromycinClearanceMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MetabolicMeasure>
+<http://ontology.dumontierlab.com/ErythromycinClearanceMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A metabolic measure of the clearance of Erythromycin."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/EventFreeSurvivalTime> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/EventFreeSurvivalTime> <http://www.w3.org/2000/01/rdf-schema#label> "event free survival time"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/EventFreeSurvivalTime> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/EventFreeSurvivalTime> <http://www.w3.org/2000/01/rdf-schema#comment> "The length of time a subject lives without having one or more complications of a disease."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ExerciseResponse> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ExerciseResponse> <http://www.w3.org/2000/01/rdf-schema#label> "exercise response"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ExerciseResponse> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiophysicalMeasure>
+<http://ontology.dumontierlab.com/ExerciseResponse> <http://www.w3.org/2000/01/rdf-schema#comment> "Physiological variations that occur when a subject partakes in a defined exercise activity."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ForcedExperiatoryVolume> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ForcedExperiatoryVolume> <http://www.w3.org/2000/01/rdf-schema#label> "forced experiatory volume"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ForcedExperiatoryVolume> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PulmonaryFunctionMeasure>
+<http://ontology.dumontierlab.com/ForcedExperiatoryVolume> <http://www.w3.org/2000/01/rdf-schema#comment> "Forced Expiratory Volume in 1 second."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ForcedVitalCapacity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ForcedVitalCapacity> <http://www.w3.org/2000/01/rdf-schema#label> "forced vital capacity"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ForcedVitalCapacity> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PulmonaryFunctionMeasure>
+<http://ontology.dumontierlab.com/ForcedVitalCapacity> <http://www.w3.org/2000/01/rdf-schema#comment> "Forced Vital Capacity. This is the total amount of air a subject can blow out forcefully."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Gender> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Gender> <http://www.w3.org/2000/01/rdf-schema#label> "gender"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Gender> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TaxonomicMeasure>
+<http://ontology.dumontierlab.com/GeneExpression> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GeneExpression> <http://www.w3.org/2000/01/rdf-schema#label> "gene expression"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GeneExpression> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/GeneExpressionMeasure>
+<http://ontology.dumontierlab.com/GeneExpression> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of the levels of mRNA produced from a gene."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GeneExpressionDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GeneExpressionDifference> <http://www.w3.org/2000/01/rdf-schema#label> "gene expression difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GeneExpressionDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/GeneExpressionMeasure>
+<http://ontology.dumontierlab.com/GeneExpressionDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of the change or difference in gene expression."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GeneExpressionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GeneExpressionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "gene expression measure"
+<http://ontology.dumontierlab.com/GeneExpressionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MolecularMeasure>
+<http://ontology.dumontierlab.com/GeneExpressionMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of gene expression."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GenotypeMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/GenotypeMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "genotype measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/GenotypeMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#label> "hamilton anxiety score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/AnxietyMeasure>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of the severity of anxiety"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference> <http://www.w3.org/2000/01/rdf-schema#label> "hamilton anxiety score difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/AnxietyMeasure>
+<http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference in hamilton anxiety score."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonDepressionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HamiltonDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "hamilton depression measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DepressionMeasure>
+<http://ontology.dumontierlab.com/HamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionMeasure>
+<http://ontology.dumontierlab.com/HamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure the severity of depression."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference> <http://www.w3.org/2000/01/rdf-schema#label> "hamilton depression score difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionMeasure>
+<http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference in hamilton depression score."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighDrugEfficacy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#label> "high drug efficacy"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DrugEfficacy>
+<http://ontology.dumontierlab.com/HighDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of a drug to have great ability in realizing a therapeutic potential."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighHamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "high hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionScore>
+<http://ontology.dumontierlab.com/HighMontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "high montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating>
+<http://ontology.dumontierlab.com/HighReductionInChildDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighReductionInChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "high reduction in child depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighReductionInChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ChildDepressionScoreDifference>
+<http://ontology.dumontierlab.com/HighReductionInHamiltonAnxietyScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighReductionInHamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#label> "high reduction in hamilton anxiety score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighReductionInHamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference>
+<http://ontology.dumontierlab.com/HighReductionInHamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighReductionInHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "high reduction in hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighReductionInHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference>
+<http://ontology.dumontierlab.com/HighReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "high reduction in montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference>
+<http://ontology.dumontierlab.com/HighRemission> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighRemission> <http://www.w3.org/2000/01/rdf-schema#label> "high remission"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighRemission> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionFrequency>
+<http://ontology.dumontierlab.com/HighRemissionOddsRatio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HighRemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#label> "high remission odds ratio"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HighRemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionOddsRatio>
+<http://ontology.dumontierlab.com/HigherDiseaseSusceptibiltyOdds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HigherDiseaseSusceptibiltyOdds> <http://www.w3.org/2000/01/rdf-schema#label> "higher disease susceptibility odds"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HigherDiseaseSusceptibiltyOdds> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds>
+<http://ontology.dumontierlab.com/HomocysteineLevel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/HomocysteineLevel> <http://www.w3.org/2000/01/rdf-schema#label> "homocysteine level"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/HomocysteineLevel> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/HomocysteineLevel> <http://www.w3.org/2000/01/rdf-schema#comment> "The quantity or amount of homocysteine in the in plasma, CSF, or other fluids."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/IncreasedGeneExpression> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/IncreasedGeneExpression> <http://www.w3.org/2000/01/rdf-schema#label> "increased gene expression"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/IncreasedGeneExpression> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/GeneExpressionDifference>
+<http://ontology.dumontierlab.com/LipidProfile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LipidProfile> <http://www.w3.org/2000/01/rdf-schema#label> "lipid profile"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LipidProfile> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/LipidProfile> <http://www.w3.org/2000/01/rdf-schema#comment> "Includes total cholesterol, HDL-cholesterol (often called good cholesterol), LDL-cholesterol (often called bad cholesterol), and triglycerides, and associated computed parameters."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowDrugEfficacy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#label> "low drug efficacy"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DrugEfficacy>
+<http://ontology.dumontierlab.com/LowDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of a drug that is poor ability in realizing a therapeutic potential."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowHamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "low hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionScore>
+<http://ontology.dumontierlab.com/LowMontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "low montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating>
+<http://ontology.dumontierlab.com/LowReductionInChildDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowReductionInChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "low reduction in child depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowReductionInChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ChildDepressionScoreDifference>
+<http://ontology.dumontierlab.com/LowReductionInHamiltonAnxietyScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowReductionInHamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#label> "low reduction in hamilton anxiety score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowReductionInHamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference>
+<http://ontology.dumontierlab.com/LowReductionInHamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowReductionInHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "low reduction in hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowReductionInHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference>
+<http://ontology.dumontierlab.com/LowReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "low reduction in montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference>
+<http://ontology.dumontierlab.com/LowRemission> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowRemission> <http://www.w3.org/2000/01/rdf-schema#label> "low remission"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowRemission> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionFrequency>
+<http://ontology.dumontierlab.com/LowRemissionOddsRatio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowRemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#label> "low remission odds ratio"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowRemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionOddsRatio>
+<http://ontology.dumontierlab.com/LowerDiseaseSusceptibilityOdds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/LowerDiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#label> "lower disease susceptibility odds"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/LowerDiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds>
+<http://ontology.dumontierlab.com/MetabolicMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MetabolicMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "metabolic measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MetabolicMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/MetabolicMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurement of the transformation of substances in the body."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateHamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "moderate hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionScore>
+<http://ontology.dumontierlab.com/ModerateMontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "moderate montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating>
+<http://ontology.dumontierlab.com/ModerateReductionInChildDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateReductionInChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "moderate reduction in child depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateReductionInChildDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ChildDepressionScoreDifference>
+<http://ontology.dumontierlab.com/ModerateReductionInHamiltonAnxietyScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateReductionInHamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#label> "moderate reduction in hamilton anxiety score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateReductionInHamiltonAnxietyScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonAnxietyScoreDifference>
+<http://ontology.dumontierlab.com/ModerateReductionInHamiltonDepressionScore> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateReductionInHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#label> "moderate reduction in hamilton depression score"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateReductionInHamiltonDepressionScore> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/HamiltonDepressionScoreDifference>
+<http://ontology.dumontierlab.com/ModerateReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "moderate reduction in montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateReductionInMontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference>
+<http://ontology.dumontierlab.com/ModerateRemission> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ModerateRemission> <http://www.w3.org/2000/01/rdf-schema#label> "moderate remission"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ModerateRemission> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionFrequency>
+<http://ontology.dumontierlab.com/MolecularMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MolecularMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "molecular measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MolecularMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "montgomer asberg depression measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DepressionMeasure>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#label> "montgomery asberg depression rating"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionMeasure>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRating> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of antidepressant efficacy."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference> <http://www.w3.org/2000/01/rdf-schema#label> "montgomery asberg depression rating difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/MontgomeryAsbergDepressionMeasure>
+<http://ontology.dumontierlab.com/MontgomeryAsbergDepressionRatingDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference in montgomery asberg depression rating."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MyocardialInfarctionFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/MyocardialInfarctionFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "myocardial infarction frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/MyocardialInfarctionFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DiseaseFrequency>
+<http://ontology.dumontierlab.com/MyocardialInfarctionFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The frequency of medical events or conditions subsequent to heart attacks."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NeoplasmFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NeoplasmFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "neoplasm frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NeoplasmFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DiseaseFrequency>
+<http://ontology.dumontierlab.com/NeoplasmFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The frequency of cancer development during some time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NormalGeneExpression> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/NormalGeneExpression> <http://www.w3.org/2000/01/rdf-schema#label> "normal gene expression"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/NormalGeneExpression> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/GeneExpressionDifference>
+<http://ontology.dumontierlab.com/PathogenCount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PathogenCount> <http://www.w3.org/2000/01/rdf-schema#label> "pathogen count"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PathogenCount> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/PathogenCount> <http://www.w3.org/2000/01/rdf-schema#comment> "E.g., viremia, fungemia, etc."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PharmacodynamicMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PharmacodynamicMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "pharmacodynamic measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PharmacodynamicMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/PharmacodynamicMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of pharmacodynamics."
+<http://ontology.dumontierlab.com/PharmacokineticMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PharmacokineticMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "pharmacokinetic measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PharmacokineticMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/PharmacokineticMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "The amount of chemical agent at their sites of biological effect."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PlasmaDrugConcentration> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PlasmaDrugConcentration> <http://www.w3.org/2000/01/rdf-schema#label> "plasma drug concentration"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PlasmaDrugConcentration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/PharmacokineticMeasure>
+<http://ontology.dumontierlab.com/PlasmaDrugConcentration> <http://www.w3.org/2000/01/rdf-schema#comment> "The quantity or amount of drug in the blood plasma."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PopulationVariation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PopulationVariation> <http://www.w3.org/2000/01/rdf-schema#label> "population variation"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PopulationVariation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/GenotypeMeasure>
+<http://ontology.dumontierlab.com/PulmonaryFunctionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/PulmonaryFunctionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "pulmonary function measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/PulmonaryFunctionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiophysicalMeasure>
+<http://ontology.dumontierlab.com/PulmonaryFunctionMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "These are laboratory tests related to lung function."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/QualityOfLife> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/QualityOfLife> <http://www.w3.org/2000/01/rdf-schema#label> "quality of life"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/QualityOfLife> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/QualityOfLife> <http://www.w3.org/2000/01/rdf-schema#comment> "The individuals\u00E2\u0080\u0099 perceptions of their position in life, in the context of the cultural and value systems in which they live and in relation to their goals, expectations, standards and concerns."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Race> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Race> <http://www.w3.org/2000/01/rdf-schema#label> "race"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Race> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TaxonomicMeasure>
+<http://ontology.dumontierlab.com/RemissionFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RemissionFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "remission frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RemissionFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionMeasure>
+<http://ontology.dumontierlab.com/RemissionFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The occurence of abatement of symptoms during a time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RemissionMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RemissionMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "remission measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RemissionMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/RemissionMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of remission."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RemissionOddsRatio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/RemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#label> "remission odds ratio"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/RemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionMeasure>
+<http://ontology.dumontierlab.com/ReninAngiotensinSystemMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ReninAngiotensinSystemMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "renin/angiotensin system measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ReninAngiotensinSystemMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/TissueMeasure>
+<http://ontology.dumontierlab.com/ReninAngiotensinSystemMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurements related to the renin/angiotensin system, such as Angiotensinogen, Angiotensin I/II, plasma renin, etc."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Satiety> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Satiety> <http://www.w3.org/2000/01/rdf-schema#label> "satiety"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Satiety> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SatietyMeasure>
+<http://ontology.dumontierlab.com/Satiety> <http://www.w3.org/2000/01/rdf-schema#comment> "The feeling of fullness and disappearance of appetite"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyDecrease> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SatietyDecrease> <http://www.w3.org/2000/01/rdf-schema#label> "satiety decrease"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyDecrease> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SatietyDifference>
+<http://ontology.dumontierlab.com/SatietyDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SatietyDifference> <http://www.w3.org/2000/01/rdf-schema#label> "satiety difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SatietyMeasure>
+<http://ontology.dumontierlab.com/SatietyDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "The difference in satiety from one time to another."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SatietyFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "satiety frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SatietyMeasure>
+<http://ontology.dumontierlab.com/SatietyFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The occurence of satiety during a time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyIncrease> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SatietyIncrease> <http://www.w3.org/2000/01/rdf-schema#label> "satiety increase"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyIncrease> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SatietyDifference>
+<http://ontology.dumontierlab.com/SatietyMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SatietyMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "satiety measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SatietyMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/CognitiveMeasure>
+<http://ontology.dumontierlab.com/SatietyMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of the feeling of fullness and disappearance of appetite"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SideEffectFrequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SideEffectFrequency> <http://www.w3.org/2000/01/rdf-schema#label> "side effect frequency"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SideEffectFrequency> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SideEffectMeasure>
+<http://ontology.dumontierlab.com/SideEffectFrequency> <http://www.w3.org/2000/01/rdf-schema#comment> "The number of times a side effect occurs during some time interval."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SideEffectMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SideEffectMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "side effect measure"
+<http://ontology.dumontierlab.com/SideEffectMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/ClinicalOutcomeMeasure>
+<http://ontology.dumontierlab.com/SideEffectMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measures of side effects."
+<http://ontology.dumontierlab.com/SideEffectRate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SideEffectRate> <http://www.w3.org/2000/01/rdf-schema#label> "side effect rate"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SideEffectRate> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/SideEffectMeasure>
+<http://ontology.dumontierlab.com/SideEffectRate> <http://www.w3.org/2000/01/rdf-schema#comment> "The rate at which a side effect occurs when comparing one group (test) to another (control)."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SimilarDiseaseSusceptibilityOdds> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SimilarDiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#label> "similar disease susceptibility odds"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SimilarDiseaseSusceptibilityOdds> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DiseaseSusceptibilityOdds>
+<http://ontology.dumontierlab.com/SimilarRemissionOddsRatio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/SimilarRemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#label> "similar remission odds ratio"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/SimilarRemissionOddsRatio> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionOddsRatio>
+<http://ontology.dumontierlab.com/TaxonomicMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TaxonomicMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "taxonomic measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TaxonomicMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/TissueMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/TissueMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "tissue measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/TissueMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiologicalMeasure>
+<http://ontology.dumontierlab.com/TissueMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "Measurement of samples of blood or tissue from an individual."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeightLoss> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/WeightLoss> <http://www.w3.org/2000/01/rdf-schema#label> "weight loss"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeightLoss> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/WeigthDifference>
+<http://ontology.dumontierlab.com/WeightLoss> <http://www.w3.org/2000/01/rdf-schema#comment> "a measured decrease in weight."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeightMeasure> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/WeightMeasure> <http://www.w3.org/2000/01/rdf-schema#label> "weigth measure"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeightMeasure> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/BiophysicalMeasure>
+<http://ontology.dumontierlab.com/WeightMeasure> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of weight."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Weigth> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/Weigth> <http://www.w3.org/2000/01/rdf-schema#label> "weight"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/Weigth> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/WeightMeasure>
+<http://ontology.dumontierlab.com/Weigth> <http://www.w3.org/2000/01/rdf-schema#comment> "The vertical force exerted by a mass as a result of gravity."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeigthDifference> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/WeigthDifference> <http://www.w3.org/2000/01/rdf-schema#label> "weight difference"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeigthDifference> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/WeightMeasure>
+<http://ontology.dumontierlab.com/WeigthDifference> <http://www.w3.org/2000/01/rdf-schema#comment> "A measured difference in weight."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeigthGain> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/WeigthGain> <http://www.w3.org/2000/01/rdf-schema#label> "weigth gain"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/WeigthGain> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/WeigthDifference>
+<http://ontology.dumontierlab.com/WeigthGain> <http://www.w3.org/2000/01/rdf-schema#comment> "a measured increase in weight."
+<http://ontology.dumontierlab.com/ZeroDrugEfficacy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ZeroDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#label> "zero drug efficacy"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ZeroDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/DrugEfficacy>
+<http://ontology.dumontierlab.com/ZeroDrugEfficacy> <http://www.w3.org/2000/01/rdf-schema#comment> "A measure of a drug that has zero ability in realizing a therapeutic potential."^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ZeroRemission> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class>
+<http://ontology.dumontierlab.com/ZeroRemission> <http://www.w3.org/2000/01/rdf-schema#label> "zero remission"^^<http://www.w3.org/2001/XMLSchema#string>
+<http://ontology.dumontierlab.com/ZeroRemission> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://ontology.dumontierlab.com/RemissionFrequency>
