@@ -42,7 +42,7 @@ class GSS:
         for level, nodes in enumerate(self.levels):
             gss += 'U' + str(level) + ':\n'
             for node in nodes:
-                gss += str(node) + '\n'
+                gss += str(nodes[node]) + '\n'
             gss += '\n'
         return gss
 
