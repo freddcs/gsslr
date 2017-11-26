@@ -6,6 +6,8 @@ from Examples import *
 from LR import *
 from Algorithm import *
 
+iterations = 5
+
 # Ontologies
 
 examples = ['skos', 'generations', 'travel', 'univ-bench', 'foaf', 'people-pets', 'funding', 'atom-primitive', 'biomedical', 'pizza', 'wine']
@@ -24,16 +26,15 @@ for G in ['Q1', 'Q2']:
 
         totalTime = 0
 
-        for i in range(5):
+        for i in range(iterations):
             start = now()
             answers = GSS_LR(DG, parsingTable, rules)
             totalTime += now() - start
 
         # print answers
+        print '%s,%s,%s,%s' % (G, ontology, str(totalTime / iterations), str(len(answers)))
 
-        print G + ',' + ontology + ',' + str(totalTime / 5) + ',' + str(len(answers))
-
-print 'Graph type,lenght,Time (ms),results'
+print 'Graph type,Length,Time (ms),Results'
 
 for G in ['G0', 'G2']:
     parsingTable, rules = CreateParsingTable(G)
@@ -60,11 +61,10 @@ for G in ['G0', 'G2']:
 
             totalTime = 0
 
-            for i in range(5):
+            for i in range(iterations):
                 start = now()
                 answers = GSS_LR(DG, parsingTable, rules)
                 totalTime += now() - start
 
             # print answers
-            print graphType + ',' + str(e) + ',' + str(totalTime / 5) + ',' + str(len(answers))
-            #print answers
+            print '%s,%s,%s,%s,%s' % (G, graphType, str(e), str(totalTime / iterations), str(len(answers)))
