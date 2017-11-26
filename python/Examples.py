@@ -13,7 +13,8 @@ def prepareExampleGraph(DG, file):
         destination = re.sub('\\n$', '', lineData[2])
 
         DG.addNode(origin, edge, destination)
-        DG.addNode(destination, edge + '-1', origin)
+        if edge == '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>' or edge == '<http://www.w3.org/2000/01/rdf-schema#subClassOf>':
+            DG.addNode(destination, edge + '-1', origin)
 
     for label in DG.nodes:
         vertex = DG.nodes[label]
