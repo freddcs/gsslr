@@ -18,7 +18,7 @@ class GSS:
             if level > 0:
                 gssNode.predecessors.add(predecessor)
         else:
-            gssNode = GSSNode(state, vertex, predecessor)
+            gssNode = GSSNode(state, vertex, predecessor, nodeIndex)
             gssNode.label = self.numberOfNodes
             gssNodes[nodeIndex] = gssNode
             self.numberOfNodes += 1
@@ -47,9 +47,10 @@ class GSS:
         return gss
 
 class GSSNode:
-    def __init__(self, state, vertex, predecessor):
+    def __init__(self, state, vertex, predecessor, nodeIndex):
         self.state = state
         self.vertex = vertex
+        self.nodeIndex = nodeIndex
         
         self.predecessors = set()
         if state > 0:
