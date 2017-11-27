@@ -22,17 +22,24 @@ class GSS:
             gssNode.label = self.numberOfNodes
             gssNodes[nodeIndex] = gssNode
             self.numberOfNodes += 1
+
+        gssNode.up = {}
         
         return gssNode
-    
+
     def up(self, gssNode, jumps):
+
+        if jumps in gssNode.up:
+            return gssNode.up[jumps]
+
         reductionRoots = []
         
         if jumps > 0:
             gssNodes = []
             for predecessorLink in gssNode.predecessors:
                 gssNodes = gssNodes + self.up(predecessorLink.gssNode, jumps - 1)
-                
+
+            gssNode.up[jumps] = gssNodes
             return gssNodes
         else:
             return [gssNode]
@@ -51,6 +58,7 @@ class GSSNode:
         self.state = state
         self.vertex = vertex
         self.nodeIndex = nodeIndex
+        self.up = {}
         
         self.predecessors = set()
         if state > 0:
@@ -69,13 +77,13 @@ class GSSLink:
         self.edgeLabel = edgeLabel
         self.gssNode = gssNode
         self.hash = hash(edgeLabel + gssNode.vertex.vertexLabel + str(gssNode.state))
-    
+
     def __hash__(self):
         return self.hash
-    
+
     def __eq__(self, other):
         return (self.hash == other.hash)
-    
+
 def CreateGSS(DG):
     gss = GSS()
     
