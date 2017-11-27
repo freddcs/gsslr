@@ -34,7 +34,7 @@ for G in ['Q1', 'Q2']:
         # print answers
         print '%s,%s,%s,%s' % (G, ontology, str(totalTime / iterations), str(len(answers)))
 
-print 'Graph type,Length,Time (ms),Results'
+print 'Grammar,Graph type,Length,Time (ms),Results'
 
 for G in ['G0', 'G2']:
     parsingTable, rules = CreateParsingTable(G)
