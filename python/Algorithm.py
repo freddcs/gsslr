@@ -19,7 +19,7 @@ def GSS_LR(DG, parsingTable, rules):
         gssNodes = gss.levels[level]
         nodeKeys = gssNodes.keys()
 
-        if processReduces(gssNodes, nodeKeys, parsingTable, rules, gss, level, reductionEdges) == True:
+        if processReduces(gssNodes, nodeKeys, set(), parsingTable, rules, gss, level, reductionEdges) == True:
             changed = True
 
         if processAccepts(gssNodes, parsingTable, gss, answers) == True:
@@ -40,7 +40,7 @@ def GSS_LR(DG, parsingTable, rules):
     return answers
 
 # Process Reductions
-def processReduces(gssNodes, nodeKeys, parsingTable, rules, gss, level, reductionEdges):
+def processReduces(gssNodes, nodeKeys, addedNodesKeys, parsingTable, rules, gss, level, reductionEdges):
     changed = False
     newNodesKeys = set()
     for nodeIndex in nodeKeys:
@@ -64,10 +64,13 @@ def processReduces(gssNodes, nodeKeys, parsingTable, rules, gss, level, reductio
                             if reductionLabel not in reductionEdges:
                                 reductionEdges.add(reductionLabel)
                                 changed = True
+
+                            if newGssNode.nodeIndex not in addedNodesKeys:
                                 newNodesKeys.add(newGssNode.nodeIndex)
 
     if len(newNodesKeys) > 0:
-        if processReduces(gssNodes, newNodesKeys, parsingTable, rules, gss, level, reductionEdges) == True:
+        addedNodesKeys = addedNodesKeys.union(newNodesKeys)
+        if processReduces(gssNodes, newNodesKeys, addedNodesKeys, parsingTable, rules, gss, level, reductionEdges) == True:
             changed = True
 
     return changed
