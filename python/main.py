@@ -6,14 +6,6 @@ from Examples import *
 from LR import *
 from Algorithm import *
 
-iterations = 1
-
-# Ontologies
-
-examples = ['skos', 'generations', 'travel', 'univ-bench', 'foaf', 'people-pets', 'funding', 'atom-primitive', 'biomedical', 'pizza', 'wine']
-
-print 'Grammar,Ontology,Time (ms),results'
-
 resultadosEsperados = {}
 resultadosEsperados['Q1'] = {}
 resultadosEsperados['Q1']['skos'] = 810
@@ -117,6 +109,14 @@ resultadosEsperados['complete'][350] = 122500
 resultadosEsperados['complete'][375] = 140625
 resultadosEsperados['complete'][400] = 160000
 
+iterations = 1
+
+# Ontologies
+
+examples = ['skos', 'generations', 'travel', 'univ-bench', 'foaf', 'people-pets', 'funding', 'atom-primitive', 'biomedical', 'pizza', 'wine']
+
+print 'Grammar,Ontology,Time (ms),results'
+
 for G in ['Q1', 'Q2']:
     parsingTable, rules = CreateParsingTable(G)
 
@@ -144,11 +144,11 @@ for G in ['G0', 'G2']:
 
     for graphType in ['linear', 'tree', 'complete']:
         if graphType == 'complete':
-            examples = [0,10,20]#,40,50,60,70,80,90,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            examples = [0,10,20,30,40,50,60,70,80,90,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
         elif graphType == 'linear':
-            examples = [0,10,20,30]#,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            examples = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
         else:
-            examples = [1,2,3,4,5]#,6,7,8,9,10,11,12,13,15,16,17]
+            examples = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17]
 
         for e in examples:
 

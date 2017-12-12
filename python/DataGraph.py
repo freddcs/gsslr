@@ -16,6 +16,15 @@ class DataGraph:
             self.nodes[sourceLabel].edges.append(newEdge)
             self.triplesCount += 1
 
+    def __repr__(self):
+        graph = 'Graph:\n'
+        for node in self.nodes:
+            node = self.nodes[node]
+            for edge in node.edges:
+                graph += str(node.vertexLabel) + ' ' + edge.edgeLabel + ' ' + edge.destination.vertexLabel + '\n'
+                graph += '\n'
+        return graph
+
 class GraphNode:
     def __init__(self, vertexLabel):
         self.vertexLabel = vertexLabel

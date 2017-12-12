@@ -22,7 +22,7 @@ def GSS_LR(DG, parsingTable, rules):
         if processReduces(gssNodes, nodeKeys, set(), parsingTable, rules, gss, level, reductionEdges) == True:
             changed = True
 
-        if processAccepts(gssNodes, parsingTable, gss, answers) == True:
+        if processAccepts(level, gssNodes, parsingTable, gss, answers) == True:
             changed = True
         
         if processShifts(gssNodes, parsingTable, gss, level, visitedPairs) == True:
@@ -55,17 +55,19 @@ def processReduces(gssNodes, nodeKeys, addedNodesKeys, parsingTable, rules, gss,
                         for reductionRoot in reductionRoots:
                             destinationState = parsingTable[reductionRoot.state][rule.lhs][0].state
 
-                            predecessor = GSSLink(rule.lhs, reductionRoot)
-                            newGssNode = gss.addNode(level, destinationState, gssNode.vertex, predecessor)
+                            reductionIndex = str(level) + '-' +  str(destinationState) + '-' + gssNode.nodeIndex + '-' + rule.lhs + '-' + reductionRoot.nodeIndex
+                            if reductionIndex not in gss.reductionIndexes:
+                                gss.reductionIndexes.add(reductionIndex)
+                                
+                                newGssNode = gss.addNode(level, destinationState, gssNode.vertex, rule.lhs, reductionRoot)
 
-                            newNodeIndex = gssNode.vertex.vertexLabel + str(destinationState)
+                                newNodeIndex = gssNode.vertex.vertexLabel + str(destinationState)
 
-                            reductionLabel = reductionRoot.vertex.vertexLabel + str(reductionRoot.state) + rule.lhs + gssNode.vertex.vertexLabel + str(gssNode.state)
-                            if reductionLabel not in reductionEdges:
-                                reductionEdges.add(reductionLabel)
-                                changed = True
+                                reductionLabel = reductionRoot.vertex.vertexLabel + str(reductionRoot.state) + rule.lhs + gssNode.vertex.vertexLabel + str(gssNode.state)
+                                if reductionLabel not in reductionEdges:
+                                    reductionEdges.add(reductionLabel)
+                                    changed = True
 
-                            if newGssNode.nodeIndex not in addedNodesKeys:
                                 newNodesKeys.add(newGssNode.nodeIndex)
 
     if len(newNodesKeys) > 0:
@@ -76,7 +78,7 @@ def processReduces(gssNodes, nodeKeys, addedNodesKeys, parsingTable, rules, gss,
     return changed
 
 # Process Accepts
-def processAccepts(gssNodes, parsingTable, gss, answers):
+def processAccepts(level, gssNodes, parsingTable, gss, answers):
     changed = False
     for nodeIndex in gssNodes:
         gssNode = gssNodes[nodeIndex]
@@ -100,8 +102,7 @@ def processShifts(gssNodes, parsingTable, gss, level, visitedPairs):
             if edge.edgeLabel in parsingTable[gssNode.state]:
                 for action in parsingTable[gssNode.state][edge.edgeLabel]:
                     if action.action == 'shift':
-                        predecessor = GSSLink(edge.edgeLabel, gssNode)
-                        gss.addNode(level + 1, action.state, edge.destination, predecessor)
+                        gss.addNode(level + 1, action.state, edge.destination, edge.edgeLabel, gssNode)
 
                         visitedPair = gssNode.vertex.vertexLabel + str(gssNode.state) + str(edge.destination.vertexLabel) + str(action.state)
                         if visitedPair not in visitedPairs:

@@ -4,8 +4,9 @@ class GSS:
     def __init__(self):
         self.levels = []
         self.numberOfNodes = 0
+        self.reductionIndexes = set();
         
-    def addNode(self, level, state, vertex, predecessor):
+    def addNode(self, level, state, vertex, linkEdge, predecessor):
         if len(self.levels) <= level:
             self.levels.append({});
             
@@ -16,9 +17,10 @@ class GSS:
             gssNode = gssNodes[nodeIndex]
             
             if level > 0:
-                gssNode.predecessors.add(predecessor)
+                predecessorIndex = linkEdge + predecessor.nodeIndex
+                gssNode.predecessors[predecessorIndex] = GSSLink(linkEdge, predecessor)
         else:
-            gssNode = GSSNode(state, vertex, predecessor, nodeIndex)
+            gssNode = GSSNode(state, vertex, nodeIndex, linkEdge, predecessor)
             gssNode.label = self.numberOfNodes
             gssNodes[nodeIndex] = gssNode
             self.numberOfNodes += 1
@@ -36,7 +38,9 @@ class GSS:
         
         if jumps > 0:
             gssNodes = []
-            for predecessorLink in gssNode.predecessors:
+                
+            for predecessorLinkKey in gssNode.predecessors:
+                predecessorLink = gssNode.predecessors[predecessorLinkKey]
                 gssNodes = gssNodes + self.up(predecessorLink.gssNode, jumps - 1)
 
             gssNode.up[jumps] = gssNodes
@@ -54,15 +58,17 @@ class GSS:
         return gss
 
 class GSSNode:
-    def __init__(self, state, vertex, predecessor, nodeIndex):
+    def __init__(self, state, vertex, nodeIndex, linkEdge, predecessor):
         self.state = state
         self.vertex = vertex
         self.nodeIndex = nodeIndex
         self.up = {}
         
-        self.predecessors = set()
+        self.predecessors = {}
         if state > 0:
-            self.predecessors.add(predecessor)
+            predecessorIndex = linkEdge + predecessor.nodeIndex;
+            if predecessorIndex not in self.predecessors:
+                self.predecessors[predecessorIndex] = GSSLink(linkEdge, predecessor)
         self.label = 0
 
     def __repr__(self):
@@ -76,18 +82,11 @@ class GSSLink:
     def __init__(self, edgeLabel, gssNode):
         self.edgeLabel = edgeLabel
         self.gssNode = gssNode
-        self.hash = hash(edgeLabel + gssNode.vertex.vertexLabel + str(gssNode.state))
-
-    def __hash__(self):
-        return self.hash
-
-    def __eq__(self, other):
-        return (self.hash == other.hash)
 
 def CreateGSS(DG):
     gss = GSS()
     
     for key, value in DG.nodes.items():
-        gssNode = gss.addNode(0, 0, value, None)
+        gssNode = gss.addNode(0, 0, value, None, None)
 
     return gss
