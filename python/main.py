@@ -6,7 +6,7 @@ from Examples import *
 from LR import *
 from Algorithm import *
 
-iterations = 5
+iterations = 1
 
 # Ontologies
 
@@ -74,22 +74,22 @@ resultadosEsperados['linear'][400] = 40200
 resultadosEsperados['linear'][425] = 45369
 resultadosEsperados['linear'][450] = 50850
 
-resultadosEsperados['trees'] = {}
-resultadosEsperados['trees'][1] = 0
-resultadosEsperados['trees'][2] = 3
-resultadosEsperados['trees'][3] = 11
-resultadosEsperados['trees'][4] = 27
-resultadosEsperados['trees'][5] = 75
-resultadosEsperados['trees'][6] = 171
-resultadosEsperados['trees'][7] = 427
-resultadosEsperados['trees'][8] = 939
-resultadosEsperados['trees'][9] = 2219
-resultadosEsperados['trees'][10] = 4779
-resultadosEsperados['trees'][11] = 10923
-resultadosEsperados['trees'][12] = 23211
-resultadosEsperados['trees'][13] = 51883
-resultadosEsperados['trees'][15] = 240299
-resultadosEsperados['trees'][16] = 502443
+resultadosEsperados['tree'] = {}
+resultadosEsperados['tree'][1] = 0
+resultadosEsperados['tree'][2] = 3
+resultadosEsperados['tree'][3] = 11
+resultadosEsperados['tree'][4] = 27
+resultadosEsperados['tree'][5] = 75
+resultadosEsperados['tree'][6] = 171
+resultadosEsperados['tree'][7] = 427
+resultadosEsperados['tree'][8] = 939
+resultadosEsperados['tree'][9] = 2219
+resultadosEsperados['tree'][10] = 4779
+resultadosEsperados['tree'][11] = 10923
+resultadosEsperados['tree'][12] = 23211
+resultadosEsperados['tree'][13] = 51883
+resultadosEsperados['tree'][15] = 240299
+resultadosEsperados['tree'][16] = 502443
 
 resultadosEsperados['complete'] = {}
 resultadosEsperados['complete'][0] = 0
@@ -144,11 +144,11 @@ for G in ['G0', 'G2']:
 
     for graphType in ['linear', 'tree', 'complete']:
         if graphType == 'complete':
-            examples = [0,10,20,30,40,50,60,70,80,90,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            examples = [0,10,20]#,40,50,60,70,80,90,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
         elif graphType == 'linear':
-            examples = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            examples = [0,10,20,30]#,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
         else:
-            examples = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17]
+            examples = [1,2,3,4,5]#,6,7,8,9,10,11,12,13,15,16,17]
 
         for e in examples:
 
