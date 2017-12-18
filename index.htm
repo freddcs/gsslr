@@ -100,7 +100,7 @@
                 margin-bottom:10px;
             }
 
-            #graphs input {
+            #graphs input[type="text"] {
                 width:100%;
             }
 
@@ -217,11 +217,21 @@
             <div class="corpo">
                 <div style="width:20%;float:left;">
                     <div><strong>Select the example:</strong></div>
-                    <div><select id="exampleGraphs" onchange="selectExampleGraph()" onclick="selectExampleGraph()" value="0"></select></div>
+                    <div><select id="exampleGraphs" onchange="selectExampleGraph()" onclick="selectExampleGraph()"></select></div>
                     <div><strong>Graph data:</strong></div>
-                    <div><textarea id="graphText" style="width:100%;height:200px;" onchange="updateGraph('graphBase');updateGraph('smallGraphBase');" onblur="updateGraph('graphBase');updateGraph('smallGraphBase');"></textarea></div>
+                    <div><textarea id="graphText" style="width:100%;height:200px;" onblur="if (displayGraph) {graphView = new GraphView('graphBase'); }"></textarea></div>
                     <div><strong>Starting nodes:</strong></div>
-                    <div><input id="startingNodes" /></div>
+                    <div><input type="text" id="startingNodes" /></div>
+                    <div>
+                        Display Graph:
+                        <input type="radio" id="displayGraphYes" name="displayGraph" onchange="setDisplayGraph(true);"> <label for="displayGraphYes">Yes</label>
+                        <input type="radio" id="displayGraphNo" name="displayGraph" onchange="setDisplayGraph(false);"> <label for="displayGraphNo">No</label>
+                    </div>
+                    <div>
+                        Display GSS:
+                        <input type="radio" id="displayGSSYes" name="displayGSS" onchange="setDisplayGSS(true);"> <label for="displayGSSYes">Yes</label>
+                        <input type="radio" id="displayGSSNo" name="displayGSS" onchange="setDisplayGSS(false);"> <label for="displayGSSNo">No</label>
+                    </div>
                 </div>
                 <div id="graphBase" style="border:1px solid #000;background:#FFF;width:75%;margin-left:5px;float:left;overflow:hidden;height:100%;"></div>
                 <div style="clear:both"></div>
@@ -232,7 +242,7 @@
         <div id="grammars" class="janela">
             <div class="cabecalho">Select the LR Grammar</div>
             <div class="corpo">
-                <div><select id="exampleGrammars" onchange="selectExampleGrammar()" onclick="selectExampleGrammar()" value="0"></select></div>
+                <div><select id="exampleGrammars" onchange="selectExampleGrammar()" onclick="selectExampleGrammar()"></select></div>
                 <textarea id="grammarText" style="width:100%;height:100px;" onchange="updateGrammar()" onblur="updateGrammar()"></textarea>
                 <div style="clear:both"></div>
             </div>
