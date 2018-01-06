@@ -142,13 +142,19 @@ print 'Grammar,Graph type,Length,Time (ms),Results'
 for G in ['G0', 'G2']:
     parsingTable, rules = CreateParsingTable(G)
 
-    for graphType in ['linear', 'tree', 'complete']:
+    # for graphType in ['linear', 'tree', 'complete']:
+    for graphType in ['tree']:
+
         if graphType == 'complete':
-            examples = [0,10,20,30,40,50,60,70,80,90,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            examples = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            #examples = [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 20,30,40,50,60,70,80,90]
+            examples = [2]
         elif graphType == 'linear':
             examples = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
+            
         else:
             examples = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17]
+            examples = [2]
 
         for e in examples:
 
@@ -158,6 +164,9 @@ for G in ['G0', 'G2']:
                 DG = new_linear_graph(e, ['a', 'b'])
             else:
                 DG = new_tree_graph(e, 2, ['a', 'b'])
+
+            print 'GRAFO'
+            print DG
 
             now = lambda: int(round(time.time() * 1000))
 
@@ -169,4 +178,19 @@ for G in ['G0', 'G2']:
                 totalTime += now() - start
 
             # print answers
-            print '%s,%s,%s,%s,%s,%s' % (len(answers) == resultadosEsperados[graphType][e], G, graphType, str(e), str(totalTime / iterations), str(len(answers)))
+            #print '%s,%s,%s,%s,%s,%s' % (len(answers) == resultadosEsperados[graphType][e], G, graphType, str(e), str(totalTime / iterations), str(len(answers)))
+            
+            print e
+            print 'NumberOfNodes: ', gss.numberOfNodes
+            
+            count = 0;
+            for level in gss.levels:
+                for node in level:
+                    for predecessor in level[node].predecessors:
+                        for a in level[node].predecessors[predecessor]:
+                            for b in level[node].predecessors[predecessor][a]:
+                                count += 1
+                        
+            print 'Number of edges: ', count
+            print 'Answers: ', answers
+            print "GSS: ", gss

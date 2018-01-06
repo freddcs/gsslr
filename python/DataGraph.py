@@ -17,13 +17,13 @@ class DataGraph:
             self.triplesCount += 1
 
     def __repr__(self):
-        graph = 'Graph:\n'
+        repr = ''
         for node in self.nodes:
             node = self.nodes[node]
             for edge in node.edges:
-                graph += str(node.vertexLabel) + ' ' + edge.edgeLabel + ' ' + edge.destination.vertexLabel + '\n'
-                graph += '\n'
-        return graph
+                repr += '\n(' + node.vertexLabel + ' ' + edge.edgeLabel + ' ' + edge.destination.vertexLabel + ')'
+
+        return repr
 
 class GraphNode:
     def __init__(self, vertexLabel):

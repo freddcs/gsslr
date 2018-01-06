@@ -385,5 +385,98 @@ def CreateParsingTable(grammar):
             Rule('S', 4),
             Rule('S', 0)
         ]
+        
+    elif grammar == 'G2_2':
+
+        parsingTable.append({})
+        parsingTable[0]['a'] = [Action('shift', 3, None)]
+        parsingTable[0]['$'] = [Action('reduce', None, 6)]
+        parsingTable[0]['S'] = [Action('goto', 1, None)]
+        parsingTable[0]['A'] = [Action('goto', 2, None)]
+
+        parsingTable.append({})
+        parsingTable[1]['$'] = [Action('accept', None, None)]
+
+        parsingTable.append({})
+        parsingTable[2]['a'] = [Action('shift', 7, None)]
+        parsingTable[2]['b'] = [Action('reduce', None, 6)]
+        parsingTable[2]['S'] = [Action('goto', 5, None)]
+        parsingTable[2]['A'] = [Action('goto', 6, None)]
+        parsingTable[2]['R'] = [Action('goto', 4, None)]
+
+        parsingTable.append({})
+        parsingTable[3]['a'] = [Action('reduce', None, 2)]
+        parsingTable[3]['b'] = [Action('reduce', None, 2)]
+        parsingTable[3]['$'] = [Action('reduce', None, 2)]
+
+        parsingTable.append({})
+        parsingTable[4]['$'] = [Action('reduce', None, 1)]
+
+        parsingTable.append({})
+        parsingTable[5]['a'] = [Action('shift', 10, None)]
+        parsingTable[5]['P'] = [Action('goto', 8, None)]
+        parsingTable[5]['B'] = [Action('goto', 9, None)]
+
+        parsingTable.append({})
+        parsingTable[6]['a'] = [Action('shift', 7, None)]
+        parsingTable[6]['b'] = [Action('reduce', None, 6)]
+        parsingTable[6]['S'] = [Action('goto', 12, None)]
+        parsingTable[6]['A'] = [Action('goto', 6, None)]
+        parsingTable[6]['R'] = [Action('goto', 11, None)]
+
+        parsingTable.append({})
+        parsingTable[7]['a'] = [Action('reduce', None, 2)]
+        parsingTable[7]['b'] = [Action('reduce', None, 2)]
+
+        parsingTable.append({})
+        parsingTable[8]['$'] = [Action('reduce', None, 3)]
+        
+        parsingTable.append({})
+        parsingTable[9]['a'] = [Action('shift', 3, None)]
+        parsingTable[9]['$'] = [Action('reduce', None, 6)]
+        parsingTable[9]['S'] = [Action('goto', 13, None)]
+        parsingTable[9]['A'] = [Action('goto', 2, None)]
+        
+        parsingTable.append({})
+        parsingTable[10]['a'] = [Action('reduce', None, 5)]
+        parsingTable[10]['$'] = [Action('reduce', None, 5)]
+        
+        parsingTable.append({})
+        parsingTable[11]['b'] = [Action('reduce', None, 1)]
+        
+        parsingTable.append({})
+        parsingTable[12]['b'] = [Action('shift', 16, None)]
+        parsingTable[12]['P'] = [Action('goto', 14, None)]
+        parsingTable[12]['B'] = [Action('goto', 15, None)]
+        
+        parsingTable.append({})
+        parsingTable[13]['$'] = [Action('reduce', None, 4)]
+        
+        parsingTable.append({})
+        parsingTable[14]['b'] = [Action('reduce', None, 3)]
+        
+        parsingTable.append({})
+        parsingTable[15]['a'] = [Action('shift', 7, None)]
+        parsingTable[15]['b'] = [Action('reduce', None, 6)]
+        parsingTable[15]['S'] = [Action('goto', 17, None)]
+        parsingTable[15]['A'] = [Action('goto', 6, None)]
+        
+        parsingTable.append({})
+        parsingTable[16]['a'] = [Action('reduce', None, 5)]
+        parsingTable[16]['b'] = [Action('reduce', None, 5)]
+        
+        parsingTable.append({})
+        parsingTable[17]['b'] = [Action('reduce', None, 4)]
+
+        rules = [
+            Rule('S\'', 1),
+            Rule('S', 2),
+            Rule('A', 1),
+            Rule('R', 2),
+            Rule('P', 2),
+            Rule('B', 1),
+            Rule('S', 0)
+        ]
+
 
     return parsingTable, rules
