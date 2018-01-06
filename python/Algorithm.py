@@ -37,7 +37,7 @@ def GSS_LR(DG, parsingTable, rules):
         # Retornar triplas (Node, Nao-Terminal, Node)
         # Manter consistencia entre o grafo de dados com o algoritmo. Tentar representar como Node X Edge X Nodes
     
-    return answers
+    return gss, answers
 
 # Process Reductions
 def processReduces(gssNodes, nodeKeys, addedNodesKeys, parsingTable, rules, gss, level, reductionEdges):

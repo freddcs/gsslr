@@ -174,7 +174,7 @@ for G in ['G0', 'G2']:
 
             for i in range(iterations):
                 start = now()
-                answers = GSS_LR(DG, parsingTable, rules)
+                gss, answers = GSS_LR(DG, parsingTable, rules)
                 totalTime += now() - start
 
             # print answers
@@ -182,15 +182,4 @@ for G in ['G0', 'G2']:
             
             print e
             print 'NumberOfNodes: ', gss.numberOfNodes
-            
-            count = 0;
-            for level in gss.levels:
-                for node in level:
-                    for predecessor in level[node].predecessors:
-                        for a in level[node].predecessors[predecessor]:
-                            for b in level[node].predecessors[predecessor][a]:
-                                count += 1
-                        
-            print 'Number of edges: ', count
             print 'Answers: ', answers
-            print "GSS: ", gss
