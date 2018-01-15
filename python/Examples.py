@@ -42,6 +42,26 @@ def new_linear_graph(n, predicates):
             graph.addNode(s, p, o)
     return graph
 
+def new_string_graph(n, predicates):
+    """ Generates a linear graph with n nodes. """
+    graph = DataGraph()
+    for i in range(1,n):
+        s = str(i)
+        for p in predicates:
+            o = str(i+1)
+            # print s, p, o
+            graph.addNode(s, p, o)
+    return graph
+
+def new_string_graph(half_size):
+        g = DataGraph()
+        if half_size > 0:
+            for i in range(1,half_size+1):
+                g.addNode(str(i), 'a', str(i+1))
+            for i in range(half_size + 1,half_size * 2 + 1):
+                g.addNode(str(i), 'b', str(i+1))
+        return g
+
 def new_tree_graph(h, m, predicates):
     """ Generates a m-ary tree with h of height. """
     def rec(D, h, m, t, predicates):
@@ -55,6 +75,32 @@ def new_tree_graph(h, m, predicates):
 
     graph = DataGraph()
     rec(graph, h, m, 'root', predicates)
+    return graph
+
+def new_top_down_tree_graph(h, m, level = 0):
+    """ Generates a m-ary tree with h of height. """
+    def rec(D, h, m, t, level):
+        if h > 1:
+            s = str(t)
+            for j in range(1,m+1):
+                D.addNode(s, ('a' if level%2==0 else 'b'), t+'.'+str(j))
+                rec(D, h-1, m, t+'.'+str(j), level + 1)
+
+    graph = DataGraph()
+    rec(graph, h, m, 'root', level)
+    return graph
+
+def new_bottom_up_tree_graph(h, m, level = 0):
+    """ Generates a m-ary tree with h of height. """
+    def rec(D, h, m, t, level):
+        if h > 1:
+            s = str(t)
+            for j in range(1,m+1):
+                D.addNode(t+'.'+str(j), ('a' if h%2==0 else 'b'), s)
+                rec(D, h-1, m, t+'.'+str(j), level + 1)
+
+    graph = DataGraph()
+    rec(graph, h, m, 'root', level)
     return graph
 
 def CreateParsingTable(grammar):

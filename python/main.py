@@ -6,6 +6,9 @@ from Examples import *
 from LR import *
 from Algorithm import *
 
+print new_bottom_up_tree_graph(3, 2);
+exit()
+
 resultadosEsperados = {}
 resultadosEsperados['Q1'] = {}
 resultadosEsperados['Q1']['skos'] = 810
@@ -109,11 +112,12 @@ resultadosEsperados['complete'][350] = 122500
 resultadosEsperados['complete'][375] = 140625
 resultadosEsperados['complete'][400] = 160000
 
-iterations = 1
+iterations = 5
 
 # Ontologies
 
-examples = ['skos', 'generations', 'travel', 'univ-bench', 'foaf', 'people-pets', 'funding', 'atom-primitive', 'biomedical', 'pizza', 'wine']
+examples = []
+#examples = ['skos', 'generations', 'travel', 'univ-bench', 'foaf', 'people-pets', 'funding', 'atom-primitive', 'biomedical', 'pizza', 'wine']
 
 print 'Grammar,Ontology,Time (ms),results'
 
@@ -139,11 +143,11 @@ for G in ['Q1', 'Q2']:
 
 print 'Grammar,Graph type,Length,Time (ms),Results'
 
-for G in ['G0', 'G2']:
+for G in ['G2']:
     parsingTable, rules = CreateParsingTable(G)
 
     # for graphType in ['linear', 'tree', 'complete']:
-    for graphType in ['tree']:
+    for graphType in ['string']:
 
         if graphType == 'complete':
             examples = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
@@ -151,7 +155,8 @@ for G in ['G0', 'G2']:
             examples = [2]
         elif graphType == 'linear':
             examples = [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,225,250,275,300,325,350,375,400]
-            
+	elif graphType == 'string':
+            examples = [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500,525,550,575,600,625,650,675,700,725,750,775,800,825,850,875,900,925,950,975,1000,1025,1050,1075,1100,1125,1150,1175,1200,1225,1250,1275,1300,1325,1350,1375,1400,1425,1450,1475,1500,1525,1550,1575,1600,1625,1650,1675,1700,1725,1750,1775,1800,1825,1850,1875,1900,1925,1950,1975,2000]
         else:
             examples = [1,2,3,4,5,6,7,8,9,10,11,12,13,15,16,17]
             examples = [2]
@@ -162,11 +167,13 @@ for G in ['G0', 'G2']:
                 DG = new_complete_graph(e, ['a', 'b'])
             elif graphType == 'linear':
                 DG = new_linear_graph(e, ['a', 'b'])
+            elif graphType == 'string':
+                DG = new_string_graph(e)
             else:
                 DG = new_tree_graph(e, 2, ['a', 'b'])
 
-            print 'GRAFO'
-            print DG
+            #print 'GRAFO'
+            #print DG
 
             now = lambda: int(round(time.time() * 1000))
 
@@ -179,7 +186,9 @@ for G in ['G0', 'G2']:
 
             # print answers
             #print '%s,%s,%s,%s,%s,%s' % (len(answers) == resultadosEsperados[graphType][e], G, graphType, str(e), str(totalTime / iterations), str(len(answers)))
-            
-            print e
-            print 'NumberOfNodes: ', gss.numberOfNodes
-            print 'Answers: ', answers
+            print '%s,%s,%s,%s,%s' % (G, graphType, str(e*2+1), str(totalTime / iterations), str(len(answers)))
+            # print DG
+
+            #print e
+            #print 'NumberOfNodes: ', gss.numberOfNodes
+            #print 'Answers: ', answers
