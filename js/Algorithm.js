@@ -243,9 +243,6 @@ var Algorithm = function(graph, lrTable) {
             }
         }
 
-        // TODO Remover este teste
-        newActionFound = true;
-        
         if (!newActionFound) {
             console.log("** LOOP INFINITO ENCONTRADO! **");
             this.infiniteLoop = true;
